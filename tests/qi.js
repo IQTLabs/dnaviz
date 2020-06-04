@@ -20,7 +20,7 @@ function qi(sequence) {
         'CT': 2
     }
     let count = 0
-    for (let i = 0; i < sequence.length; i = i + 2) {
+    for (let i = 0; i < sequence.length; i++) {
         count++
         x.push(count)
         y.push(key[sequence[i] + sequence[i+1]])

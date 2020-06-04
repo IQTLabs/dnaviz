@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {},
   "devDependencies": {
+    "fast-check": "^1.24.2",
     "jest": "^26.0.1",
     "jsverify": "^0.8.4"
   },

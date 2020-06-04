@@ -31,7 +31,7 @@ function squiggle(sequence) {
     result.push(y)
     return result
 }
-module.exports = squiggle;
+
 //yau
 function yau(sequence) {
     let x = [0.0]
@@ -62,7 +62,6 @@ function yau(sequence) {
     result.push(y)
     return result
 }
-module.exports = yau
 //yau-bp
 function yau_bp(sequence) {
     let x = [0.0]
@@ -169,9 +168,9 @@ function gates(sequence) {
     return result
 }
 
-
-// module.exports = yau;
-// module.exports = yau_bp;
-// module.exports = randic;
-// module.exports = qi;
-// module.exports = gates;
+module.exports = squiggle;
+module.exports = yau;
+module.exports = yau_bp;
+module.exports = randic;
+module.exports = qi;
+module.exports = gates;
