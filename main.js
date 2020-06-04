@@ -1,4 +1,3 @@
-//squiggle
 function squiggle(sequence) {
     let x = [0.0]
     let y = [0.0]
@@ -7,7 +6,7 @@ function squiggle(sequence) {
     for (let _i = 0; _i < sequence.length; _i++) {
         let character = sequence[_i]
         x.push(x[x.length - 1] + 0.5)
-        x.push(x[x.length - 1] + 1.0)                   
+        x.push(x[x.length - 1] + 0.5)
         if (character == "A") {
             y.push(yCoord + 0.5)
             y.push(yCoord)
@@ -32,6 +31,7 @@ function squiggle(sequence) {
     result.push(y)
     return result
 }
+module.exports = squiggle;
 //yau
 function yau(sequence) {
     let x = [0.0]
@@ -62,6 +62,7 @@ function yau(sequence) {
     result.push(y)
     return result
 }
+module.exports = yau
 //yau-bp
 function yau_bp(sequence) {
     let x = [0.0]
@@ -167,3 +168,10 @@ function gates(sequence) {
     result.push(y)
     return result
 }
+
+
+// module.exports = yau;
+// module.exports = yau_bp;
+// module.exports = randic;
+// module.exports = qi;
+// module.exports = gates;

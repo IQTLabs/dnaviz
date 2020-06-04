@@ -1,0 +1,24 @@
+{
+  "name": "dna_viz",
+  "version": "1.0.0",
+  "description": "DNA visualization for the command line, browser, and beyond",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "jsverify": "^0.8.4"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lab41/dnavs.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lab41/dnavs.js/issues"
+  },
+  "homepage": "https://github.com/Lab41/dnavs.js#readme"
+}
