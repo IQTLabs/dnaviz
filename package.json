@@ -3,16 +3,21 @@
   "version": "1.0.0",
   "description": "DNA visualization for the command line, browser, and beyond",
   "main": "main.js",
-  "dependencies": {
-    "typescript": "^3.9.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "fast-check": "^1.24.2",
     "jest": "^26.0.1",
-    "jsverify": "^0.8.4"
+    "jsverify": "^0.8.4",
+    "prettier": "2.0.5",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.9.5"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
   },
   "repository": {
     "type": "git",
