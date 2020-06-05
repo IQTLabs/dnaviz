@@ -1,4 +1,4 @@
-function squiggle(sequence: string): number[][] {
+export function squiggle(sequence: string): number[][] {
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   let yCoord: number = 0.0;
@@ -33,7 +33,7 @@ function squiggle(sequence: string): number[][] {
 }
 
 //yau
-function yau(sequence: string): number[][] {
+export function yau(sequence: string): number[][] {
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   let xCoord: number = 0.0;
@@ -63,7 +63,7 @@ function yau(sequence: string): number[][] {
   return result;
 }
 //yau-bp
-function yau_bp(sequence: string): number[][] {
+export function yau_bp(sequence: string): number[][] {
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   let xCoord: number = 0.0;
@@ -90,7 +90,7 @@ function yau_bp(sequence: string): number[][] {
   return result;
 }
 //randic
-function randic(sequence: string): number[][] {
+export function randic(sequence: string): number[][] {
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   const key: any = {
@@ -110,7 +110,7 @@ function randic(sequence: string): number[][] {
   return result;
 }
 //qi
-function qi(sequence: string): number[][] {
+export function qi(sequence: string): number[][] {
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   const key: any = {
@@ -141,7 +141,7 @@ function qi(sequence: string): number[][] {
   return result;
 }
 //gates
-function gates(sequence: string): number[][] {
+export function gates(sequence: string): number[][] {
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   let xCoord: number = 0.0;
