@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "DNA visualization for the command line, browser, and beyond",
   "main": "main.js",
-  "dependencies": {},
+  "dependencies": {
+    "typescript": "^3.9.5"
+  },
   "devDependencies": {
     "fast-check": "^1.24.2",
     "jest": "^26.0.1",

@@ -30,5 +30,5 @@ function qi(sequence) {
     result.push(y)
     return result
 }
-
+console.log(qi('AAT'))
 module.exports = qi;
