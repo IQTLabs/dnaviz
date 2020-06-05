@@ -7,7 +7,7 @@
     "strict": true
   },
   "include": [
-    "src", "main.ts", "main.js"
+    "src", "src/main.ts", "src/main.js"
   ],
   "exclude": [
     "node_modules",
