@@ -47,7 +47,7 @@ export function yau(sequence: string): number[][] {
     } else if (character === 'C') {
       xCoord = xCoord + 3 ** 0.5 / 2;
       yCoord = yCoord + 0.5;
-    } else if (character === 'T') {
+    } else if (character === 'T' || 'U') {
       xCoord = xCoord + 0.5;
       yCoord = yCoord + 3 ** 0.5 / 2;
     } else if (character === 'G') {

@@ -97,13 +97,11 @@ const test_x_total = (s: string): boolean => {
     return false;
 }
 
-const random_seq = fc.string(1, 10000).filter(t => t == 'A' || t =='C' || t == 'G' || t == 'T')
-
 test('test y value correctness', () => {
-    fc.assert(
+    expect(fc.assert(
         fc.property(
-            random_seq,
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"),1,1000),
             (s) => test_y_total(s)
         )
-    )
+    )).toBe(true)
 })
