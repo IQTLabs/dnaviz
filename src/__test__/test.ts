@@ -59,16 +59,12 @@ test('test squiggle of TTC', () => {
     ]);
 });
 
-// const isCorLen = (sequence: string): boolean => {
-//   if (sequence.length == 2 * squiggle(sequence).length + 1) {
-//     return true;
-//   }
-//   return false;
-// };
-
-// test('test length of array', () => {
-//   fc.assert(fc.property(fc.string(), (string) => isCorLen(string)));
-// });
+const isCorLen = (sequence: string): boolean => {
+  if (sequence.length == 2 * squiggle(sequence).length + 1) {
+    return true;
+  }
+  return false;
+};
 
 //yau
 test('test yau of A', () => {
@@ -100,3 +96,12 @@ const test_x_total = (s: string): boolean => {
     }
     return false;
 }
+
+test('test y value correctness', () => {
+    fc.assert(
+        fc.property(
+            fc.stringOf(fc.constantFrom(["A", "C", "T", "G"])),
+            (string) => test_y_total(string)
+        )
+    )
+})
