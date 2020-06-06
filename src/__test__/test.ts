@@ -88,7 +88,7 @@ test('test yau of C', () => {
 });
 
 const test_y_total = (s: string): boolean => {
-    if (yau(s)[1][s.length - 1] === ((s.split('A').length - 1) * (-rad)) + ((s.split('T').length - 1) * (rad)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))) {
+    if (yau(s)[1][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (-rad)) + ((s.split('U').length - 1) * (rad)) + ((s.split('T').length - 1) * (rad)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))) {
         return true;
     }
     return false
@@ -104,7 +104,7 @@ const test_x_total = (s: string): boolean => {
 test('test y value correctness', () => {
     expect(fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"),1,1000),
+            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"),1,1000),
             (s) => test_y_total(s)
         )
     )).toBe(true)
