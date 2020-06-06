@@ -60,10 +60,10 @@ test('test squiggle of TTC', () => {
 });
 
 const isCorLen = (sequence: string): boolean => {
-  if (sequence.length == 2 * squiggle(sequence).length + 1) {
-    return true;
-  }
-  return false;
+    if (sequence.length == 2 * squiggle(sequence).length + 1) {
+        return true;
+    }
+    return false;
 };
 
 //yau
@@ -84,24 +84,26 @@ test('test yau of C', () => {
 });
 
 const test_y_total = (s: string): boolean => {
-    if (yau(s)[1][s.length-1] === ((s.split('A').length - 1) * (-rad)) + ((s.split('T').length - 1) * (rad)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))){
+    if (yau(s)[1][s.length - 1] === ((s.split('A').length - 1) * (-rad)) + ((s.split('T').length - 1) * (rad)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))) {
+        return true;
+    }
+    return false
+}
+
+const test_x_total = (s: string): boolean => {
+    if (yau(s)[0][s.length - 1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-rad)) + ((s.split('G').length - 1) * (rad))) {
         return true
     }
     return false;
 }
 
-const test_x_total = (s: string): boolean => {
-    if (yau(s)[0][s.length-1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-rad)) + ((s.split('G').length - 1) * (rad))){
-        return true
-    }
-    return false;
-}
+const random_seq = fc.string(1, 10000).filter(t => t == 'A' || t =='C' || t == 'G' || t == 'T')
 
 test('test y value correctness', () => {
     fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom(["A", "C", "T", "G"])),
-            (string) => test_y_total(string)
+            random_seq,
+            (s) => test_y_total(s)
         )
     )
 })
