@@ -95,7 +95,7 @@ const test_y_total = (s: string): boolean => {
 }
 
 const test_x_total = (s: string): boolean => {
-    if (yau(s)[0][s.length - 1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-rad)) + ((s.split('G').length - 1) * (rad))) {
+    if (yau(s)[0][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('U').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-rad)) + ((s.split('G').length - 1) * (rad))) {
         return true
     }
     return false;
@@ -106,6 +106,15 @@ test('test y value correctness', () => {
         fc.property(
             fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"),1,1000),
             (s) => test_y_total(s)
+        )
+    )).toBe(true)
+})
+
+test('test x value correctness', () => {
+    expect(fc.assert(
+        fc.property(
+            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"),1,1000),
+            (s) => test_x_total(s)
         )
     )).toBe(true)
 })
