@@ -108,7 +108,10 @@ test('test y value correctness for yau', () => {
     (fc.assert(
         fc.property(
             fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000), (s) => {
-                expect(yau(s)[1][(yau(s)[1]).length - 1] == ((s.split('A').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('U').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('T').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))).toBe(true)
+                expect(yau(s)[1][(yau(s)[1]).length - 1] == (-(3 ** 0.5) / 2 * s.replace(/[^A]/g, "").length)
+                + ((3 ** 0.5) / 2 * s.replace(/[^T]/g, "").length)
+                + (0.5 * s.replace(/[^C]/g, "").length)
+                + (-0.5 * s.replace(/[^G]/g, "").length)).toBe(true)
             }
         )
     ))
@@ -118,7 +121,7 @@ test('test x value correctness for yau', () => {
     (fc.assert(
         fc.property(
             fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000), (s) => {
-                expect(yau(s)[0][(yau(s)[1]).length - 1] == ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('U').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('G').length - 1) * ((3 ** 0.5) / 2))).toBe(true)
+                expect(yau(s)[0][(yau(s)[1]).length - 1] == ((3 ** 0.5) / 2 * (s.replace(/[^G]/g, "").length + s.replace(/[^C]/g, "").length) + (0.5 * (s.replace(/[^A]/g, "").length + s.replace(/[^T]/g, "").length + s.replace(/[^U]/g, "").length)))).toBe(true)
             }
         )
     ))
@@ -133,3 +136,28 @@ test('test x value correctness for yau-bp', () => {
         )
     ))
 })
+
+test('test y value correctness for yau-bp', () => {
+    (fc.assert(
+        fc.property(
+            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
+                expect((-(s.split('A').length - 1) + (s.split('T').length - 1) + 0.5 * ((s.split('C').length - 1) - (s.split('G').length - 1))) == yau_bp(s)[1][(yau(s)[1]).length - 1]).toBe(true)
+            }
+        )
+    ))
+})
+
+test('test yau-bp length', () => {
+    (fc.assert(
+        fc.property(
+            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
+                expect(yau_bp(s)[0].length == s.length + 1).toBe(true)
+            }
+        )
+    ))
+})
+
+test('test yau_bp of basic', () => {
+    expect(yau_bp('ATGC')).toEqual([[0, 1, 2, 3, 4],
+    [0, -1, 0, -0.5, 0]]);
+});
