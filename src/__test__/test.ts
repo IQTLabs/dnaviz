@@ -1,10 +1,10 @@
 import * as fc from 'fast-check';
-import { squiggle } from '../main';
-import { yau } from '../main';
-import { yau_bp } from '../main';
-import { gates } from '../main';
-import { randic } from '../main';
-import { qi } from '../main';
+import { squiggle } from '../dnaviz';
+import { yau } from '../dnaviz';
+import { yau_bp } from '../dnaviz';
+import { gates } from '../dnaviz';
+import { randic } from '../dnaviz';
+import { qi } from '../dnaviz';
 
 // simplify yau testing
 const rad = (3 ** 0.5) / 2
