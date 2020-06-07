@@ -97,7 +97,6 @@ export function randic(sequence: string): number[][] {
     T: 2,
     G: 1,
     C: 0,
-    N: 4,
   };
   for (let i = 0; i < sequence.length; i++) {
     x.push(i);

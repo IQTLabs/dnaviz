@@ -109,9 +109,9 @@ test('test y value correctness for yau', () => {
         fc.property(
             fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000), (s) => {
                 expect(yau(s)[1][(yau(s)[1]).length - 1] == (-(3 ** 0.5) / 2 * s.replace(/[^A]/g, "").length)
-                + ((3 ** 0.5) / 2 * s.replace(/[^T]/g, "").length)
-                + (0.5 * s.replace(/[^C]/g, "").length)
-                + (-0.5 * s.replace(/[^G]/g, "").length)).toBe(true)
+                    + ((3 ** 0.5) / 2 * s.replace(/[^T]/g, "").length)
+                    + (0.5 * s.replace(/[^C]/g, "").length)
+                    + (-0.5 * s.replace(/[^G]/g, "").length)).toBe(true)
             }
         )
     ))
@@ -161,3 +161,23 @@ test('test yau_bp of basic', () => {
     expect(yau_bp('ATGC')).toEqual([[0, 1, 2, 3, 4],
     [0, -1, 0, -0.5, 0]]);
 });
+
+const randic_key: any = {
+    A: 3,
+    T: 2,
+    G: 1,
+    C: 0
+};
+
+test('test randic', () => {
+    (fc.assert(
+        fc.property(
+            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 100), (s) => {
+                for(let idx = 0; idx < s.length; idx++) {
+                    let my_char = s.charAt(idx)
+                    expect(randic(s)[1][idx] == randic_key.my_char)
+                }
+            }
+        )
+    ))
+})
