@@ -90,20 +90,6 @@ test('test yau of C', () => {
     expect(yau('C')).toEqual([[0, (3 ** 0.5) / 2], [0, 0.5]]);
 });
 
-// const test_y_total_yau = (s: string): boolean => {
-//     if (yau(s)[1][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('U').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('T').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))) {
-//         return true;
-//     }
-//     return false
-// }
-
-// const test_x_total_yau = (s: string): boolean => {
-//     if (yau(s)[0][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('U').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('G').length - 1) * ((3 ** 0.5) / 2))) {
-//         return true
-//     }
-//     return false;
-// }
-
 test('test y value correctness for yau', () => {
     (fc.assert(
         fc.property(
@@ -209,6 +195,33 @@ test('test qi', () => {
                     let my_char = s.charAt(idx) + s.charAt(idx + 1)
                     expect(qi(s)[1][idx] == qi_key.my_char)
                 }
+            }
+        )
+    ))
+})
+
+test('test gates of A', () => {
+    expect(gates('A')).toEqual([[0, 0], [0, -1]]);
+});
+
+test('test gates of T', () => {
+    expect(gates('T')).toEqual([[0, 0], [0, 1]]);
+});
+
+test('test gates of G', () => {
+    expect(gates('G')).toEqual([[0, 1], [0, 0]]);
+});
+
+test('test gates of C', () => {
+    expect(gates('C')).toEqual([[0, -1], [0, 0]]);
+});
+
+test('test gates endpoints', () => {
+    (fc.assert(
+        fc.property(
+            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
+                expect((gates(s)[0][(gates(s)[0]).length - 1] === ((s.split('G').length - 1) - (s.split('C').length - 1)))).toBe(true)
+                expect(gates(s)[1][(gates(s)[1]).length - 1] === ((s.split('T').length - 1) - (s.split('A').length - 1))).toBe(true)
             }
         )
     ))
