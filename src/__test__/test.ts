@@ -7,7 +7,7 @@ import { randic } from '../dnaviz';
 import { qi } from '../dnaviz';
 
 // simplify yau testing
-const rad = (3 ** 0.5) / 2
+
 
 //squiggle test
 test('test squiggle of A', () => {
@@ -60,11 +60,21 @@ test('test squiggle of TTC', () => {
 });
 
 const isCorLen = (sequence: string): boolean => {
-    if (sequence.length == 2 * squiggle(sequence).length + 1) {
+    if (sequence.length === squiggle(sequence)[1].length - 1) {
         return true;
     }
     return false;
 };
+
+test('test squiggle length', () => {
+    (fc.assert(
+        fc.property(
+            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
+                expect(isCorLen(s)).toBe(true)
+            }
+        )
+    ))
+})
 
 //yau
 test('test yau of A', () => {
@@ -88,33 +98,33 @@ test('test yau of C', () => {
 });
 
 const test_y_total = (s: string): boolean => {
-    if (yau(s)[1][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (-rad)) + ((s.split('U').length - 1) * (rad)) + ((s.split('T').length - 1) * (rad)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))) {
+    if (yau(s)[1][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('U').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('T').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))) {
         return true;
     }
     return false
 }
 
 const test_x_total = (s: string): boolean => {
-    if (yau(s)[0][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('U').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-rad)) + ((s.split('G').length - 1) * (rad))) {
+    if (yau(s)[0][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('U').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('G').length - 1) * ((3 ** 0.5) / 2))) {
         return true
     }
     return false;
 }
 
 test('test y value correctness', () => {
-    expect(fc.assert(
+    (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"),1,1000),
-            (s) => test_y_total(s)
+            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000),
+            (s) => expect(test_y_total(s)).toBe(true)
         )
-    )).toBe(true)
+    ))
 })
 
 test('test x value correctness', () => {
-    expect(fc.assert(
+    (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"),1,1000),
+            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000),
             (s) => test_x_total(s)
         )
-    )).toBe(true)
+    ))
 })
