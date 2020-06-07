@@ -2,7 +2,9 @@
   "name": "dna_viz",
   "version": "1.0.0",
   "description": "DNA visualization for the command line, browser, and beyond",
-  "main": "main.js",
+  "main": "dist/dnaviz.js",
+  "module": "dist/dnaviz.esm.js",
+  "browser": "dist/dnaviz.min.js",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^25.2.3",
@@ -10,6 +12,9 @@
     "jest": "^26.0.1",
     "jsverify": "^0.8.4",
     "prettier": "2.0.5",
+    "rollup": "^2.14.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-terser": "^6.1.0",
     "ts-jest": "^26.1.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
@@ -17,7 +22,7 @@
   },
   "scripts": {
     "test": "jest --config jestconfig.json",
-    "build": "tsc",
+    "build": "tsc && rollup -c",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json"
   },

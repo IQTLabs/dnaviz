@@ -3,8 +3,7 @@ export function squiggle(sequence: string): number[][] {
   let y: number[] = [0.0];
   let yCoord: number = 0.0;
 
-  for (let _i = 0; _i < sequence.length; _i++) {
-    let character: string = sequence[_i];
+  for (let character of sequence) {
     x.push(x[x.length - 1] + 0.5);
     x.push(x[x.length - 1] + 0.5);
     if (character === 'A') {
