@@ -59,18 +59,11 @@ test('test squiggle of TTC', () => {
     ]);
 });
 
-const isCorLen = (sequence: string): boolean => {
-    if (sequence.length === squiggle(sequence)[1].length - 1) {
-        return true;
-    }
-    return false;
-};
-
 test('test squiggle length', () => {
     (fc.assert(
         fc.property(
             fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
-                expect(isCorLen(s)).toBe(true)
+                expect(squiggle(s)[0].length == 2 * s.length + 1).toBe(true)
             }
         )
     ))
@@ -97,34 +90,46 @@ test('test yau of C', () => {
     expect(yau('C')).toEqual([[0, (3 ** 0.5) / 2], [0, 0.5]]);
 });
 
-const test_y_total = (s: string): boolean => {
-    if (yau(s)[1][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('U').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('T').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))) {
-        return true;
-    }
-    return false
-}
+// const test_y_total_yau = (s: string): boolean => {
+//     if (yau(s)[1][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('U').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('T').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))) {
+//         return true;
+//     }
+//     return false
+// }
 
-const test_x_total = (s: string): boolean => {
-    if (yau(s)[0][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('U').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('G').length - 1) * ((3 ** 0.5) / 2))) {
-        return true
-    }
-    return false;
-}
+// const test_x_total_yau = (s: string): boolean => {
+//     if (yau(s)[0][(yau(s)[1]).length - 1] === ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('U').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('G').length - 1) * ((3 ** 0.5) / 2))) {
+//         return true
+//     }
+//     return false;
+// }
 
-test('test y value correctness', () => {
+test('test y value correctness for yau', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000),
-            (s) => expect(test_y_total(s)).toBe(true)
+            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000), (s) => {
+                expect(yau(s)[1][(yau(s)[1]).length - 1] == ((s.split('A').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('U').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('T').length - 1) * ((3 ** 0.5) / 2)) + ((s.split('C').length - 1) * (0.5)) + ((s.split('G').length - 1) * (-0.5))).toBe(true)
+            }
         )
     ))
 })
 
-test('test x value correctness', () => {
+test('test x value correctness for yau', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000),
-            (s) => test_x_total(s)
+            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000), (s) => {
+                expect(yau(s)[0][(yau(s)[1]).length - 1] == ((s.split('A').length - 1) * (0.5)) + ((s.split('T').length - 1) * (0.5)) + ((s.split('U').length - 1) * (0.5)) + ((s.split('C').length - 1) * (-(3 ** 0.5) / 2)) + ((s.split('G').length - 1) * ((3 ** 0.5) / 2))).toBe(true)
+            }
+        )
+    ))
+})
+
+test('test x value correctness for yau-bp', () => {
+    (fc.assert(
+        fc.property(
+            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
+                expect(((s.split('A').length - 1) + (s.split('C').length - 1) + (s.split('T').length - 1) + (s.split('G').length - 1)) == yau_bp(s)[0][(yau(s)[0]).length - 1]).toBe(true)
+            }
         )
     ))
 })
