@@ -4,7 +4,7 @@
   "description": "DNA visualization for the command line, browser, and beyond",
   "main": "dist/dnaviz.js",
   "module": "dist/dnaviz.esm.js",
-  "browser": "dist/dnaviz.min.js",
+  "types": "dist/dnaviz.d.ts",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^25.2.3",
