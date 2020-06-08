@@ -13,7 +13,7 @@
     "fast-check": "^1.24.2",
     "jest": "^26.0.1",
     "jsverify": "^0.8.4",
-    "prettier": "2.0.5",
+    "prettier": "^2.0.5",
     "rollup": "^2.14.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-terser": "^6.1.0",
