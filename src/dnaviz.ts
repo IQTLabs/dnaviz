@@ -6,17 +6,17 @@ export function squiggle(sequence: string): number[][] {
   for (let character of sequence) {
     x.push(x[x.length - 1] + 0.5);
     x.push(x[x.length - 1] + 0.5);
-    if (character === 'A') {
+    if (character === 'A' || character === 'a' ) {
       y.push(yCoord + 0.5);
       y.push(yCoord);
-    } else if (character === 'C') {
+    } else if (character === 'C' || character === 'c' ) {
       y.push(yCoord - 0.5);
       y.push(yCoord);
-    } else if (character === 'T') {
+    } else if (character === 'T' || character === 't' || character === 'U' || character === 'u'  ) {
       y.push(yCoord - 0.5);
       y.push(yCoord - 1);
       yCoord -= 1.0;
-    } else if (character === 'G') {
+    } else if (character === 'G' || character === 'g' ) {
       y.push(yCoord + 0.5);
       y.push(yCoord + 1);
       yCoord += 1.0;
@@ -40,16 +40,16 @@ export function yau(sequence: string): number[][] {
 
   for (let _i = 0; _i < sequence.length; _i++) {
     let character: string = sequence[_i];
-    if (character === 'A') {
+    if (character === 'A' || character === 'a' ) {
       xCoord = xCoord + 0.5;
       yCoord = yCoord - 3 ** 0.5 / 2;
-    } else if (character === 'C') {
+    } else if (character === 'C' || character === 'c' ) {
       xCoord = xCoord + 3 ** 0.5 / 2;
       yCoord = yCoord + 0.5;
-    } else if (character === 'T' || character === 'U') {
+    } else if (character === 'T' || character === 't' || character === 'U' || character === 'u'  ) {
       xCoord = xCoord + 0.5;
       yCoord = yCoord + 3 ** 0.5 / 2;
-    } else if (character === 'G') {
+    } else if (character === 'G' || character === 'g' ) {
       xCoord = xCoord + 3 ** 0.5 / 2;
       yCoord = yCoord - 0.5;
     }
@@ -72,13 +72,13 @@ export function yau_bp(sequence: string): number[][] {
     let character: string = sequence[_i];
     xCoord++;
     x.push(xCoord);
-    if (character === 'A') {
+    if (character === 'A' || character === 'a' ) {
       yCoord = yCoord - 1;
-    } else if (character === 'C') {
+    } else if (character === 'C' || character === 'c' ) {
       yCoord = yCoord + 0.5;
-    } else if (character === 'T') {
+    } else if (character === 'T' || character === 't' || character === 'U' || character === 'u'  ) {
       yCoord = yCoord + 1;
-    } else if (character === 'G') {
+    } else if (character === 'G' || character === 'g' ) {
       yCoord = yCoord - 0.5;
     }
     y.push(yCoord);
@@ -97,6 +97,12 @@ export function randic(sequence: string): number[][] {
     T: 2,
     G: 1,
     C: 0,
+    U: 2,
+    a: 3,
+    t: 2,
+    g: 1,
+    c: 0,
+    u: 2,
   };
   for (let i = 0; i < sequence.length; i++) {
     x.push(i);
@@ -146,13 +152,13 @@ export function gates(sequence: string): number[][] {
   let yCoord: number = 0.0;
   for (let _i = 0; _i < sequence.length; _i++) {
     let character: string = sequence[_i];
-    if (character === 'A') {
+    if (character === 'A' || character === 'a' ) {
       yCoord--;
-    } else if (character === 'C') {
+    } else if (character === 'C' || character === 'c' ) {
       xCoord--;
-    } else if (character === 'T') {
+    } else if (character === 'T' || character === 't' || character === 'U' || character === 'u'  ) {
       yCoord++;
-    } else if (character === 'G') {
+    } else if (character === 'G' || character === 'g' ) {
       xCoord++;
     }
     x.push(xCoord);

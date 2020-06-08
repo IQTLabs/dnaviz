@@ -6,9 +6,6 @@ import { gates } from '../dnaviz';
 import { randic } from '../dnaviz';
 import { qi } from '../dnaviz';
 
-// simplify yau testing
-
-
 //squiggle test
 test('test squiggle of A', () => {
     expect(squiggle('A')).toEqual([
@@ -62,7 +59,7 @@ test('test squiggle of TTC', () => {
 test('test squiggle length', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"), 1, 10000), (s) => {
                 expect(squiggle(s)[0].length == 2 * s.length + 1).toBe(true)
             }
         )
@@ -93,7 +90,7 @@ test('test yau of C', () => {
 test('test y value correctness for yau', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000), (s) => {
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"), 1, 10000), (s) => {
                 expect(yau(s)[1][(yau(s)[1]).length - 1] == (-(3 ** 0.5) / 2 * s.replace(/[^A]/g, "").length)
                     + ((3 ** 0.5) / 2 * s.replace(/[^T]/g, "").length)
                     + (0.5 * s.replace(/[^C]/g, "").length)
@@ -106,18 +103,19 @@ test('test y value correctness for yau', () => {
 test('test x value correctness for yau', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "U", "C", "G"), 1, 10000), (s) => {
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"), 1, 10000), (s) => {
                 expect(yau(s)[0][(yau(s)[1]).length - 1] == ((3 ** 0.5) / 2 * (s.replace(/[^G]/g, "").length + s.replace(/[^C]/g, "").length) + (0.5 * (s.replace(/[^A]/g, "").length + s.replace(/[^T]/g, "").length + s.replace(/[^U]/g, "").length)))).toBe(true)
             }
         )
     ))
 })
 
+// 
 test('test x value correctness for yau-bp', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
-                expect(((s.split('A').length - 1) + (s.split('C').length - 1) + (s.split('T').length - 1) + (s.split('G').length - 1)) == yau_bp(s)[0][(yau(s)[0]).length - 1]).toBe(true)
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"), 1, 10000), (s) => {
+                expect(((s.split('A').length - 1) + (s.split('a').length - 1) + (s.split('C').length - 1) + (s.split('c').length - 1) + (s.split('T').length - 1) + (s.split('t').length - 1) + (s.split('U').length - 1) + (s.split('u').length - 1) + (s.split('G').length - 1) + (s.split('g').length - 1)) == yau_bp(s)[0][(yau(s)[0]).length - 1]).toBe(true)
             }
         )
     ))
@@ -126,8 +124,8 @@ test('test x value correctness for yau-bp', () => {
 test('test y value correctness for yau-bp', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
-                expect((-(s.split('A').length - 1) + (s.split('T').length - 1) + 0.5 * ((s.split('C').length - 1) - (s.split('G').length - 1))) == yau_bp(s)[1][(yau(s)[1]).length - 1]).toBe(true)
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"), 1, 10000), (s) => {
+                expect((-(s.split('A').length - 1) - (s.split('a').length - 1) + (s.split('T').length - 1) + (s.split('t').length - 1) + (s.split('U').length - 1) + (s.split('u').length - 1) + 0.5 * ((s.split('C').length - 1) + (s.split('c').length - 1) - (s.split('G').length - 1) - (s.split('g').length - 1))) == yau_bp(s)[1][(yau(s)[1]).length - 1]).toBe(true)
             }
         )
     ))
@@ -136,7 +134,7 @@ test('test y value correctness for yau-bp', () => {
 test('test yau-bp length', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"), 1, 10000), (s) => {
                 expect(yau_bp(s)[0].length == s.length + 1).toBe(true)
             }
         )
@@ -152,13 +150,19 @@ const randic_key: any = {
     A: 3,
     T: 2,
     G: 1,
-    C: 0
+    C: 0,
+    U: 2,
+    a: 3,
+    t: 2,
+    g: 1,
+    c: 0,
+    u: 2,
 };
 
 test('test randic', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 100), (s) => {
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"), 1, 100), (s) => {
                 for (let idx = 0; idx < s.length; idx++) {
                     let my_char = s.charAt(idx)
                     expect(randic(s)[1][idx] == randic_key.my_char)
@@ -219,9 +223,9 @@ test('test gates of C', () => {
 test('test gates endpoints', () => {
     (fc.assert(
         fc.property(
-            fc.stringOf(fc.constantFrom("A", "T", "C", "G"), 1, 10000), (s) => {
-                expect((gates(s)[0][(gates(s)[0]).length - 1] === ((s.split('G').length - 1) - (s.split('C').length - 1)))).toBe(true)
-                expect(gates(s)[1][(gates(s)[1]).length - 1] === ((s.split('T').length - 1) - (s.split('A').length - 1))).toBe(true)
+            fc.stringOf(fc.constantFrom("A", "a", "T", "t", "U", "u", "C", "c", "G", "g"), 1, 10000), (s) => {
+                expect(gates(s)[0][(gates(s)[0]).length - 1] === ((s.split('G').length - 1) + (s.split('g').length - 1) - (s.split('C').length - 1) - (s.split('c').length - 1))).toBe(true)
+                expect(gates(s)[1][(gates(s)[1]).length - 1] === ((s.split('T').length - 1) + (s.split('t').length - 1) + (s.split('U').length - 1) + (s.split('u').length - 1) - (s.split('A').length - 1) - (s.split('a').length - 1))).toBe(true)
             }
         )
     ))
