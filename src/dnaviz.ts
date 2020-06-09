@@ -1,10 +1,10 @@
 export function squiggle(sequence: string): number[][] {
   sequence = sequence.toUpperCase()
-  let x: number[] = [0.0];
-  let y: number[] = [0.0];
+  const x: number[] = [0.0];
+  const y: number[] = [0.0];
   let yCoord: number = 0.0;
 
-  for (let character of sequence) {
+  for (const character of sequence) {
     x.push(x[x.length - 1] + 0.5);
     x.push(x[x.length - 1] + 0.5);
     if (character === 'A') {
@@ -26,22 +26,20 @@ export function squiggle(sequence: string): number[][] {
       y.push(yCoord);
     }
   }
-  let result: number[][] = [];
+  const result: number[][] = [];
   result.push(x);
   result.push(y);
   return result;
 }
 
-//yau
+// yau
 export function yau(sequence: string): number[][] {
   sequence = sequence.toUpperCase()
-  let x: number[] = [0.0];
-  let y: number[] = [0.0];
+  const x: number[] = [0.0];
+  const y: number[] = [0.0];
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
-
-  for (let _i = 0; _i < sequence.length; _i++) {
-    let character: string = sequence[_i];
+  for (const character of sequence) {
     if (character === 'A') {
       xCoord = xCoord + 0.5;
       yCoord = yCoord - 3 ** 0.5 / 2;
@@ -58,21 +56,20 @@ export function yau(sequence: string): number[][] {
     x.push(xCoord);
     y.push(yCoord);
   }
-  let result: number[][] = [];
+  const result: number[][] = [];
   result.push(x);
   result.push(y);
   return result;
 }
-//yau-bp
+// yau-bp
 export function yau_bp(sequence: string): number[][] {
   sequence = sequence.toUpperCase()
-  let x: number[] = [0.0];
-  let y: number[] = [0.0];
+  const x: number[] = [0.0];
+  const y: number[] = [0.0];
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
 
-  for (let _i = 0; _i < sequence.length; _i++) {
-    let character: string = sequence[_i];
+  for (const character of sequence) {
     xCoord++;
     x.push(xCoord);
     if (character === 'A') {
@@ -86,16 +83,17 @@ export function yau_bp(sequence: string): number[][] {
     }
     y.push(yCoord);
   }
-  let result: number[][] = [];
+  const result: number[][] = [];
   result.push(x);
   result.push(y);
   return result;
 }
-//randic
+// randic
 export function randic(sequence: string): number[][] {
   sequence = sequence.toUpperCase()
-  let x: number[] = [0.0];
-  let y: number[] = [0.0];
+  const x: number[] = [0.0];
+  const y: number[] = [0.0];
+  let xCoord = 0;
   const key: any = {
     A: 3,
     T: 2,
@@ -108,20 +106,21 @@ export function randic(sequence: string): number[][] {
     c: 0,
     u: 2,
   };
-  for (let i = 0; i < sequence.length; i++) {
-    x.push(i);
-    y.push(key[sequence[i]]);
+  for (const character of sequence) {
+    xCoord++
+    x.push(xCoord);
+    y.push(key[character]);
   }
-  let result: number[][] = [];
+  const result: number[][] = [];
   result.push(x);
   result.push(y);
   return result;
 }
-//qi
+// qi
 export function qi(sequence: string): number[][] {
   sequence = sequence.toUpperCase()
-  let x: number[] = [0.0];
-  let y: number[] = [0.0];
+  const x: number[] = [0.0];
+  const y: number[] = [0.0];
   const key: any = {
     AA: 12,
     AC: 4,
@@ -141,30 +140,29 @@ export function qi(sequence: string): number[][] {
     CT: 2,
   };
   for (let i = 0; i < sequence.length; i++) {
-    let s_1 = sequence[i]
-    let s_2 = sequence[i + 1]
-    if (s_1 == 'U') {
-      s_1 = 'T'
-    } else if (s_2 == 'U') {
-      s_2 = 'T'
+    let S_1 = sequence[i]
+    let S_2 = sequence[i + 1]
+    if (S_1 === 'U') {
+      S_1 = 'T'
+    } else if (S_2 === 'U') {
+      S_2 = 'T'
     }
     x.push(i);
-    y.push(key[s_1 + s_2]);
+    y.push(key[S_1 + S_2]);
   }
-  let result: number[][] = [];
+  const result: number[][] = [];
   result.push(x);
   result.push(y);
   return result;
 }
-//gates
+// gates
 export function gates(sequence: string): number[][] {
   sequence = sequence.toUpperCase()
-  let x: number[] = [0.0];
-  let y: number[] = [0.0];
+  const x: number[] = [0.0];
+  const y: number[] = [0.0];
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
-  for (let _i = 0; _i < sequence.length; _i++) {
-    let character: string = sequence[_i];
+  for (const character of sequence) {
     if (character === 'A') {
       yCoord--;
     } else if (character === 'C') {
@@ -177,7 +175,7 @@ export function gates(sequence: string): number[][] {
     x.push(xCoord);
     y.push(yCoord);
   }
-  let result: number[][] = [];
+  const result: number[][] = [];
   result.push(x);
   result.push(y);
   return result;

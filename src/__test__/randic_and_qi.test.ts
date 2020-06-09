@@ -2,7 +2,7 @@ import * as fc from 'fast-check';
 import { randic } from '../dnaviz';
 import { qi } from '../dnaviz';
 
-const randic_key: any = {
+const randicKey: any = {
     A: 3,
     T: 2,
     G: 1,
@@ -19,8 +19,8 @@ test('test randic', () => {
     fc.assert(
         fc.property(fc.stringOf(fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'), 1, 100), (s) => {
             for (let idx = 0; idx < s.length; idx++) {
-                let my_char = s.charAt(idx);
-                expect(randic(s)[1][idx] == randic_key.my_char);
+                let myChar = s.charAt(idx);
+                expect(randic(s)[1][idx] == randicKey.myChar);
             }
         }),
     );
