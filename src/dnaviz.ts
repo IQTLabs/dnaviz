@@ -141,8 +141,15 @@ export function qi(sequence: string): number[][] {
     CT: 2,
   };
   for (let i = 0; i < sequence.length; i++) {
+    let s_1 = sequence[i]
+    let s_2 = sequence[i + 1]
+    if (s_1 == 'U') {
+      s_1 = 'T'
+    } else if (s_2 == 'U') {
+      s_2 = 'T'
+    }
     x.push(i);
-    y.push(key[sequence[i] + sequence[i + 1]]);
+    y.push(key[s_1 + s_2]);
   }
   let result: number[][] = [];
   result.push(x);
