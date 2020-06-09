@@ -1,4 +1,5 @@
 export function squiggle(sequence: string): number[][] {
+  sequence = sequence.toUpperCase()
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   let yCoord: number = 0.0;
@@ -6,17 +7,17 @@ export function squiggle(sequence: string): number[][] {
   for (let character of sequence) {
     x.push(x[x.length - 1] + 0.5);
     x.push(x[x.length - 1] + 0.5);
-    if (character === 'A' || character === 'a') {
+    if (character === 'A') {
       y.push(yCoord + 0.5);
       y.push(yCoord);
-    } else if (character === 'C' || character === 'c') {
+    } else if (character === 'C') {
       y.push(yCoord - 0.5);
       y.push(yCoord);
-    } else if (character === 'T' || character === 't' || character === 'U' || character === 'u') {
+    } else if (character === 'T' || character === 'U') {
       y.push(yCoord - 0.5);
       y.push(yCoord - 1);
       yCoord -= 1.0;
-    } else if (character === 'G' || character === 'g') {
+    } else if (character === 'G') {
       y.push(yCoord + 0.5);
       y.push(yCoord + 1);
       yCoord += 1.0;
@@ -33,6 +34,7 @@ export function squiggle(sequence: string): number[][] {
 
 //yau
 export function yau(sequence: string): number[][] {
+  sequence = sequence.toUpperCase()
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   let xCoord: number = 0.0;
@@ -40,16 +42,16 @@ export function yau(sequence: string): number[][] {
 
   for (let _i = 0; _i < sequence.length; _i++) {
     let character: string = sequence[_i];
-    if (character === 'A' || character === 'a') {
+    if (character === 'A') {
       xCoord = xCoord + 0.5;
       yCoord = yCoord - 3 ** 0.5 / 2;
-    } else if (character === 'C' || character === 'c') {
+    } else if (character === 'C') {
       xCoord = xCoord + 3 ** 0.5 / 2;
       yCoord = yCoord + 0.5;
-    } else if (character === 'T' || character === 't' || character === 'U' || character === 'u') {
+    } else if (character === 'T' || character === 'U') {
       xCoord = xCoord + 0.5;
       yCoord = yCoord + 3 ** 0.5 / 2;
-    } else if (character === 'G' || character === 'g') {
+    } else if (character === 'G') {
       xCoord = xCoord + 3 ** 0.5 / 2;
       yCoord = yCoord - 0.5;
     }
@@ -63,6 +65,7 @@ export function yau(sequence: string): number[][] {
 }
 //yau-bp
 export function yau_bp(sequence: string): number[][] {
+  sequence = sequence.toUpperCase()
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   let xCoord: number = 0.0;
@@ -72,13 +75,13 @@ export function yau_bp(sequence: string): number[][] {
     let character: string = sequence[_i];
     xCoord++;
     x.push(xCoord);
-    if (character === 'A' || character === 'a') {
+    if (character === 'A') {
       yCoord = yCoord - 1;
-    } else if (character === 'C' || character === 'c') {
+    } else if (character === 'C') {
       yCoord = yCoord + 0.5;
-    } else if (character === 'T' || character === 't' || character === 'U' || character === 'u') {
+    } else if (character === 'T' || character === 'U') {
       yCoord = yCoord + 1;
-    } else if (character === 'G' || character === 'g') {
+    } else if (character === 'G') {
       yCoord = yCoord - 0.5;
     }
     y.push(yCoord);
@@ -90,6 +93,7 @@ export function yau_bp(sequence: string): number[][] {
 }
 //randic
 export function randic(sequence: string): number[][] {
+  sequence = sequence.toUpperCase()
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   const key: any = {
@@ -115,6 +119,7 @@ export function randic(sequence: string): number[][] {
 }
 //qi
 export function qi(sequence: string): number[][] {
+  sequence = sequence.toUpperCase()
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   const key: any = {
@@ -146,19 +151,20 @@ export function qi(sequence: string): number[][] {
 }
 //gates
 export function gates(sequence: string): number[][] {
+  sequence = sequence.toUpperCase()
   let x: number[] = [0.0];
   let y: number[] = [0.0];
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
   for (let _i = 0; _i < sequence.length; _i++) {
     let character: string = sequence[_i];
-    if (character === 'A' || character === 'a') {
+    if (character === 'A') {
       yCoord--;
-    } else if (character === 'C' || character === 'c') {
+    } else if (character === 'C') {
       xCoord--;
-    } else if (character === 'T' || character === 't' || character === 'U' || character === 'u') {
+    } else if (character === 'T' || character === 'U') {
       yCoord++;
-    } else if (character === 'G' || character === 'g') {
+    } else if (character === 'G') {
       xCoord++;
     }
     x.push(xCoord);
