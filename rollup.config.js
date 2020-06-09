@@ -9,7 +9,7 @@ export default [
       {
         name: 'dnaviz',
         exports: 'named',
-        file: pkg.browser,
+        file: 'dist/dnaviz.min.js',
         format: 'iife',
       },
     ],

@@ -4,10 +4,8 @@
   "description": "DNA visualization for the command line, browser, and beyond",
   "main": "dist/dnaviz.js",
   "module": "dist/dnaviz.esm.js",
-  "browser": "dist/dnaviz.min.js",
-  "dependencies": {
-    "ts-node": "^8.10.2"
-  },
+  "types": "dist/dnaviz.d.ts",
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^25.2.3",
     "fast-check": "^1.24.2",
@@ -18,6 +16,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-terser": "^6.1.0",
     "ts-jest": "^26.1.0",
+    "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.9.5"
@@ -33,7 +32,7 @@
     "url": "git+https://github.com/Lab41/dnavs.js.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Lab41/dnavs.js/issues"
   },
