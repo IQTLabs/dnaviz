@@ -1,5 +1,5 @@
 export function squiggle(sequence: string): number[][] {
-  sequence = sequence.toUpperCase()
+  sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
   const y: number[] = [0.0];
   let yCoord: number = 0.0;
@@ -34,7 +34,7 @@ export function squiggle(sequence: string): number[][] {
 
 // yau
 export function yau(sequence: string): number[][] {
-  sequence = sequence.toUpperCase()
+  sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
   const y: number[] = [0.0];
   let xCoord: number = 0.0;
@@ -63,7 +63,7 @@ export function yau(sequence: string): number[][] {
 }
 // yau-bp
 export function yau_bp(sequence: string): number[][] {
-  sequence = sequence.toUpperCase()
+  sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
   const y: number[] = [0.0];
   let xCoord: number = 0.0;
@@ -90,7 +90,7 @@ export function yau_bp(sequence: string): number[][] {
 }
 // randic
 export function randic(sequence: string): number[][] {
-  sequence = sequence.toUpperCase()
+  sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
   const y: number[] = [0.0];
   let xCoord = 0;
@@ -107,7 +107,7 @@ export function randic(sequence: string): number[][] {
     u: 2,
   };
   for (const character of sequence) {
-    xCoord++
+    xCoord++;
     x.push(xCoord);
     y.push(key[character]);
   }
@@ -118,7 +118,7 @@ export function randic(sequence: string): number[][] {
 }
 // qi
 export function qi(sequence: string): number[][] {
-  sequence = sequence.toUpperCase()
+  sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
   const y: number[] = [0.0];
   const key: any = {
@@ -140,12 +140,12 @@ export function qi(sequence: string): number[][] {
     CT: 2,
   };
   for (let i = 0; i < sequence.length; i++) {
-    let S_1 = sequence[i]
-    let S_2 = sequence[i + 1]
+    let S_1 = sequence[i];
+    let S_2 = sequence[i + 1];
     if (S_1 === 'U') {
-      S_1 = 'T'
+      S_1 = 'T';
     } else if (S_2 === 'U') {
-      S_2 = 'T'
+      S_2 = 'T';
     }
     x.push(i);
     y.push(key[S_1 + S_2]);
@@ -157,7 +157,7 @@ export function qi(sequence: string): number[][] {
 }
 // gates
 export function gates(sequence: string): number[][] {
-  sequence = sequence.toUpperCase()
+  sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
   const y: number[] = [0.0];
   let xCoord: number = 0.0;
