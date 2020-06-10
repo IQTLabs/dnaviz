@@ -56,6 +56,6 @@ test('test squiggle length', () => {
       expect(squiggle(s)[0].length == 2 * s.length + 1).toBe(true);
     }),
   );
-}); 
+});
 
- // needs extra one, starting coord is always the origin (0, 0)
+// needs extra one, starting coord is always the origin (0, 0)
