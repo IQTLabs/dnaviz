@@ -1,3 +1,6 @@
+  // different methods of transforming a sequence of dna into a series of coordinates for 2d visualization
+
+ // squiggle
 export function squiggle(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
@@ -39,21 +42,22 @@ export function yau(sequence: string): number[][] {
   const y: number[] = [0.0];
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
+
   for (const character of sequence) {
     if (character === 'A') {
       xCoord = xCoord + 0.5;
-      yCoord = yCoord - 3 ** 0.5 / 2;
+      yCoord = yCoord - (3**0.5/2);
     } else if (character === 'C') {
-      xCoord = xCoord + 3 ** 0.5 / 2;
+      xCoord = xCoord + (3**0.5/2);
       yCoord = yCoord + 0.5;
     } else if (character === 'T' || character === 'U') {
       xCoord = xCoord + 0.5;
-      yCoord = yCoord + 3 ** 0.5 / 2;
+      yCoord = yCoord + (3**0.5/2);
     } else if (character === 'G') {
-      xCoord = xCoord + 3 ** 0.5 / 2;
+      xCoord = xCoord + (3**0.5/2);
       yCoord = yCoord - 0.5;
     }
-    x.push(xCoord);
+    x.push(xCoord)
     y.push(yCoord);
   }
   const result: number[][] = [];

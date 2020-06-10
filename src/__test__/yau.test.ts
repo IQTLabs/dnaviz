@@ -4,21 +4,21 @@ import * as fc from 'fast-check';
 test('test yau of A', () => {
   expect(yau('A')).toEqual([
     [0, 0.5],
-    [0, -(3 ** 0.5 / 2)],
+    [0, (3 ** 0.5 / -2)],
   ]);
 });
 
 test('test yau of T', () => {
   expect(yau('T')).toEqual([
     [0, 0.5],
-    [0, 3 ** 0.5 / 2],
+    [0, (3 ** 0.5 / 2)],
   ]);
 });
 
 test('test yau of U', () => {
   expect(yau('U')).toEqual([
     [0, 0.5],
-    [0, 3 ** 0.5 / 2],
+    [0, (3 ** 0.5 / 2)],
   ]);
 });
 
