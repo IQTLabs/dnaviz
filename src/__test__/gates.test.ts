@@ -1,5 +1,6 @@
 import * as fc from 'fast-check';
 import { gates } from '../dnaviz';
+import { dna } from './common'
 
 test('test gates of A', () => {
   expect(gates('A')).toEqual([
@@ -31,21 +32,25 @@ test('test gates of C', () => {
 
 test('test gates endpoints', () => {
   fc.assert(
-    fc.property(fc.stringOf(fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'), 1, 10000), (s) => {
+    fc.property(dna, (s) => {
+      // counts the number of each base
+      // if count == 0 then it is assigned an empty array
+     
+      let g_count = (s.match(/[Gg]/g)) || []
+      let c_count = (s.match(/[Cc]/g)) || []
+      let tu_count = (s.match(/[TtUu]/g)) || []
+      let a_count = (s.match(/[Aa]/g)) || []
+      
+      //"If the function n(Z) denotes the number of occurrences of nucleotide Z
+      // in a given sequence, the end-point of the sequence lies at coordinate
+      // position [(n(G) - n(C)), (n(T) - n(A))]" (Gates, J. theor. Biol. 1986)
+
       expect(
-        gates(s)[0][gates(s)[0].length - 1] ===
-          s.split('G').length - 1 + (s.split('g').length - 1) - (s.split('C').length - 1) - (s.split('c').length - 1),
-      ).toBe(true);
+        g_count.length - c_count.length
+      ).toBe(gates(s)[0][gates(s)[0].length - 1]);
       expect(
-        gates(s)[1][gates(s)[1].length - 1] ===
-          s.split('T').length -
-            1 +
-            (s.split('t').length - 1) +
-            (s.split('U').length - 1) +
-            (s.split('u').length - 1) -
-            (s.split('A').length - 1) -
-            (s.split('a').length - 1),
-      ).toBe(true);
+        tu_count.length - a_count.length
+      ).toBe(gates(s)[1][gates(s)[1].length - 1]);
     }),
   );
 });

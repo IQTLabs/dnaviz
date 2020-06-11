@@ -1,5 +1,6 @@
 import * as fc from 'fast-check';
 import { squiggle } from '../dnaviz';
+import { dna } from './common';
 
 test('test squiggle of A', () => {
   expect(squiggle('A')).toEqual([
@@ -29,13 +30,6 @@ test('test squiggle of C', () => {
   ]);
 });
 
-test('test squiggle of invlid', () => {
-  expect(squiggle('N')).toEqual([
-    [0, 0.5, 1],
-    [0, 0, 0],
-  ]);
-});
-
 test('test squiggle of ATG', () => {
   expect(squiggle('ATG')).toEqual([
     [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
@@ -52,11 +46,18 @@ test('test squiggle of TTC', () => {
 
 test('test squiggle length', () => {
   fc.assert(
-    fc.property(fc.stringOf(fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'), 1, 10000), (s) => {
+    fc.property(dna, (s) => {
       expect(squiggle(s)[0].length).toBe(squiggle(s)[1].length)
       expect(squiggle(s)[0].length == 2 * s.length + 1).toBe(true);
     }),
   );
 });
 
+test('check case insensitivity', () => {
+  fc.assert(
+    fc.property(dna, (s) => {
+      expect(squiggle(s)).toEqual(squiggle(s.toLowerCase()));
+    }),
+  );
+});
 // needs extra one, starting coord is always the origin (0, 0)

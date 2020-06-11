@@ -58,18 +58,12 @@ test('test last x value correctness for yau', () => {
       let x = yau(s)[0];
 
       // how many As, Ts, and Us are there?
-      let atu_matches = s.match(/[AaTtUu]/g);
-      let atu_match_count = 0;
-      if (atu_matches != null) {
-        atu_match_count = atu_matches.length;
-      }
-
+      let atu_matches = s.match(/[AaTtUu]/g) || [];
+      let atu_match_count = atu_matches.length;
+      
       // how many Gs and Cs are there?
-      let gc_matches = s.match(/[GgCc]/g);
-      let gc_match_count = 0;
-      if (gc_matches != null) {
-        gc_match_count = gc_matches.length;
-      }
+      let gc_matches = s.match(/[GgCc]/g) || [];
+      let gc_match_count = gc_matches.length;
 
       // we know the last x value will be the number of
       // A/T/U bases * 0.5 plus the number of G/C bases * sqrt(3)/2
@@ -85,25 +79,15 @@ test('test y value correctness for yau', () => {
     fc.property(dna, (s) => {
       let y = yau(s)[1];
       
-      let tu_matches = s.match(/[TtUu]/g);
-      let a_matches = s.match(/[Aa]/g);
-      let atu_match_count = 0;
-      if(tu_matches != null) {
-        atu_match_count = atu_match_count + tu_matches.length;
-      }
-      if(a_matches != null) {
-        atu_match_count = atu_match_count - a_matches.length; 
-      }
+      let tu_matches = s.match(/[TtUu]/g) || [];
+      let a_matches = s.match(/[Aa]/g) || [];
+      let atu_match_count = tu_matches.length - a_matches.length; 
+      
 
-      let g_matches = s.match(/[Gg]/g);
-      let c_matches = s.match(/[Cc]/g);
-      let gc_match_count = 0;
-      if(g_matches != null) {
-        gc_match_count = gc_match_count - g_matches.length
-      }  
-      if(c_matches != null) {
-        gc_match_count = gc_match_count + c_matches.length
-      }
+      let g_matches = s.match(/[Gg]/g) || [];
+      let c_matches = s.match(/[Cc]/g) || [];
+      let gc_match_count = - g_matches.length + c_matches.length
+      
       expect(
         atu_match_count * (3**0.5/2) + gc_match_count * 0.5,
       ).toBeCloseTo(y[y.length - 1]);
