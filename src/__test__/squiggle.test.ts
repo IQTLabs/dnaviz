@@ -53,6 +53,7 @@ test('test squiggle of TTC', () => {
 test('test squiggle length', () => {
   fc.assert(
     fc.property(fc.stringOf(fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'), 1, 10000), (s) => {
+      expect(squiggle(s)[0].length).toBe(squiggle(s)[1].length)
       expect(squiggle(s)[0].length == 2 * s.length + 1).toBe(true);
     }),
   );
