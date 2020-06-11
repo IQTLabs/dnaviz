@@ -1,6 +1,7 @@
 // different methods of transforming a sequence of dna into a series of coordinates for 2d visualization
 
 // squiggle
+
 export function squiggle(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
   const x: number[] = [0.0];

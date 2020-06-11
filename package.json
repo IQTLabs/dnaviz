@@ -26,8 +26,7 @@
     "test": "jest --config jestconfig.json",
     "build": "tsc && rollup -c",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
-    "doc": "jsdoc -c jsdoc.json"
+    "lint": "tslint -p tsconfig.json"
   },
   "repository": {
     "type": "git",
