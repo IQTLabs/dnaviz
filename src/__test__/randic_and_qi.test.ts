@@ -1,8 +1,8 @@
 import * as fc from 'fast-check';
 import { randic } from '../dnaviz';
 import { qi } from '../dnaviz';
-import { dna }from './common'
-import { dna2 }from './common'
+import { dna } from './common'
+import { dna2 } from './common'
 
 const randicKey: any = {
   A: 3,
@@ -19,11 +19,14 @@ const randicKey: any = {
 
 test('test randic', () => {
   fc.assert(
-    fc.property(dna, 
-      (s) => {for (let idx = 0; idx < s.length; idx++) {
-        expect(randic(s)[1][idx]).toEqual(randicKey.s.charAt(idx));
-      }
-    }),
+    fc.property(dna,
+      (s) => {
+        for (let idx = 0; idx < s.length; idx++) {
+          const actual = randicKey[s[idx]]
+          const expected = randic(s[idx])[1][1]
+          expect(expected).toEqual(actual);
+        }
+      }),
   );
 });
 
@@ -50,8 +53,9 @@ test('test qi', () => {
   fc.assert(
     fc.property(dna2, (s) => {
       for (let idx = 0; idx < s.length; idx++) {
-        let my_char = s.charAt(idx) + s.charAt(idx + 1);
-        expect(qi(s)[1][idx]).toEqual(qi_key.my_char);
+        const expected = qi_key[s[idx] + s[idx + 1]]
+        const actual = qi(s[idx])[1][1]
+        expect(actual).toEqual(expected)
       }
     }),
   );
