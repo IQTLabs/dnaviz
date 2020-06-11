@@ -83,23 +83,30 @@ test('test last x value correctness for yau', () => {
 test('test y value correctness for yau', () => {
   fc.assert(
     fc.property(dna, (s) => {
+      let y = yau(s)[1];
+      
+      let tu_matches = s.match(/[TtUu]/g);
+      let a_matches = s.match(/[Aa]/g);
+      let atu_match_count = 0;
+      if(tu_matches != null) {
+        atu_match_count = atu_match_count + tu_matches.length;
+      }
+      if(a_matches != null) {
+        atu_match_count = atu_match_count - a_matches.length; 
+      }
+
+      let g_matches = s.match(/[Gg]/g);
+      let c_matches = s.match(/[Cc]/g);
+      let gc_match_count = 0;
+      if(g_matches != null) {
+        gc_match_count = gc_match_count - g_matches.length
+      }  
+      if(c_matches != null) {
+        gc_match_count = gc_match_count + c_matches.length
+      }
       expect(
-        (3 ** 0.5 / 2) *
-          (s.split('T').length -
-            1 +
-            (s.split('t').length - 1) +
-            (s.split('U').length - 1) +
-            (s.split('u').length - 1) -
-            (s.split('A').length - 1) -
-            (s.split('a').length - 1)) +
-          0.5 *
-            (s.split('C').length -
-              1 +
-              (s.split('c').length - 1) -
-              (s.split('G').length - 1) -
-              (s.split('g').length - 1)) ==
-          yau(s)[1][yau(s)[1].length - 1],
-      ).toBe(true);
+        atu_match_count * (3**0.5/2) + gc_match_count * 0.5,
+      ).toBeCloseTo(y[y.length - 1]);
     }),
   );
 });

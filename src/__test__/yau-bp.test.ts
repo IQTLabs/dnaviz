@@ -48,6 +48,7 @@ test('test yau-bp length', () => {
   fc.assert(
     fc.property(fc.stringOf(fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'), 1, 10000), (s) => {
       expect(yau_bp(s)[0].length == s.length + 1).toBe(true);
+      expect(yau_bp(s)[0].length).toEqual(yau_bp(s)[1].length);
     }),
   );
 });
