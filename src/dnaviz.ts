@@ -105,11 +105,6 @@ export function randic(sequence: string): number[][] {
     G: 1,
     C: 0,
     U: 2,
-    a: 3,
-    t: 2,
-    g: 1,
-    c: 0,
-    u: 2,
   };
   for (const character of sequence) {
     xCoord++;
