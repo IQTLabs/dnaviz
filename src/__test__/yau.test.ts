@@ -60,7 +60,7 @@ test('test last x value correctness for yau', () => {
       // how many As, Ts, and Us are there?
       let atu_matches = s.match(/[AaTtUu]/g) || [];
       let atu_match_count = atu_matches.length;
-      
+
       // how many Gs and Cs are there?
       let gc_matches = s.match(/[GgCc]/g) || [];
       let gc_match_count = gc_matches.length;
@@ -78,18 +78,17 @@ test('test y value correctness for yau', () => {
   fc.assert(
     fc.property(dna, (s) => {
       let y = yau(s)[1];
-      
+
       let tu_matches = s.match(/[TtUu]/g) || [];
       let a_matches = s.match(/[Aa]/g) || [];
-      let atu_match_count = tu_matches.length - a_matches.length; 
-      
+      let atu_match_count = tu_matches.length - a_matches.length;
 
       let g_matches = s.match(/[Gg]/g) || [];
       let c_matches = s.match(/[Cc]/g) || [];
-      let gc_match_count = - g_matches.length + c_matches.length
-      
+      let gc_match_count = -g_matches.length + c_matches.length;
+
       expect(
-        atu_match_count * (3**0.5/2) + gc_match_count * 0.5,
+        atu_match_count * (3 ** 0.5 / 2) + gc_match_count * 0.5,
       ).toBeCloseTo(y[y.length - 1]);
     }),
   );

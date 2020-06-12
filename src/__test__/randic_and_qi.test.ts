@@ -1,8 +1,8 @@
 import * as fc from 'fast-check';
 import { randic } from '../dnaviz';
 import { qi } from '../dnaviz';
-import { dna } from './common'
-import { dna2 } from './common'
+import { dna } from './common';
+import { dna2 } from './common';
 
 const randicKey: any = {
   A: 3,
@@ -19,14 +19,13 @@ const randicKey: any = {
 
 test('test randic', () => {
   fc.assert(
-    fc.property(dna,
-      (s) => {
-        for (let i = 0; i < s.length; i++) {
-          const actual = randicKey[s[i]]
-          const expected = randic(s[i])[1][1]
-          expect(actual).toEqual(expected);
-        }
-      }),
+    fc.property(dna, (s) => {
+      for (let i = 0; i < s.length; i++) {
+        const actual = randicKey[s[i]];
+        const expected = randic(s[i])[1][1];
+        expect(actual).toEqual(expected);
+      }
+    }),
   );
 });
 
@@ -51,13 +50,21 @@ const qiKey: any = {
 
 test('test qi', () => {
   fc.assert(
-    fc.property(dna2,
-      (s) => {
-        for (let i = 0; i < s.length; i++) {
-          const actual = qiKey[(s[i] + s[i + 1])]
-          const expected = qi(s[i] + s[i + 1])[1][1]
-          expect(actual).toEqual(expected);
+    fc.property(dna2, (s) => {
+      for (let i = 0; i < s.length - 1; i++) {
+        s = s.toUpperCase()
+        let S_1 = s[i];
+        let S_2 = s[i + 1];
+        if (S_1 === 'U') {
+          S_1 = 'T';
+        } else if (S_2 === 'U') {
+          S_2 = 'T';
         }
-      }),
+
+        const actual = qiKey[S_1 + S_2];
+        const expected = qi(s[i] + s[i + 1])[1][1];
+        expect(actual).toEqual(expected);
+      }
+    }),
   );
 });

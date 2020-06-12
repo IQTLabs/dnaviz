@@ -47,7 +47,7 @@ test('test squiggle of TTC', () => {
 test('test squiggle length', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(squiggle(s)[0].length).toBe(squiggle(s)[1].length)
+      expect(squiggle(s)[0].length).toBe(squiggle(s)[1].length);
       expect(squiggle(s)[0].length == 2 * s.length + 1).toBe(true);
     }),
   );
