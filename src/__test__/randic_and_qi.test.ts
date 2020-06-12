@@ -21,16 +21,16 @@ test('test randic', () => {
   fc.assert(
     fc.property(dna,
       (s) => {
-        for (let idx = 0; idx < s.length; idx++) {
-          const actual = randicKey[s[idx]]
-          const expected = randic(s[idx])[1][1]
-          expect(expected).toEqual(actual);
+        for (let i = 0; i < s.length; i++) {
+          const actual = randicKey[s[i]]
+          const expected = randic(s[i])[1][1]
+          expect(actual).toEqual(expected);
         }
       }),
   );
 });
 
-const qi_key: any = {
+const qiKey: any = {
   AA: 12,
   AC: 4,
   GT: 6,
@@ -51,12 +51,13 @@ const qi_key: any = {
 
 test('test qi', () => {
   fc.assert(
-    fc.property(dna2, (s) => {
-      for (let idx = 0; idx < s.length; idx++) {
-        const expected = qi_key[s[idx] + s[idx + 1]]
-        const actual = qi(s[idx])[1][1]
-        expect(actual).toEqual(expected)
-      }
-    }),
+    fc.property(dna2,
+      (s) => {
+        for (let i = 0; i < s.length; i++) {
+          const actual = qiKey[(s[i] + s[i + 1])]
+          const expected = qi(s[i] + s[i + 1])[1][1]
+          expect(actual).toEqual(expected);
+        }
+      }),
   );
 });
