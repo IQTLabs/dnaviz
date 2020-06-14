@@ -5,15 +5,10 @@
  /**
  * Generates squiggle 2D Visualization of DNA from any sequence
  * 
- * @remarks
- * 
- * This method is part of the DNA Visualization Methods
- * 
  * @param sequence - sequence of DNA or RNA
  * 
  * @returns coordinates for 2d visualization of DNA based on the squiggle algorithm
  * 
- * @beta
  */
 export function squiggle(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -52,8 +47,12 @@ export function squiggle(sequence: string): number[][] {
 
 // yau
 /**
- *
- * @param sequence The input DNA or RNA sequence.
+ * Generates yau 2D Visualization of DNA from any sequence
+ * 
+ * @param sequence - sequence of DNA or RNA
+ * 
+ * @returns coordinates for 2d visualization of DNA based on the yau algorithm
+ * 
  */
 export function yau(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -86,6 +85,14 @@ export function yau(sequence: string): number[][] {
   return result;
 }
 // yau-bp
+/**
+ * Generates yau-2d 2D Visualization of DNA from any sequence
+ * 
+ * @param sequence - sequence of DNA or RNA
+ * 
+ * @returns coordinates for 2d visualization of DNA based on the yau-bp algorithm
+ * 
+ */
 export function yau_bp(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
@@ -114,6 +121,14 @@ export function yau_bp(sequence: string): number[][] {
   return result;
 }
 // randic
+/**
+ * Generates randic 2D Visualization of DNA from any sequence
+ * 
+ * @param sequence - sequence of DNA or RNA
+ * 
+ * @returns coordinates for 2d visualization of DNA based on the randic algorithm
+ * 
+ */
 export function randic(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
@@ -138,6 +153,14 @@ export function randic(sequence: string): number[][] {
   return result;
 }
 // qi
+/**
+ * Generates qi 2D Visualization of DNA from any sequence
+ * 
+ * @param sequence - sequence of DNA or RNA
+ * 
+ * @returns coordinates for 2d visualization of DNA based on the qi algorithm
+ * 
+ */
 export function qi(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
@@ -177,6 +200,14 @@ export function qi(sequence: string): number[][] {
   return result;
 }
 // gates
+/**
+ * Generates gates 2D Visualization of DNA from any sequence
+ * 
+ * @param sequence - sequence of DNA or RNA
+ * 
+ * @returns coordinates for 2d visualization of DNA based on the gates algorithm
+ * 
+ */
 export function gates(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
