@@ -26,7 +26,8 @@
     "test": "jest --config jestconfig.json",
     "build": "tsc && rollup -c",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "typedoc":"typedoc --mode modules -module commonjs --exclude **/*.spec.ts --out docs/typedoc src/app"
   },
   "repository": {
     "type": "git",
