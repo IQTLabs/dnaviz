@@ -37,6 +37,10 @@ export function squiggle(sequence: string): number[][] {
 }
 
 // yau
+/**
+ *
+ * @param sequence The input DNA or RNA sequence.
+ */
 export function yau(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
   const x: number[] = [0.0];

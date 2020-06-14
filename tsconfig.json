@@ -7,5 +7,9 @@
     "module": "CommonJS"
   },
   "include": ["src/dnaviz.ts"],
-  "exclude": ["node_modules", "**/__test__/*"]
+  "exclude": ["node_modules", "**/__test__/*"],
+  "typedocOptions": {
+    "mode": "modules",
+    "out": "docs"
+  }
 }
