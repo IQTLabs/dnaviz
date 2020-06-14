@@ -17,6 +17,9 @@ const randicKey: any = {
   u: 2,
 };
 
+// takes each character from generated string and runs randic on that string
+// then takes the string as a key for the object 
+// these two values are compared
 test('test randic', () => {
   fc.assert(
     fc.property(dna, (s) => {
@@ -48,6 +51,9 @@ const qiKey: any = {
   CT: 2,
 };
 
+// takes random char and char + 1 from random gen string
+// filters these chars to fit key vals (uppercase U --> T)
+// compares object val to function val
 test('test qi', () => {
   fc.assert(
     fc.property(dna2, (s) => {

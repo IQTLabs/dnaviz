@@ -2,13 +2,27 @@
 
 // squiggle
 
+ /**
+ * Generates squiggle 2D Visualization of DNA from any sequence
+ * 
+ * @remarks
+ * 
+ * This method is part of the DNA Visualization Methods
+ * 
+ * @param sequence - sequence of DNA or RNA
+ * 
+ * @returns coordinates for 2d visualization of DNA based on the squiggle algorithm
+ * 
+ * @beta
+ */
 export function squiggle(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
   const x: number[] = [0.0];
   const y: number[] = [0.0];
   let yCoord: number = 0.0;
 
-  for (const character of sequence) {
+  for (let i = 0; i < sequence.length; i++) {
+    const character = sequence[i] 
     x.push(x[x.length - 1] + 0.5);
     x.push(x[x.length - 1] + 0.5);
     if (character === 'A') {
@@ -48,7 +62,8 @@ export function yau(sequence: string): number[][] {
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
 
-  for (const character of sequence) {
+  for (let i = 0; i < sequence.length; i++) {
+    const character = sequence[i] 
     if (character === 'A') {
       xCoord = xCoord + 0.5;
       yCoord = yCoord - 3 ** 0.5 / 2;
@@ -78,7 +93,8 @@ export function yau_bp(sequence: string): number[][] {
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
 
-  for (const character of sequence) {
+  for (let i = 0; i < sequence.length; i++) {
+    const character = sequence[i] 
     xCoord++;
     x.push(xCoord);
     if (character === 'A') {
@@ -109,13 +125,9 @@ export function randic(sequence: string): number[][] {
     G: 1,
     C: 0,
     U: 2,
-    a: 3,
-    t: 2,
-    g: 1,
-    c: 0,
-    u: 2,
   };
-  for (const character of sequence) {
+  for (let i = 0; i < sequence.length; i++) {
+    const character = sequence[i] 
     xCoord++;
     x.push(xCoord);
     y.push(key[character]);
@@ -171,7 +183,8 @@ export function gates(sequence: string): number[][] {
   const y: number[] = [0.0];
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
-  for (const character of sequence) {
+  for (let i = 0; i < sequence.length; i++) {
+    const character = sequence[i] 
     if (character === 'A') {
       yCoord--;
     } else if (character === 'C') {
