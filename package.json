@@ -1,5 +1,5 @@
 {
-  "name": "dna_viz",
+  "name": "dnaviz",
   "version": "1.0.0",
   "description": "DNA visualization for the command line, browser, and beyond",
   "main": "dist/dnaviz.js",
@@ -10,13 +10,11 @@
     "@types/jest": "^25.2.3",
     "fast-check": "^1.24.2",
     "jest": "^26.0.1",
-    "jsverify": "^0.8.4",
     "prettier": "^2.0.5",
     "rollup": "^2.14.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-terser": "^6.1.0",
     "ts-jest": "^26.1.0",
-    "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typedoc": "^0.17.7",
@@ -25,18 +23,21 @@
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc && rollup -c",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "typedoc": "typedoc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lab41/dnavs.js.git"
+    "url": "git+https://github.com/Lab41/dnaviz.git"
   },
-  "author": "",
+  "author": "Benjamin Lee <benjamindlee@me.com> (https://benjamindlee.com)",
+  "contributors": [
+    "Caleb Oh <caleboh01@gmail.com> (https://github.com/CalebOh01)"
+  ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Lab41/dnavs.js/issues"
+    "url": "https://github.com/Lab41/dnaviz/issues"
   },
-  "homepage": "https://github.com/Lab41/dnavs.js#readme"
+  "homepage": "https://github.com/Lab41/dnaviz#readme"
 }
