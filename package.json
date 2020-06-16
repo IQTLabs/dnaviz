@@ -27,11 +27,7 @@
     "build": "tsc && rollup -c",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-<<<<<<< HEAD
-    "typedoc": "typedoc --mode modules -module commonjs --exclude **/*.spec.ts --out docs/typedoc src/app"
-=======
     "typedoc": "typedoc"
->>>>>>> cb579e53859e72c97cbcf280e6ba87aab0a774b0
   },
   "repository": {
     "type": "git",
