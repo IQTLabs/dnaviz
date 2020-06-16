@@ -156,3 +156,13 @@ test('test yau of TTC', () => {
     expect(yau('TTC')).toEqual([[0, 0.5, 1, 1 + (3**0.5)/2],
     [0, (3**0.5)/2, (3**0.5), (3**0.5) + 0.5]]);
 });
+
+
+
+const newResult: Array<Array<number>> = []
+  for (let i = 0; result[0].length; i++) {
+    const newArr: Array<number> = []
+    newArr.push(result[0][i])
+    newArr.push(result[1][i])
+    newResult.push(newArr)
+  }
