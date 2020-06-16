@@ -17,7 +17,6 @@
  * // all squiggle visualizations start at the origin (0, 0)
  * ```
  * 
- * Information on squiggle method:
  * Squiggle’s DNA visualization method is based on the UCSC .2bit format and the Qi et. al Huffman coding method. In essence, a DNA sequence is first converted into binary using the 2bit encoding scheme that maps T to 00, C to 01, A to 10, and G to 11. The bits can be mapped as end to end vectors.
  * 
  * For more information visit: https://squiggle.readthedocs.io/en/latest/methods.html#squiggle
