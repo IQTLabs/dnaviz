@@ -18,7 +18,7 @@ const randicKey: any = {
 };
 
 // takes each character from generated string and runs randic on that string
-// then takes the string as a key for the object 
+// then takes the string as a key for the object
 // these two values are compared
 test('test randic', () => {
   fc.assert(
@@ -58,7 +58,7 @@ test('test qi', () => {
   fc.assert(
     fc.property(dna2, (s) => {
       for (let i = 0; i < s.length - 1; i++) {
-        s = s.toUpperCase()
+        s = s.toUpperCase();
         let S_1 = s[i];
         let S_2 = s[i + 1];
         if (S_1 === 'U') {

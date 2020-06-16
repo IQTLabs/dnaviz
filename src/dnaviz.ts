@@ -2,13 +2,14 @@
 
 // squiggle
 
- /**
+/**
  * Generates squiggle 2D Visualization of DNA from any sequence
- * 
+ *
  * @param sequence - sequence of DNA or RNA
- * 
+ *
  * @returns coordinates for 2d visualization of DNA based on the squiggle algorithm
  *
+<<<<<<< HEAD
  * Example Usage
  * ```ts
  * squiggle('ATCG')  
@@ -21,6 +22,8 @@
  * Squiggle’s DNA visualization method is based on the UCSC .2bit format and the Qi et. al Huffman coding method. In essence, a DNA sequence is first converted into binary using the 2bit encoding scheme that maps T to 00, C to 01, A to 10, and G to 11. The bits can be mapped as end to end vectors.
  * 
  * For more information visit: https://squiggle.readthedocs.io/en/latest/methods.html#squiggle
+=======
+>>>>>>> cb579e53859e72c97cbcf280e6ba87aab0a774b0
  */
 export function squiggle(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -29,7 +32,7 @@ export function squiggle(sequence: string): number[][] {
   let yCoord: number = 0.0;
 
   for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i] 
+    const character = sequence[i];
     x.push(x[x.length - 1] + 0.5);
     x.push(x[x.length - 1] + 0.5);
     if (character === 'A') {
@@ -60,11 +63,11 @@ export function squiggle(sequence: string): number[][] {
 // yau
 /**
  * Generates yau 2D Visualization of DNA from any sequence
- * 
+ *
  * @param sequence - sequence of DNA or RNA
- * 
+ *
  * @returns coordinates for 2d visualization of DNA based on the yau algorithm
- * 
+ *
  */
 export function yau(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -74,7 +77,7 @@ export function yau(sequence: string): number[][] {
   let yCoord: number = 0.0;
 
   for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i] 
+    const character = sequence[i];
     if (character === 'A') {
       xCoord = xCoord + 0.5;
       yCoord = yCoord - 3 ** 0.5 / 2;
@@ -99,11 +102,11 @@ export function yau(sequence: string): number[][] {
 // yau-bp
 /**
  * Generates yau-2d 2D Visualization of DNA from any sequence
- * 
+ *
  * @param sequence - sequence of DNA or RNA
- * 
+ *
  * @returns coordinates for 2d visualization of DNA based on the yau-bp algorithm
- * 
+ *
  */
 export function yau_bp(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -113,7 +116,7 @@ export function yau_bp(sequence: string): number[][] {
   let yCoord: number = 0.0;
 
   for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i] 
+    const character = sequence[i];
     xCoord++;
     x.push(xCoord);
     if (character === 'A') {
@@ -135,11 +138,11 @@ export function yau_bp(sequence: string): number[][] {
 // randic
 /**
  * Generates randic 2D Visualization of DNA from any sequence
- * 
+ *
  * @param sequence - sequence of DNA or RNA
- * 
+ *
  * @returns coordinates for 2d visualization of DNA based on the randic algorithm
- * 
+ *
  */
 export function randic(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -154,7 +157,7 @@ export function randic(sequence: string): number[][] {
     U: 2,
   };
   for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i] 
+    const character = sequence[i];
     xCoord++;
     x.push(xCoord);
     y.push(key[character]);
@@ -167,11 +170,11 @@ export function randic(sequence: string): number[][] {
 // qi
 /**
  * Generates qi 2D Visualization of DNA from any sequence
- * 
+ *
  * @param sequence - sequence of DNA or RNA
- * 
+ *
  * @returns coordinates for 2d visualization of DNA based on the qi algorithm
- * 
+ *
  */
 export function qi(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -214,11 +217,11 @@ export function qi(sequence: string): number[][] {
 // gates
 /**
  * Generates gates 2D Visualization of DNA from any sequence
- * 
+ *
  * @param sequence - sequence of DNA or RNA
- * 
+ *
  * @returns coordinates for 2d visualization of DNA based on the gates algorithm
- * 
+ *
  */
 export function gates(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -227,7 +230,7 @@ export function gates(sequence: string): number[][] {
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
   for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i] 
+    const character = sequence[i];
     if (character === 'A') {
       yCoord--;
     } else if (character === 'C') {
