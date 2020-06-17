@@ -8,15 +8,15 @@
  * @param sequence - sequence of DNA or RNA (lowercase and mixed cases are valid)
  *
  * @returns coordinates for 2d visualization of DNA based on the Squiggle algorithm
- * 
+ *
  * Example Usage
  * ```ts
- * squiggle('ATGC')  
+ * squiggle('ATGC')
  * // returns [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
  * ```
- * 
+ *
  * Squiggle’s DNA visualization method is based on the UCSC .2bit format and the Qi et. al Huffman coding method. In essence, a DNA sequence is first converted into binary using the 2bit encoding scheme that maps T to 00, C to 01, A to 10, and G to 11. The bits can be mapped as end to end vectors.
- * 
+ *
  * For more information visit: https://squiggle.readthedocs.io/en/latest/methods.html#squiggle
  */
 export function squiggle(sequence: string): number[][] {
@@ -25,8 +25,7 @@ export function squiggle(sequence: string): number[][] {
   const y: number[] = [0.0];
   let yCoord: number = 0.0;
 
-  for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i];
+  for (const character of sequence) {
     x.push(x[x.length - 1] + 0.5);
     x.push(x[x.length - 1] + 0.5);
     if (character === 'A') {
@@ -66,21 +65,21 @@ export function squiggle(sequence: string): number[][] {
  * ```ts
  * yau('ATGC')
  * // returns [[0, 0.5, 1, 1 + 3 ** 0.5 / 2, 1 + 2 * (3 ** 0.5 / 2)], [0, -(3 ** 0.5 / 2), 0, -0.5, 0]]
- * ```  
- * 
+ * ```
+ *
  * Yau et. al’s method uses unit vectors with upward vectors indicating pyrimidine bases (C and T) and downward vectors indicating purine bases (A and G). Similar to Squiggle, this method has no degeneracy.
- * 
+ *
  * The unit vectors are based on 30 and 60 degree values on the unit circle.
- * 
+ *
  * Specifically:
- * 
+ *
  * ```ts
  * A = (0.5, -3**0.5/2) // ** represents exponents in js
- * T = (0.5, 3**0.5/2) 
+ * T = (0.5, 3**0.5/2)
  * C = (3**0.5/2, 0.5)
  * G = (3**0.5/2, -0.5)
  * ```
- * 
+ *
  * *Warning: The x-coordinate is not equivalent to the base position
  */
 export function yau(sequence: string): number[][] {
@@ -90,8 +89,7 @@ export function yau(sequence: string): number[][] {
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
 
-  for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i];
+  for (const character of sequence) {
     if (character === 'A') {
       xCoord = xCoord + 0.5;
       yCoord = yCoord - 3 ** 0.5 / 2;
@@ -126,7 +124,7 @@ export function yau(sequence: string): number[][] {
  * yau_bp('ATGC')
  * // returns [[0, 1, 2, 3, 4], [0, -1, 0, -0.5, 0]]
  * ```
- * 
+ *
  * Unique to DNAViz is the Yau-BP method, a slight modification of Yau’s method that ensures that the x axis is equivalent to the base position. It preserves that salient feature of the method, which is the purine/pyrimidine split.
  */
 export function yau_bp(sequence: string): number[][] {
@@ -136,8 +134,7 @@ export function yau_bp(sequence: string): number[][] {
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
 
-  for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i];
+  for (const character of sequence) {
     xCoord++;
     x.push(xCoord);
     if (character === 'A') {
@@ -163,26 +160,26 @@ export function yau_bp(sequence: string): number[][] {
  * @param sequence - sequence of DNA or RNA (lowercase and mixed cases are valid)
  *
  * @returns coordinates for 2d visualization of DNA based on the Randic algorithm
- * 
- * Example Usage 
+ *
+ * Example Usage
  * ```ts
  * randic('ATGC')
  * // returns [[0, 1, 2, 3], [3, 2, 1, 0]]
  * ```
  *
- * Similar to tabalture, the Randic method assigns each base a different y-value. 
- * 
+ * Similar to tabalture, the Randic method assigns each base a different y-value.
+ *
  * Specifically:
- * 
+ *
  * ```ts
  * A = 3
  * T = 2
  * G = 1
  * C = 0
  * ```
- * 
- ** This visualization method isn't well suited to long sequences
- * 
+ *
+ * *This visualization method isn't well suited to long sequences
+ *
  */
 export function randic(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -196,8 +193,7 @@ export function randic(sequence: string): number[][] {
     C: 0,
     U: 2,
   };
-  for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i];
+  for (const character of sequence) {
     xCoord++;
     x.push(xCoord);
     y.push(key[character]);
@@ -220,11 +216,11 @@ export function randic(sequence: string): number[][] {
  * qi('ATGC')
  * // returns [[0, 1, 2], [8, 7, 11]]
  * ```
- * 
+ *
  * Similar to Randic, Qi maps each 2-mer in the sequence to a unique y-value. Because there are more 2-mer combinations than lone bases, Qi graphs look like randic graphs with a larger range of y-values.
- * 
+ *
  * Qi Assignment Key:
- * 
+ *
  * ```ts
  * AA = 12
  * AC = 4
@@ -295,7 +291,7 @@ export function qi(sequence: string): number[][] {
  * gates('ATGC')
  * // returns [[0, 0, 0, 1, 0], [0, -1, 0, 0, 0]]
  * ```
- * 
+ *
  * In Gates’s method, DNA sequences are converted into 2D walks in which Ts, As, Cs, and Gs are up, down, left, and right, respectively. This gives each sequence a “shape.” However, there is degeneracy, meaning that a visualization is not necessarily unique. For example, TGAC is a square (up, right, down, and left), but so is GTCA (right, up, left, down).
  */
 export function gates(sequence: string): number[][] {
@@ -304,8 +300,7 @@ export function gates(sequence: string): number[][] {
   const y: number[] = [0.0];
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
-  for (let i = 0; i < sequence.length; i++) {
-    const character = sequence[i];
+  for (const character of sequence) {
     if (character === 'A') {
       yCoord--;
     } else if (character === 'C') {
@@ -323,4 +318,3 @@ export function gates(sequence: string): number[][] {
   result.push(y);
   return result;
 }
-
