@@ -30,6 +30,13 @@ test('test gates of C', () => {
   ]);
 });
 
+test('test basic', () => {
+  expect(gates('ATGC')).toEqual([
+    [0, 0, 0, 1, 0],
+    [0, -1, 0, 0, 0]
+  ]);
+});
+
 test('test gates endpoints', () => {
   fc.assert(
     fc.property(dna, (s) => {

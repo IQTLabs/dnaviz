@@ -74,3 +74,17 @@ test('test qi', () => {
     }),
   );
 });
+
+test('test basic randic', () => {
+  expect(randic('ATGC')).toEqual([
+    [0, 1, 2, 3],
+    [3, 2, 1, 0]
+  ]);
+});
+
+test('test basic qi', () => {
+  expect(qi('ATGC')).toEqual([
+    [0, 1, 2],
+    [8, 7, 11]
+  ]);
+});

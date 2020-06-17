@@ -30,17 +30,10 @@ test('test squiggle of C', () => {
   ]);
 });
 
-test('test squiggle of ATG', () => {
-  expect(squiggle('ATG')).toEqual([
-    [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-    [0, 0.5, 0, -0.5, -1.0, -0.5, 0.0],
-  ]);
-});
-
-test('test squiggle of TTC', () => {
-  expect(squiggle('TTC')).toEqual([
-    [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-    [0, -0.5, -1.0, -1.5, -2.0, -2.5, -2.0],
+test('test squiggle of ATGC', () => {
+  expect(squiggle('ATGC')).toEqual([
+    [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0],
+    [0, 0.5, 0, -0.5, -1.0, -0.5, 0.0, -0.5, 0.0],
   ]);
 });
 

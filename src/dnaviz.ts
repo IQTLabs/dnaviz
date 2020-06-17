@@ -194,8 +194,8 @@ export function randic(sequence: string): number[][] {
     U: 2,
   };
   for (const character of sequence) {
-    xCoord++;
     x.push(xCoord);
+    xCoord++
     y.push(key[character]);
   }
   const result: number[][] = [];
