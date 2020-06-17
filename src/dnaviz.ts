@@ -5,14 +5,14 @@
 /**
  * Generates squiggle 2D Visualization of DNA from any sequence
  *
- * @param sequence - sequence of DNA or RNA
+ * @param sequence - sequence of DNA or RNA (lowercase and mixed cases are valid)
  *
- * @returns coordinates for 2d visualization of DNA based on the squiggle algorithm
+ * @returns coordinates for 2d visualization of DNA based on the Squiggle algorithm
  * 
- * * Example Usage
+ * Example Usage
  * ```ts
- * squiggle('ATCG')  
- * // returns [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -1.5, -1, -0.5, 0]]
+ * squiggle('ATGC')  
+ * // returns [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
  * // the first array contains the x-coordinates and the second array contains the corresponding y-coordinates
  * // all squiggle visualizations start at the origin (0, 0)
  * ```
@@ -60,10 +60,30 @@ export function squiggle(sequence: string): number[][] {
 /**
  * Generates yau 2D Visualization of DNA from any sequence
  *
- * @param sequence - sequence of DNA or RNA
+ * @param sequence - sequence of DNA or RNA (lowercase and mixed cases are valid)
  *
- * @returns coordinates for 2d visualization of DNA based on the yau algorithm
+ * @returns coordinates for 2d visualization of DNA based on the Yau algorithm
  *
+ * Example Usage
+ * ```ts
+ * yau('ATGC')
+ * // returns [[0, 0.5, 1, 1 + 3 ** 0.5 / 2, 1 + 2 * (3 ** 0.5 / 2)], [0, -(3 ** 0.5 / 2), 0, -0.5, 0]]
+ * ```  
+ * 
+ * Yau et. al’s method uses unit vectors with upward vectors indicating pyrimidine bases (C and T) and downward vectors indicating purine bases (A and G). Similar to Squiggle, this method has no degeneracy.
+ * 
+ * The unit vectors are based on 30 and 60 degree values on the unit circle.
+ * 
+ * Specifically:
+ * 
+ * ```ts
+ * A = (0.5, -3**0.5/2) // ** represents exponents in js
+ * T = (0.5, 3**0.5/2) 
+ * C = (3**0.5/2, 0.5)
+ * G = (3**0.5/2, -0.5)
+ * ```
+ * 
+ * *Warning: The x-coordinate is not equivalent to the base position
  */
 export function yau(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -97,13 +117,19 @@ export function yau(sequence: string): number[][] {
 }
 // yau-bp
 /**
- * Generates yau-2d 2D Visualization of DNA from any sequence
+ * Generates yau-bp 2D Visualization of DNA from any sequence
  *
- * @param sequence - sequence of DNA or RNA
+ * @param sequence - sequence of DNA or RNA (lowercase and mixed cases are valid)
  *
- * @returns coordinates for 2d visualization of DNA based on the yau-bp algorithm
+ * @returns coordinates for 2d visualization of DNA based on the Yau-BP algorithm
  *
+ * Example Usage
+ * ```ts
+ * yau_bp('ATGC')
+ * // returns [[0, 1, 2, 3, 4], [0, -1, 0, -0.5, 0]]
+ * ```
  * 
+ * Unique to DNAViz is the Yau-BP method, a slight modification of Yau’s method that ensures that the x axis is equivalent to the base position. It preserves that salient feature of the method, which is the purine/pyrimidine split.
  */
 export function yau_bp(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
@@ -136,15 +162,34 @@ export function yau_bp(sequence: string): number[][] {
 /**
  * Generates randic 2D Visualization of DNA from any sequence
  *
- * @param sequence - sequence of DNA or RNA
+ * @param sequence - sequence of DNA or RNA (lowercase and mixed cases are valid)
  *
- * @returns coordinates for 2d visualization of DNA based on the randic algorithm
+ * @returns coordinates for 2d visualization of DNA based on the Randic algorithm
+ * 
+ * Example Usage 
+ * ```ts
+ * randic('ATGC')
+ * // returns [[0, 1, 2, 3], [3, 2, 1, 0]]
+ * ```
  *
+ * Similar to tabalture, the Randic method assigns each base a different y-value. 
+ * 
+ * Specifically:
+ * 
+ * ```ts
+ * A = 3
+ * T = 2
+ * G = 1
+ * C = 0
+ * ```
+ * 
+ ** This visualization method isn't well suited to long sequences
+ * 
  */
 export function randic(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
-  const x: number[] = [0.0];
-  const y: number[] = [0.0];
+  const x: number[] = [];
+  const y: number[] = [];
   let xCoord = 0;
   const key: any = {
     A: 3,
@@ -168,15 +213,43 @@ export function randic(sequence: string): number[][] {
 /**
  * Generates qi 2D Visualization of DNA from any sequence
  *
- * @param sequence - sequence of DNA or RNA
+ * @param sequence - sequence of DNA or RNA (lowercase and mixed cases are valid)
  *
- * @returns coordinates for 2d visualization of DNA based on the qi algorithm
+ * @returns coordinates for 2d visualization of DNA based on the Qi algorithm
  *
+ * Example Usage
+ * ```ts
+ * qi('ATGC')
+ * // returns [[0, 1, 2], [8, 7, 11]]
+ * ```
+ * 
+ * Similar to Randic, Qi maps each 2-mer in the sequence to a unique y-value. Because there are more 2-mer combinations than lone bases, Qi graphs look like randic graphs with a larger range of y-values.
+ * 
+ * Qi Assignment Key:
+ * 
+ * ```ts
+ * AA = 12
+ * AC = 4
+ * GT = 6
+ * AG = 0
+ * CC = 13
+ * CA = 5
+ * CG = 10
+ * TT = 15
+ * GG = 14
+ * GC = 11
+ * AT = 8
+ * GA = 1
+ * TG = 7
+ * TA = 9
+ * TC = 3
+ * CT = 2
+ * ```
  */
 export function qi(sequence: string): number[][] {
   sequence = sequence.toUpperCase();
-  const x: number[] = [0.0];
-  const y: number[] = [0.0];
+  const x: number[] = [];
+  const y: number[] = [];
   const key: any = {
     AA: 12,
     AC: 4,
@@ -195,7 +268,7 @@ export function qi(sequence: string): number[][] {
     TC: 3,
     CT: 2,
   };
-  for (let i = 0; i < sequence.length; i++) {
+  for (let i = 0; i < sequence.length - 1; i++) {
     let S_1 = sequence[i];
     let S_2 = sequence[i + 1];
     if (S_1 === 'U') {
@@ -217,8 +290,15 @@ export function qi(sequence: string): number[][] {
  *
  * @param sequence - sequence of DNA or RNA
  *
- * @returns coordinates for 2d visualization of DNA based on the gates algorithm
+ * @returns coordinates for 2d visualization of DNA based on the Gates algorithm
  *
+ * Example Usage
+ * ```ts
+ * gates('ATGC')
+ * // returns [[0, 0, 0, 1, 0], [0, -1, 0, 0, 0]]
+ * ```
+ * 
+ * In Gates’s method, DNA sequences are converted into 2D walks in which Ts, As, Cs, and Gs are up, down, left, and right, respectively. This gives each sequence a “shape.” However, there is degeneracy, meaning that a visualization is not necessarily unique. For example, TGAC is a square (up, right, down, and left), but so is GTCA (right, up, left, down).
  */
 export function gates(sequence: string): number[][] {
   sequence = sequence.toUpperCase();

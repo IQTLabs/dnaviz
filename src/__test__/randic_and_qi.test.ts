@@ -25,7 +25,7 @@ test('test randic', () => {
     fc.property(dna, (s) => {
       for (let i = 0; i < s.length; i++) {
         const actual = randicKey[s[i]];
-        const expected = randic(s[i])[1][1];
+        const expected = randic(s[i])[1][0];
         expect(actual).toEqual(expected);
       }
     }),
@@ -68,7 +68,7 @@ test('test qi', () => {
         }
 
         const actual = qiKey[S_1 + S_2];
-        const expected = qi(s[i] + s[i + 1])[1][1];
+        const expected = qi(s[i] + s[i + 1])[1][0];
         expect(actual).toEqual(expected);
       }
     }),
