@@ -9,7 +9,7 @@
  *
  * @returns coordinates for 2d visualization of DNA based on the Squiggle algorithm
  * 
- * @remarks Lee, B. D. (2018). Squiggle: a user-friendly two-dimensional DNA sequence visualization tool. Bioinformatics. doi:10.1093/bioinformatics/bty807.
+ * @remarks Lee, B. D. (2018). Squiggle: a user-friendly two-dimensional DNA sequence visualization tool. *Bioinformatics*. doi:10.1093/bioinformatics/bty807.
  *
  * Example Usage
  * ```ts
@@ -63,7 +63,7 @@ export function squiggle(sequence: string): number[][] {
  *
  * @returns coordinates for 2d visualization of DNA based on the Yau algorithm
  *
- * @remarks Yau, S. S., Wang, J., Niknejad, A., Lu, C., Jin, N., & Ho, Y. K. (2003). DNA sequence representation without degeneracy. Nucleic acids research, 31(12), 3078-80.
+ * @remarks Yau, S. S., Wang, J., Niknejad, A., Lu, C., Jin, N., & Ho, Y. K. (2003). DNA sequence representation without degeneracy. *Nucleic acids research, 31(12)*, 3078-80.
  * 
  * Example Usage
  * ```ts
@@ -125,8 +125,8 @@ export function yau(sequence: string): number[][] {
  *
  * @returns coordinates for 2d visualization of DNA based on the Yau-BP algorithm
  *
- * @remarks Lee, B. D. (2018). Squiggle: a user-friendly two-dimensional DNA sequence visualization tool. Bioinformatics. doi:10.1093/bioinformatics/bty807.
-Yau, S. S., Wang, J., Niknejad, A., Lu, C., Jin, N., & Ho, Y. K. (2003). DNA sequence representation without degeneracy. Nucleic acids research, 31(12), 3078-80.
+ * @remarks Lee, B. D. (2018). Squiggle: a user-friendly two-dimensional DNA sequence visualization tool. *Bioinformatics*. doi:10.1093/bioinformatics/bty807.
+Yau, S. S., Wang, J., Niknejad, A., Lu, C., Jin, N., & Ho, Y. K. (2003). DNA sequence representation without degeneracy. *Nucleic acids research*, 31(12), 3078-80.
  * 
  * Example Usage
  * ```ts
@@ -172,7 +172,7 @@ export function yau_bp(sequence: string): number[][] {
  *
  * @returns coordinates for 2d visualization of DNA based on the Randic algorithm
  *
- * @remarks Randić, M., Vračko, M., Lerš, N., & Plavšić, D. (2003). Novel 2-D graphical representation of DNA sequences and their numerical characterization. Chemical Physics Letters, 368(1–2), 1–6. doi:10.1016/s0009-2614(02)01784-0.
+ * @remarks Randić, M., Vračko, M., Lerš, N., & Plavšić, D. (2003). Novel 2-D graphical representation of DNA sequences and their numerical characterization. *Chemical Physics Letters, 368(1–2)*, 1–6. doi:10.1016/s0009-2614(02)01784-0.
  * 
  * Example Usage
  * ```ts
@@ -225,7 +225,7 @@ export function randic(sequence: string): number[][] {
  *
  * @returns coordinates for 2d visualization of DNA based on the Qi algorithm
  *
- * @remarks Qi, Z., & Qi, X. (2007). Novel 2D graphical representation of DNA sequence based on dual nucleotides. Chemical Physics Letters, 440(1–3), 139–144. doi:10.1016/j.cplett.2007.03.107.
+ * @remarks Qi, Z., & Qi, X. (2007). Novel 2D graphical representation of DNA sequence based on dual nucleotides. *Chemical Physics Letters, 440(1–3)*, 139–144. doi:10.1016/j.cplett.2007.03.107.
  * 
  * Example Usage
  * ```ts
@@ -304,7 +304,7 @@ export function qi(sequence: string): number[][] {
  *
  * @returns coordinates for 2d visualization of DNA based on the Gates algorithm
  *
- * @remarks Gates MA. A simple way to look at DNA. J Theor Biol. 1986;119(3):319-328. doi:10.1016/s0022-5193(86)80144-8
+ * @remarks Gates MA. A simple way to look at DNA.*J Theor Biol*. 1986;119(3):319-328. doi:10.1016/s0022-5193(86)80144-8
  * 
  * Example Usage
  * ```ts
