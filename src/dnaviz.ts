@@ -8,7 +8,7 @@
  * @param sequence - sequence of DNA or RNA (lowercase and mixed cases are valid)
  *
  * @returns coordinates for 2d visualization of DNA based on the Squiggle algorithm
- * 
+ *
  * @remarks Lee, B. D. (2018). Squiggle: a user-friendly two-dimensional DNA sequence visualization tool. *Bioinformatics*. doi:10.1093/bioinformatics/bty807.
  *
  * Example Usage
@@ -64,7 +64,7 @@ export function squiggle(sequence: string): number[][] {
  * @returns coordinates for 2d visualization of DNA based on the Yau algorithm
  *
  * @remarks Yau, S. S., Wang, J., Niknejad, A., Lu, C., Jin, N., & Ho, Y. K. (2003). DNA sequence representation without degeneracy. *Nucleic acids research, 31(12)*, 3078-80.
- * 
+ *
  * Example Usage
  * ```ts
  * yau('ATGC')
@@ -85,7 +85,7 @@ export function squiggle(sequence: string): number[][] {
  * ```
  *
  * *Warning: The x-coordinate is not equivalent to the base position
- * 
+ *
  * For more information visit: https://squiggle.readthedocs.io/en/latest/methods.html#yau
  */
 export function yau(sequence: string): number[][] {
@@ -173,7 +173,7 @@ export function yau_bp(sequence: string): number[][] {
  * @returns coordinates for 2d visualization of DNA based on the Randic algorithm
  *
  * @remarks Randić, M., Vračko, M., Lerš, N., & Plavšić, D. (2003). Novel 2-D graphical representation of DNA sequences and their numerical characterization. *Chemical Physics Letters, 368(1–2)*, 1–6. doi:10.1016/s0009-2614(02)01784-0.
- * 
+ *
  * Example Usage
  * ```ts
  * randic('ATGC')
@@ -209,7 +209,7 @@ export function randic(sequence: string): number[][] {
   };
   for (const character of sequence) {
     x.push(xCoord);
-    xCoord++
+    xCoord++;
     y.push(key[character]);
   }
   const result: number[][] = [];
@@ -226,7 +226,7 @@ export function randic(sequence: string): number[][] {
  * @returns coordinates for 2d visualization of DNA based on the Qi algorithm
  *
  * @remarks Qi, Z., & Qi, X. (2007). Novel 2D graphical representation of DNA sequence based on dual nucleotides. *Chemical Physics Letters, 440(1–3)*, 139–144. doi:10.1016/j.cplett.2007.03.107.
- * 
+ *
  * Example Usage
  * ```ts
  * qi('ATGC')
@@ -240,22 +240,22 @@ export function randic(sequence: string): number[][] {
  * ```ts
  * AA = 12
  * AC = 4
- * GT = 6
  * AG = 0
- * CC = 13
- * CA = 5
- * CG = 10
- * TT = 15
- * GG = 14
- * GC = 11
  * AT = 8
+ * CA = 5
+ * CC = 13
+ * CG = 10
+ * CT = 2
  * GA = 1
- * TG = 7
+ * GC = 11
+ * GG = 14
+ * GT = 6
  * TA = 9
  * TC = 3
- * CT = 2
+ * TG = 7
+ * TT = 15
  * ```
- * 
+ *
  * For more information visit: https://squiggle.readthedocs.io/en/latest/methods.html#randic-and-qi
  */
 export function qi(sequence: string): number[][] {
@@ -305,7 +305,7 @@ export function qi(sequence: string): number[][] {
  * @returns coordinates for 2d visualization of DNA based on the Gates algorithm
  *
  * @remarks Gates MA. A simple way to look at DNA.*J Theor Biol*. 1986;119(3):319-328. doi:10.1016/s0022-5193(86)80144-8
- * 
+ *
  * Example Usage
  * ```ts
  * gates('ATGC')
@@ -313,7 +313,7 @@ export function qi(sequence: string): number[][] {
  * ```
  *
  * In Gates’s method, DNA sequences are converted into 2D walks in which Ts, As, Cs, and Gs are up, down, left, and right, respectively. This gives each sequence a “shape.” However, there is degeneracy, meaning that a visualization is not necessarily unique. For example, TGAC is a square (up, right, down, and left), but so is GTCA (right, up, left, down).
- * 
+ *
  * For more information visit: https://squiggle.readthedocs.io/en/latest/methods.html#gates
  */
 export function gates(sequence: string): number[][] {
