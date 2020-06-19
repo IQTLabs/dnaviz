@@ -5,7 +5,9 @@
   "main": "dist/dnaviz.js",
   "module": "dist/dnaviz.esm.js",
   "types": "dist/dnaviz.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "gh-pages": "^3.0.0"
+  },
   "devDependencies": {
     "@types/jest": "^25.2.3",
     "fast-check": "^1.24.2",
@@ -27,7 +29,8 @@
     "build": "tsc && rollup -c",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "typedoc": "typedoc"
+    "typedoc": "typedoc",
+    "deploy": "gh-pages -d docs"
   },
   "repository": {
     "type": "git",
@@ -41,5 +44,5 @@
   "bugs": {
     "url": "https://github.com/Lab41/dnaviz/issues"
   },
-  "homepage": "https://github.com/Lab41/dnaviz#readme"
+  "homepage": "https://lab41.github.io/dnaviz"
 }

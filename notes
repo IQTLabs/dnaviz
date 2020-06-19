@@ -166,3 +166,5 @@ const newResult: Array<Array<number>> = []
     newArr.push(result[1][i])
     newResult.push(newArr)
   }
+
+benchmark switch later
