@@ -1,12 +1,11 @@
-name: Auto-Testing
+name: CI
 
 on:
   push:
-    branches: [ master ]
-
+    branches: [master]
 
 jobs:
-  test_on_push:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
