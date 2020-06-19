@@ -1,7 +1,6 @@
 import * as fc from 'fast-check';
 import { randic } from '../dnaviz';
 import { qi } from '../dnaviz';
-import { dna } from './common';
 import { dna2 } from './common';
 
 const randicKey: any = {
