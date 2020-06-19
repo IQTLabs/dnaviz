@@ -13,7 +13,7 @@ const randicKey: any = {
   t: 2,
   u: 2,
   g: 1,
-  c: 0
+  c: 0,
 };
 
 // takes each character from generated string and runs randic on that string
@@ -21,13 +21,16 @@ const randicKey: any = {
 // these two values are compared
 test('test randic', () => {
   fc.assert(
-    fc.property(fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'), (s) => {
-      for (let i = 0; i < s.length; i++) {
-        const actual = randicKey[s[i]];
-        const expected = randic(s[i])[1][0];
-        expect(actual).toEqual(expected);
-      }
-    }),
+    fc.property(
+      fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'),
+      (s) => {
+        for (let i = 0; i < s.length; i++) {
+          const actual = randicKey[s[i]];
+          const expected = randic(s[i])[1][0];
+          expect(actual).toEqual(expected);
+        }
+      },
+    ),
   );
 });
 
@@ -77,13 +80,13 @@ test('test qi', () => {
 test('test basic randic', () => {
   expect(randic('ATGC')).toEqual([
     [0, 1, 2, 3],
-    [3, 2, 1, 0]
+    [3, 2, 1, 0],
   ]);
 });
 
 test('test basic qi', () => {
   expect(qi('ATGC')).toEqual([
     [0, 1, 2],
-    [8, 7, 11]
+    [8, 7, 11],
   ]);
 });
