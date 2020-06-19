@@ -304,7 +304,7 @@ export function qi(sequence: string): number[][] {
  *
  * @returns coordinates for 2d visualization of DNA based on the Gates algorithm
  *
- * @remarks Gates MA. A simple way to look at DNA.*J Theor Biol*. 1986;119(3):319-328. doi:10.1016/s0022-5193(86)80144-8
+ * @remarks Gates MA. A simple way to look at DNA. *J Theor Biol*. 1986;119(3):319-328. doi:10.1016/s0022-5193(86)80144-8
  * 
  * Example Usage
  * ```ts
