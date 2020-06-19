@@ -203,9 +203,9 @@ export function randic(sequence: string): number[][] {
   const key: any = {
     A: 3,
     T: 2,
-    G: 1,
-    C: 0,
     U: 2,
+    G: 1,
+    C: 0
   };
   for (const character of sequence) {
     x.push(xCoord);

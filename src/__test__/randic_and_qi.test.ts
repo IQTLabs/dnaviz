@@ -7,14 +7,14 @@ import { dna2 } from './common';
 const randicKey: any = {
   A: 3,
   T: 2,
+  U: 2,
   G: 1,
   C: 0,
-  U: 2,
   a: 3,
   t: 2,
-  g: 1,
-  c: 0,
   u: 2,
+  g: 1,
+  c: 0
 };
 
 // takes each character from generated string and runs randic on that string
@@ -22,7 +22,7 @@ const randicKey: any = {
 // these two values are compared
 test('test randic', () => {
   fc.assert(
-    fc.property(dna, (s) => {
+    fc.property(fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'), (s) => {
       for (let i = 0; i < s.length; i++) {
         const actual = randicKey[s[i]];
         const expected = randic(s[i])[1][0];
