@@ -14,7 +14,7 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm test
-      - run: npm run typedoc
+      # - run: npm run typedoc
       - run: npm run build
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v2
