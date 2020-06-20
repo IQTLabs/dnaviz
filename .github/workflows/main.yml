@@ -14,10 +14,10 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm test
-      # - run: npm run typedoc
+      - run: npm run typedoc
       - run: npm run build
       - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: crazy-max/ghaction-github-pages@v1
         with: 
           target_branch: gh-pages
           build_dir: build
