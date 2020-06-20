@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -15,4 +15,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run typedoc
-      - run: npm run deploy
+      - name: Deploy
+        uses: crazy-max/ghaction-github-pages@v2
+        with: 
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_REPO_TOKEN }} #this is for two factor autho and we need to add this
