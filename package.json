@@ -21,8 +21,7 @@
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typedoc": "^0.17.7",
-    "typescript": "^3.9.5",
-    "vuepress": "^1.5.2"
+    "typescript": "^3.9.5"
   },
   "scripts": {
     "test": "jest --config jestconfig.json",
