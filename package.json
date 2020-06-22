@@ -29,7 +29,7 @@
     "build": "tsc && rollup -c",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "typedoc": "typedoc",
+    "typedoc": "typedoc && touch docs/.nojekyll",
     "deploy": "gh-pages -d docs"
   },
   "repository": {
