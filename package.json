@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "jest --config jestconfig.json",
-    "build": "tsc && rollup -c",
+    "build": "tsc && rollup --config rollup.config.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "typedoc": "typedoc && touch docs/.nojekyll",
