@@ -24,7 +24,7 @@
     "typescript": "^3.9.5"
   },
   "scripts": {
-    "test": "jest --config jestconfig.json",
+    "test": "jest --config jestconfig.json --coverage",
     "build": "tsc && rollup --config rollup.config.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
