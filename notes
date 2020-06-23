@@ -168,3 +168,9 @@ const newResult: Array<Array<number>> = []
   }
 
 benchmark switch later
+
+S_2 != 'A' && S_2 != 'T' && S_2 != 'U' && S_2 != 'G' && S_2 != 'C'
+S_2 != 'A' && S_2 != 'T' && S_2 != 'U' && S_2 != 'G' && S_2 != 'C'
+if (S_2 != 'A' && S_2 != 'T' && S_2 != 'U' && S_2 != 'G' && S_2 != 'C') {
+      throw new Error('non-atgcu base')
+    }

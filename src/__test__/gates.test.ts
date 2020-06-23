@@ -61,3 +61,9 @@ test('test gates endpoints', () => {
     }),
   );
 });
+
+test('throws on non-ATGCU', () => {
+  expect(() => {
+    gates('NAN');
+  }).toThrow();
+});

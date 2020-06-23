@@ -59,3 +59,9 @@ test('check case insensitivity', () => {
     }),
   );
 });
+
+test('throws on non-ATGCU', () => {
+  expect(() => {
+    yau_bp('NAN');
+  }).toThrow();
+});
