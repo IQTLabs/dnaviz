@@ -28,8 +28,7 @@
     "build": "tsc && rollup --config rollup.config.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "typedoc": "typedoc && touch docs/.nojekyll",
-    "deploy": "gh-pages -d docs"
+    "typedoc": "typedoc && touch docs/.nojekyll"
   },
   "repository": {
     "type": "git",
