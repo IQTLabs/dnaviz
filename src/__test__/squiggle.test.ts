@@ -54,3 +54,19 @@ test('check case insensitivity', () => {
   );
 });
 // needs extra one, starting coord is always the origin (0, 0)
+
+test('check non-ATGCU cases', () => {
+  fc.assert(
+    fc.property(fc.string(100), (s) => {
+      let tu_matches = s.match(/[TtUu]/g) || [];
+      // let a_matches = s.match(/[Aa]/g) || [];
+      let g_matches = s.match(/[Gg]/g) || [];
+      // let c_matches = s.match(/[Cc]/g) || [];
+      let y = squiggle(s)[1]
+
+      expect(g_matches.length - tu_matches.length).toEqual(y[y.length - 1])
+    }),
+  );
+});
+// if non-AGCTU works properly, end y-value of a random string should equal end y-value of ATGCU string
+// for squiggle this end val is only determined by T, U, and G
