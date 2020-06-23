@@ -1,4 +1,5 @@
 # DNAViz
+![CI/CD](https://github.com/Lab41/dnaviz/workflows/CI/CD/badge.svg)
 
 DNAViz is an npm library for DNA visualization functions in Node, the browser, and beyond. Using six different visualization methods, easily convert any sequence of DNA or RNA into human readible data sets. Easily analyze and compare fasta files.
 
