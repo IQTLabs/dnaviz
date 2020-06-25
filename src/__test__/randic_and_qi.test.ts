@@ -99,6 +99,6 @@ test('throws on non-ATGCU for randic', () => {
 
 test('throws on non-ATGCU for qi', () => {
   expect(() => {
-    qi('NAN');
+    qi('NNN');
   }).toThrow();
 });
