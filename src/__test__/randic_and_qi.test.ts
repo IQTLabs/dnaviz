@@ -102,3 +102,9 @@ test('throws on non-ATGCU for qi', () => {
     qi('NNNN');
   }).toThrow();
 });
+
+test('throws on non-ATGCU for qi', () => {
+  expect(() => {
+    qi('ANNN');
+  }).toThrow();
+});
