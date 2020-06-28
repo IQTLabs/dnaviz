@@ -90,3 +90,21 @@ test('test basic qi', () => {
     [8, 7, 11],
   ]);
 });
+
+test('throws on non-ATGCU for randic', () => {
+  expect(() => {
+    randic('NAN');
+  }).toThrow();
+});
+
+test('throws on non-ATGCU for qi', () => {
+  expect(() => {
+    qi('NNNN');
+  }).toThrow();
+});
+
+test('throws on non-ATGCU for qi', () => {
+  expect(() => {
+    qi('ANNN');
+  }).toThrow();
+});
