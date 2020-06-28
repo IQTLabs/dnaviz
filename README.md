@@ -34,6 +34,11 @@ dna.squiggle('ATGC')
 
 | Methods | Description |
 | ------ | ----------- |
-|Squiggle | Test |
+|Squiggle | Bases converted into binary vector coordinates|
+|Yau | Bases converted into unit vectors based on the unit circle |
+|Yau-BP | Slight modification to Yau's method that ensures that the x axis is equivalent to the base position |
+|Randic | Assigns each base a unique y-value |
+|Qi | Assigns each 2-mer combination a unique y-value |
+|Gates | Bases converted into 2D-walks (up, down, left, and right) |
 # Documentation
 For specific functions and methods of visualization, take a look at the [documentation](https://lab41.github.io/dnaviz/modules/_dnaviz_.html)
