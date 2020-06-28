@@ -1,6 +1,6 @@
 {
   "name": "dnaviz",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "DNA visualization for the command line, browser, and beyond",
   "main": "dist/dnaviz.js",
   "module": "dist/dnaviz.esm.js",
@@ -28,7 +28,8 @@
     "build": "tsc && rollup --config rollup.config.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "typedoc": "typedoc && touch docs/.nojekyll"
+    "typedoc": "typedoc && touch docs/.nojekyll",
+    "prepublish": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
