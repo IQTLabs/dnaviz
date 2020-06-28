@@ -23,10 +23,6 @@ import * as dna from 'dnaviz';
 ```Typescript
 const dna = require('dnaviz')
 ```
-### File Include
-```Typescript
-pass
-```
 ## Basic Usage
 ```Typescript
 dna.squiggle('ATGC')
