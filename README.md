@@ -23,7 +23,7 @@ import * as dna from 'dnaviz';
 ```Typescript
 const dna = require('dnaviz')
 ```
-## Basic Example
+## Hello World
 ```Typescript
 import * as dna from 'dnaviz';
 
