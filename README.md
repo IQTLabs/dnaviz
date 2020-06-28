@@ -23,9 +23,17 @@ import * as dna from 'dnaviz';
 ```Typescript
 const dna = require('dnaviz')
 ```
-## Basic Usage
+## Basic Example
 ```Typescript
+import * as dna from 'dnaviz';
+
 dna.squiggle('ATGC')
+// returns [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
 ```
+## Available Methods
+
+| Methods | Description |
+| ------ | ----------- |
+|Squiggle | Test |
 # Documentation
 For specific functions and methods of visualization, take a look at the [documentation](https://lab41.github.io/dnaviz/modules/_dnaviz_.html)
