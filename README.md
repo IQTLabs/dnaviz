@@ -13,13 +13,13 @@ A DNA visualization npm package for the command line, browser, and beyond. Using
 Via npm
 
 ```
-$ npm install --save-dev dnaviz
+$ npm install dnaviz
 ```
 
 or Via Yarn
 
 ```
-$ yarn add --dev dnaviz
+$ yarn add dnaviz
 ```
 
 ## Usage
