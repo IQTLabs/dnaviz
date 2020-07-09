@@ -1902,18 +1902,10 @@
   local.set $2
   local.get $2
   i32.const 0
-  i32.const 2
-  i32.mul
-  i32.const 0
-  i32.add
   f64.const 0
   call $~lib/typedarray/Float64Array#__uset
   local.get $2
-  i32.const 0
-  i32.const 2
-  i32.mul
   i32.const 1
-  i32.add
   f64.const 0
   call $~lib/typedarray/Float64Array#__uset
   f64.const 0
@@ -2107,18 +2099,10 @@
   local.set $2
   local.get $2
   i32.const 0
-  i32.const 2
-  i32.mul
-  i32.const 0
-  i32.add
   f64.const 0
   call $~lib/typedarray/Float64Array#__uset
   local.get $2
-  i32.const 0
-  i32.const 2
-  i32.mul
   i32.const 1
-  i32.add
   f64.const 0
   call $~lib/typedarray/Float64Array#__uset
   f64.const 0
@@ -2259,18 +2243,10 @@
   local.set $2
   local.get $2
   i32.const 0
-  i32.const 2
-  i32.mul
-  i32.const 0
-  i32.add
   f64.const 0
   call $~lib/typedarray/Float64Array#__uset
   local.get $2
-  i32.const 0
-  i32.const 2
-  i32.mul
   i32.const 1
-  i32.add
   f64.const 0
   call $~lib/typedarray/Float64Array#__uset
   f64.const 0
@@ -4417,18 +4393,10 @@
   local.set $2
   local.get $2
   i32.const 0
-  i32.const 2
-  i32.mul
-  i32.const 0
-  i32.add
   f64.const 0
   call $~lib/typedarray/Float64Array#__uset
   local.get $2
-  i32.const 0
-  i32.const 2
-  i32.mul
   i32.const 1
-  i32.add
   f64.const 0
   call $~lib/typedarray/Float64Array#__uset
   f64.const 0
