@@ -14,47 +14,37 @@ const {
 // release (drops retained ptrs from module memory),
 // and memory from AssemblyScript API
 
-const STRING_ID = 1;
-const ARRAYBUFFERVIEW_DATASTART_OFFSET = 4;
-const SIZE_OFFSET = -4;
-
 function randomSeq(length) {
   var result = '';
   var characters = 'ATGC';
   var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
 }
 
-const my_seq = randomSeq(10000); // generates random sequence
-
 let alloc = __alloc;
-const suite = new Benchmark.Suite();
+
 function __allocString(str) {
   const length = str.length;
-  const ptr = alloc(length << 1, STRING_ID);
+  const ptr = alloc(length << 1, 1);
   const U16 = new Uint16Array(memory.buffer);
-  for (var i = 0, p = ptr >>> 1; i < length; ++i) {
+  for (let i = 0, p = ptr >>> 1; i < length; ++i) {
     U16[p + i] = str.charCodeAt(i);
   }
   return ptr;
 } // Places string into modules memory. Assigns and returns a pointer
 
-function getTypedArrayView(Type, alignLog2, ptr) {
+function getFloat64Array(ptr) {
   const buffer = memory.buffer;
   const U32 = new Uint32Array(buffer);
-  const bufPtr = U32[(ptr + ARRAYBUFFERVIEW_DATASTART_OFFSET) >>> 2];
-  return new Type(
+  const bufPtr = U32[ptr + 4 >>> 2];
+  return new Float64Array(
     buffer,
     bufPtr,
-    U32[(bufPtr + SIZE_OFFSET) >>> 2] >>> alignLog2
+    U32[bufPtr - 4 >>> 2] >>> 3
   );
-} // Gets a view of the values of an array within a module's mem
-
-function getFloat64Array(ptr) {
-  return new Float64Array(getTypedArrayView(Float64Array, 3, ptr));
 } // Copies the modules array values into a JS array
 
 function as_squiggle(seq) {
@@ -94,7 +84,7 @@ const seq10000 = randomSeq(10000);
 const seq100000 = randomSeq(100000);
 const seq1000000 = randomSeq(1000000);
 
-suite
+new Benchmark.Suite()
 .add(methods[0].name + ' 10000', () => { methods[0](seq10000) })
 .add(methods[1].name + ' 10000', () => { methods[1](seq10000) })
 .add(methods[2].name + ' 10000', () => { methods[2](seq10000) })
