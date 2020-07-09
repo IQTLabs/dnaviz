@@ -1,101 +1,107 @@
 export function squiggle(sequence: string, length: i32): Float64Array {
-  let x = [0.0]
-  let y = [0.0]
+  let result = new Float64Array(4 * (length + 1))
+  unchecked(result[0 * 2 + 0] = 0) // x[0] = 0
+  unchecked(result[0 * 2 + 1] = 0) // y[0] = 0
   let yCoord = 0.0
   let xCoord = 0.0
 
-  for (let i = 0; i < length; i++) {
-    let character = sequence.charAt(i)
-    x.push(xCoord + 0.5)
-    x.push(xCoord + 1.0)
-    xCoord += 1.0
-    if (character == "A") {
-      y.push(yCoord + 0.5)
-      y.push(yCoord)
-    } else if (character == "C") {
-      y.push(yCoord - 0.5)
-      y.push(yCoord)
-    } else if (character == "T") {
-      y.push(yCoord - 0.5)
-      y.push(yCoord - 1)
-      yCoord -= 1.0
-    } else if (character == "G") {
-      y.push(yCoord + 0.5)
-      y.push(yCoord + 1)
-      yCoord += 1.0
-    } else {
-      y.push(yCoord)
-      y.push(yCoord)
-    }
-  }
+  for (let i = 0; i < 4 * length; i += 4) {
+    let code = sequence.charCodeAt(i >>> 2)
+    unchecked(result[i + 3] = xCoord + 0.5)
+    unchecked(result[i + 5] = xCoord + 1.0)
+    xCoord += 1
 
-  let result = new Float64Array(2 * x.length + 2)
-  for (let i = 0; i < x.length; i++) {
-    result[2 * i + 0 + 1] = x[i]
-    result[2 * i + 1 + 1] = y[i]
+    switch (code) {
+      case 0x41: // "A"
+        unchecked(result[i + 4] = yCoord + 0.5)
+        unchecked(result[i + 6] = yCoord)
+        break
+      case 0x43: // "C"
+        unchecked(result[i + 4] = yCoord - 0.5)
+        unchecked(result[i + 6] = yCoord)
+        break
+      case 0x54: // "T"
+        unchecked(result[i + 4] = yCoord - 0.5)
+        unchecked(result[i + 6] = yCoord - 1)
+        yCoord -= 1
+        break
+      case 0x47: // "G"
+        unchecked(result[i + 4] = yCoord + 0.5)
+        unchecked(result[i + 6] = yCoord + 1)
+        yCoord += 1.0
+        break
+      default:
+        unchecked(result[i + 4] = yCoord)
+        unchecked(result[i + 6] = yCoord)
+        break
+    }
   }
   return result
 }
 
 export function yau(sequence: string, length: i32): Float64Array {
-  const x = [0.0]
-  const y = [0.0]
+  const HALF_SQRT_3 = 0.8660254037844386; // 3 ** 0.5 / 2;
+
+  let result = new Float64Array(2 * (length + 2))
+  unchecked(result[0 * 2 + 0] = 0) // x[0] = 0
+  unchecked(result[0 * 2 + 1] = 0) // y[0] = 0
   let xCoord = 0.0
   let yCoord = 0.0
 
   for (let i = 0; i < length; i++) {
-    let character = sequence.charAt(i)
-    if (character === "A") {
-      xCoord = xCoord + 0.5
-      yCoord = yCoord - 3 ** 0.5 / 2
-    } else if (character === "C") {
-      xCoord = xCoord + 3 ** 0.5 / 2
-      yCoord = yCoord + 0.5
-    } else if (character === "T" || character === "U") {
-      xCoord = xCoord + 0.5
-      yCoord = yCoord + 3 ** 0.5 / 2
-    } else if (character === "G") {
-      xCoord = xCoord + 3 ** 0.5 / 2
-      yCoord = yCoord - 0.5
+    let code = sequence.charCodeAt(i)
+    switch (code) {
+      case 0x41: // "A"
+        xCoord += 0.5
+        yCoord -= HALF_SQRT_3
+        break
+      case 0x43: // "C"
+        xCoord += HALF_SQRT_3
+        yCoord += 0.5
+        break
+      case 0x54: // "T"
+      case 0x55: // "U"
+        xCoord += 0.5
+        yCoord += HALF_SQRT_3
+        break
+      case 0x47: // "G"
+        xCoord += HALF_SQRT_3
+        yCoord -= 0.5
+        break
     }
-    x.push(xCoord)
-    y.push(yCoord)
-  }
-
-  let result = new Float64Array(2 * x.length + 2)
-  for (let i = 0; i < x.length; i++) {
-    result[2 * i + 0 + 1] = x[i]
-    result[2 * i + 1 + 1] = y[i]
+    unchecked(result[i * 2 + 3] = xCoord) // x
+    unchecked(result[i * 2 + 4] = yCoord) // y
   }
   return result
 }
 
 export function yau_bp(sequence: string, length: i32): Float64Array {
-  const x = [0.0]
-  const y = [0.0]
+  let result = new Float64Array(2 * (length + 2))
+  unchecked(result[0 * 2 + 0] = 0) // x[0] = 0
+  unchecked(result[0 * 2 + 1] = 0) // y[0] = 0
   let xCoord = 0.0
   let yCoord = 0.0
 
   for (let i = 0; i < length; i++) {
-    let character = sequence.charAt(i)
-    xCoord++
-    x.push(xCoord)
-    if (character === "A") {
-      yCoord = yCoord - 1
-    } else if (character === "C") {
-      yCoord = yCoord + 0.5
-    } else if (character === "T" || character === "U") {
-      yCoord = yCoord + 1
-    } else if (character === "G") {
-      yCoord = yCoord - 0.5
+    let code = sequence.charCodeAt(i)
+    switch (code) {
+      case 0x41: // "A"
+        yCoord -= 1
+        break
+      case 0x43: // "C"
+        yCoord += 0.5
+        break
+      case 0x54: // "T"
+      case 0x55: // "U"
+        yCoord += 1
+        break
+      case 0x47: // "G"
+        yCoord -= 0.5
+        break
     }
-    y.push(yCoord)
-  }
-
-  let result = new Float64Array(2 * x.length + 2)
-  for (let i = 0; i < x.length; i++) {
-    result[2 * i + 0 + 1] = x[i]
-    result[2 * i + 1 + 1] = y[i]
+    xCoord += 1
+    unchecked(result[i * 2 + 3] = xCoord) // x
+    unchecked(result[i * 2 + 4] = yCoord) // y
   }
   return result
 }
@@ -186,30 +192,33 @@ export function yau_bp(sequence: string, length: i32): Float64Array {
 
 export function gates(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase()
-  const x = [0.0]
-  const y = [0.0]
+  let result = new Float64Array(2 * (length + 2))
+  unchecked(result[0 * 2 + 0] = 0) // x[0] = 0
+  unchecked(result[0 * 2 + 1] = 0) // y[0] = 0
   let xCoord = 0.0
   let yCoord = 0.0
+
   for (let i = 0; i < length; i++) {
-    let character = sequence.charAt(i)
-    if (character === "A") {
-      yCoord--
-    } else if (character === "C") {
-      xCoord--
-    } else if (character === "T" || character === "U") {
-      yCoord++
-    } else if (character === "G") {
-      xCoord++
-    } else {
-      throw new Error("non-atgcu base")
+    let code = sequence.charCodeAt(i)
+    switch (code) {
+      case 0x41: // "A"
+        yCoord -= 1
+        break
+      case 0x43: // "C"
+        yCoord -= 1
+        break
+      case 0x54: // "T"
+      case 0x55: // "U"
+        yCoord += 1
+        break
+      case 0x47: // "G"
+        yCoord += 1
+        break
+      default:
+        throw new Error("non-atgcu base")
     }
-    x.push(xCoord)
-    y.push(yCoord)
-  }
-  let result = new Float64Array(2 * x.length + 2)
-  for (let i = 0; i < x.length; i++) {
-    result[2 * i + 0 + 1] = x[i]
-    result[2 * i + 1 + 1] = y[i]
+    unchecked(result[i * 2 + 3] = xCoord) // x
+    unchecked(result[i * 2 + 4] = yCoord) // y
   }
   return result
 }
