@@ -8,11 +8,11 @@ const {
   yau,
   squiggle,
   yau_bp
-} = require("./index"); 
-// imports retain (returns a managed object's pointer, ensure no premature collection), 
-// alloc (allocates classes a unique id), 
+} = require("./index");
+// imports retain (returns a managed object's pointer, ensure no premature collection),
+// alloc (allocates classes a unique id),
 // release (drops retained ptrs from module memory),
-// and memory from AssemblyScript API 
+// and memory from AssemblyScript API
 
 const STRING_ID = 1;
 const ARRAYBUFFERVIEW_DATASTART_OFFSET = 4;
@@ -58,7 +58,7 @@ function getFloat64Array(ptr) {
 } // Copies the modules array values into a JS array
 
 function as_squiggle(seq) {
-  const inStrPtr = __retain(__allocString(seq)); // creates pointer for sequence 
+  const inStrPtr = __retain(__allocString(seq)); // creates pointer for sequence
   const outArrPtr = squiggle(inStrPtr, seq.length); // creates pointer for result
   const resultArr = getFloat64Array(outArrPtr); // copies the array values from outArrPtr into an array
   __release(outArrPtr);
@@ -67,36 +67,61 @@ function as_squiggle(seq) {
 }
 
 function as_yau(seq) {
-  const inStrPtr = __retain(__allocString(seq));  
-  const outArrPtr = yau(inStrPtr, seq.length); 
-  const resultArr = getFloat64Array(outArrPtr); 
+  const inStrPtr = __retain(__allocString(seq));
+  const outArrPtr = yau(inStrPtr, seq.length);
+  const resultArr = getFloat64Array(outArrPtr);
   __release(outArrPtr);
-  __release(inStrPtr); 
+  __release(inStrPtr);
   return resultArr;
 }
 
 function as_yau_bp(seq) {
-  const inStrPtr = __retain(__allocString(seq)); 
-  const outArrPtr = yau_bp(inStrPtr, seq.length); 
-  const resultArr = getFloat64Array(outArrPtr); 
+  const inStrPtr = __retain(__allocString(seq));
+  const outArrPtr = yau_bp(inStrPtr, seq.length);
+  const resultArr = getFloat64Array(outArrPtr);
   __release(outArrPtr);
-  __release(inStrPtr); 
+  __release(inStrPtr);
   return resultArr;
 }
 
-const methods = [dna.squiggle, as_squiggle, dna.yau, as_yau, dna.yau_bp, as_yau_bp]
-const my_seqs = [10000, 100000, 1000000];
+const methods = [
+  dna.squiggle, as_squiggle,
+  dna.yau,      as_yau,
+  dna.yau_bp,   as_yau_bp
+]
 
-for (let j = 0; j < my_seqs.length; j++) {
-  for (let i = 0; i < methods.length; i++) {
-    let seq = randomSeq(my_seqs[j]);
-    suite
-      .add(methods[i].name + ' ' + my_seqs[j], function () {
-        methods[i](seq)
-      })
-      .on("complete", function (event) {
-        console.log(String(event.target));
-      })
-      .run();
-  }
-}
+const seq10000 = randomSeq(10000);
+const seq100000 = randomSeq(100000);
+const seq1000000 = randomSeq(1000000);
+
+suite
+.add(methods[0].name + ' 10000', () => { methods[0](seq10000) })
+.add(methods[1].name + ' 10000', () => { methods[1](seq10000) })
+.add(methods[2].name + ' 10000', () => { methods[2](seq10000) })
+.add(methods[3].name + ' 10000', () => { methods[3](seq10000) })
+.add(methods[4].name + ' 10000', () => { methods[4](seq10000) })
+.add(methods[5].name + ' 10000', () => { methods[5](seq10000) })
+
+.add(methods[0].name + ' 100000', () => { methods[0](seq100000) })
+.add(methods[1].name + ' 100000', () => { methods[1](seq100000) })
+.add(methods[2].name + ' 100000', () => { methods[2](seq100000) })
+.add(methods[3].name + ' 100000', () => { methods[3](seq100000) })
+.add(methods[4].name + ' 100000', () => { methods[4](seq100000) })
+.add(methods[5].name + ' 100000', () => { methods[5](seq100000) })
+
+.add(methods[0].name + ' 1000000', () => { methods[0](seq1000000) })
+.add(methods[1].name + ' 1000000', () => { methods[1](seq1000000) })
+.add(methods[2].name + ' 1000000', () => { methods[2](seq1000000) })
+.add(methods[3].name + ' 1000000', () => { methods[3](seq1000000) })
+.add(methods[4].name + ' 1000000', () => { methods[4](seq1000000) })
+.add(methods[5].name + ' 1000000', () => { methods[5](seq1000000) })
+
+.on("cycle", event => {
+  console.log(String(event.target));
+})
+
+.on("complete", function () {
+  console.log('Fastest is ' + this.filter('fastest').map('name'));
+})
+
+.run();
