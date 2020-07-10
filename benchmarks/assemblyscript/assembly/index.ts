@@ -1,7 +1,8 @@
 export function squiggle(sequence: string, length: i32): Float64Array {
   let result = new Float64Array(4 * (length + 1))
-  unchecked(result[0] = 0) // x[0] = 0
-  unchecked(result[1] = 0) // y[0] = 0
+  // already zeros:
+  // unchecked(result[0] = 0) // x[0] = 0
+  // unchecked(result[1] = 0) // y[0] = 0
   let yCoord = 0.0
   let xCoord = 0.0
 
@@ -43,8 +44,9 @@ export function yau(sequence: string, length: i32): Float64Array {
   const HALF_SQRT_3 = 0.8660254037844386; // 3 ** 0.5 / 2;
 
   let result = new Float64Array(2 * (length + 2))
-  unchecked(result[0] = 0) // x[0] = 0
-  unchecked(result[1] = 0) // y[0] = 0
+  // already zeros:
+  // unchecked(result[0] = 0) // x[0] = 0
+  // unchecked(result[1] = 0) // y[0] = 0
   let xCoord = 0.0
   let yCoord = 0.0
 
@@ -77,8 +79,9 @@ export function yau(sequence: string, length: i32): Float64Array {
 
 export function yau_bp(sequence: string, length: i32): Float64Array {
   let result = new Float64Array(2 * (length + 2))
-  unchecked(result[0] = 0) // x[0] = 0
-  unchecked(result[1] = 0) // y[0] = 0
+  // already zeros:
+  // unchecked(result[0] = 0) // x[0] = 0
+  // unchecked(result[1] = 0) // y[0] = 0
   let xCoord = 0.0
   let yCoord = 0.0
 
@@ -193,8 +196,9 @@ export function yau_bp(sequence: string, length: i32): Float64Array {
 export function gates(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase()
   let result = new Float64Array(2 * (length + 2))
-  unchecked(result[0] = 0) // x[0] = 0
-  unchecked(result[1] = 0) // y[0] = 0
+  // already zeros:
+  // unchecked(result[0] = 0) // x[0] = 0
+  // unchecked(result[1] = 0) // y[0] = 0
   let xCoord = 0.0
   let yCoord = 0.0
 

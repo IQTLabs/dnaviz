@@ -1172,8 +1172,10 @@
    i32.const 16
    i32.sub
    local.tee $5
-   local.get $5
    i32.load offset=4
+   local.set $2
+   local.get $5
+   local.get $2
    i32.const 1
    i32.add
    i32.store offset=4
@@ -1187,16 +1189,9 @@
   i32.const 2
   i32.shl
   call $~lib/typedarray/Float64Array#constructor
-  local.tee $3
-  i32.load offset=4
-  f64.const 0
-  f64.store
-  local.get $3
-  i32.load offset=4
-  f64.const 0
-  f64.store offset=8
+  local.set $2
   loop $for-loop|0
-   local.get $2
+   local.get $3
    local.get $1
    i32.const 2
    i32.shl
@@ -1204,7 +1199,7 @@
    if
     block $__inlined_func$~lib/string/String#charCodeAt (result i32)
      i32.const -1
-     local.get $2
+     local.get $3
      i32.const 2
      i32.shr_u
      local.tee $5
@@ -1225,9 +1220,9 @@
      i32.load16_u
     end
     local.set $5
-    local.get $3
-    i32.load offset=4
     local.get $2
+    i32.load offset=4
+    local.get $3
     i32.const 3
     i32.add
     i32.const 3
@@ -1237,9 +1232,9 @@
     f64.const 0.5
     f64.add
     f64.store
-    local.get $3
-    i32.load offset=4
     local.get $2
+    i32.load offset=4
+    local.get $3
     i32.const 5
     i32.add
     i32.const 3
@@ -1273,9 +1268,9 @@
           br_if $case3|1
           br $case4|1
          end
-         local.get $3
-         i32.load offset=4
          local.get $2
+         i32.load offset=4
+         local.get $3
          i32.const 4
          i32.add
          i32.const 3
@@ -1285,9 +1280,9 @@
          f64.const 0.5
          f64.add
          f64.store
-         local.get $3
-         i32.load offset=4
          local.get $2
+         i32.load offset=4
+         local.get $3
          i32.const 6
          i32.add
          i32.const 3
@@ -1297,9 +1292,9 @@
          f64.store
          br $break|1
         end
-        local.get $3
-        i32.load offset=4
         local.get $2
+        i32.load offset=4
+        local.get $3
         i32.const 4
         i32.add
         i32.const 3
@@ -1309,9 +1304,9 @@
         f64.const 0.5
         f64.sub
         f64.store
-        local.get $3
-        i32.load offset=4
         local.get $2
+        i32.load offset=4
+        local.get $3
         i32.const 6
         i32.add
         i32.const 3
@@ -1321,9 +1316,9 @@
         f64.store
         br $break|1
        end
-       local.get $3
-       i32.load offset=4
        local.get $2
+       i32.load offset=4
+       local.get $3
        i32.const 4
        i32.add
        i32.const 3
@@ -1333,9 +1328,9 @@
        f64.const 0.5
        f64.sub
        f64.store
-       local.get $3
-       i32.load offset=4
        local.get $2
+       i32.load offset=4
+       local.get $3
        i32.const 6
        i32.add
        i32.const 3
@@ -1348,9 +1343,9 @@
        f64.store
        br $break|1
       end
-      local.get $3
-      i32.load offset=4
       local.get $2
+      i32.load offset=4
+      local.get $3
       i32.const 4
       i32.add
       i32.const 3
@@ -1360,9 +1355,9 @@
       f64.const 0.5
       f64.add
       f64.store
-      local.get $3
-      i32.load offset=4
       local.get $2
+      i32.load offset=4
+      local.get $3
       i32.const 6
       i32.add
       i32.const 3
@@ -1375,9 +1370,9 @@
       f64.store
       br $break|1
      end
-     local.get $3
-     i32.load offset=4
      local.get $2
+     i32.load offset=4
+     local.get $3
      i32.const 4
      i32.add
      i32.const 3
@@ -1385,9 +1380,9 @@
      i32.add
      local.get $4
      f64.store
-     local.get $3
-     i32.load offset=4
      local.get $2
+     i32.load offset=4
+     local.get $3
      i32.const 6
      i32.add
      i32.const 3
@@ -1396,10 +1391,10 @@
      local.get $4
      f64.store
     end
-    local.get $2
+    local.get $3
     i32.const 4
     i32.add
-    local.set $2
+    local.set $3
     br $for-loop|0
    end
   end
@@ -1412,7 +1407,7 @@
    i32.sub
    call $~lib/rt/pure/decrement
   end
-  local.get $3
+  local.get $2
  )
  (func $assembly/index/yau (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
@@ -1428,8 +1423,10 @@
    i32.const 16
    i32.sub
    local.tee $2
-   local.get $2
    i32.load offset=4
+   local.set $5
+   local.get $2
+   local.get $5
    i32.const 1
    i32.add
    i32.store offset=4
@@ -1443,16 +1440,9 @@
   i32.const 1
   i32.shl
   call $~lib/typedarray/Float64Array#constructor
-  local.tee $6
-  i32.load offset=4
-  f64.const 0
-  f64.store
-  local.get $6
-  i32.load offset=4
-  f64.const 0
-  f64.store offset=8
+  local.set $5
   loop $for-loop|0
-   local.get $5
+   local.get $6
    local.get $1
    i32.lt_s
    if
@@ -1462,7 +1452,7 @@
        block $case1|1
         block $__inlined_func$~lib/string/String#charCodeAt (result i32)
          i32.const -1
-         local.get $5
+         local.get $6
          local.get $0
          i32.const 16
          i32.sub
@@ -1473,7 +1463,7 @@
          br_if $__inlined_func$~lib/string/String#charCodeAt
          drop
          local.get $0
-         local.get $5
+         local.get $6
          i32.const 1
          i32.shl
          i32.add
@@ -1540,9 +1530,9 @@
      f64.sub
      local.set $4
     end
-    local.get $6
-    i32.load offset=4
     local.get $5
+    i32.load offset=4
+    local.get $6
     i32.const 1
     i32.shl
     local.tee $2
@@ -1553,7 +1543,7 @@
     i32.add
     local.get $3
     f64.store
-    local.get $6
+    local.get $5
     i32.load offset=4
     local.get $2
     i32.const 4
@@ -1563,10 +1553,10 @@
     i32.add
     local.get $4
     f64.store
-    local.get $5
+    local.get $6
     i32.const 1
     i32.add
-    local.set $5
+    local.set $6
     br $for-loop|0
    end
   end
@@ -1579,7 +1569,7 @@
    i32.sub
    call $~lib/rt/pure/decrement
   end
-  local.get $6
+  local.get $5
  )
  (func $assembly/index/yau_bp (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
@@ -1595,8 +1585,10 @@
    i32.const 16
    i32.sub
    local.tee $2
-   local.get $2
    i32.load offset=4
+   local.set $4
+   local.get $2
+   local.get $4
    i32.const 1
    i32.add
    i32.store offset=4
@@ -1610,16 +1602,9 @@
   i32.const 1
   i32.shl
   call $~lib/typedarray/Float64Array#constructor
-  local.tee $5
-  i32.load offset=4
-  f64.const 0
-  f64.store
-  local.get $5
-  i32.load offset=4
-  f64.const 0
-  f64.store offset=8
+  local.set $4
   loop $for-loop|0
-   local.get $4
+   local.get $5
    local.get $1
    i32.lt_s
    if
@@ -1629,7 +1614,7 @@
        block $case1|1
         block $__inlined_func$~lib/string/String#charCodeAt (result i32)
          i32.const -1
-         local.get $4
+         local.get $5
          local.get $0
          i32.const 16
          i32.sub
@@ -1640,7 +1625,7 @@
          br_if $__inlined_func$~lib/string/String#charCodeAt
          drop
          local.get $0
-         local.get $4
+         local.get $5
          i32.const 1
          i32.shl
          i32.add
@@ -1691,9 +1676,9 @@
      f64.sub
      local.set $3
     end
-    local.get $5
-    i32.load offset=4
     local.get $4
+    i32.load offset=4
+    local.get $5
     i32.const 1
     i32.shl
     local.tee $2
@@ -1707,7 +1692,7 @@
     f64.add
     local.tee $6
     f64.store
-    local.get $5
+    local.get $4
     i32.load offset=4
     local.get $2
     i32.const 4
@@ -1717,10 +1702,10 @@
     i32.add
     local.get $3
     f64.store
-    local.get $4
+    local.get $5
     i32.const 1
     i32.add
-    local.set $4
+    local.set $5
     br $for-loop|0
    end
   end
@@ -1733,7 +1718,7 @@
    i32.sub
    call $~lib/rt/pure/decrement
   end
-  local.get $5
+  local.get $4
  )
  (func $~lib/util/casemap/casemap (param $0 i32) (result i32)
   (local $1 i32)
@@ -3327,8 +3312,10 @@
    i32.const 16
    i32.sub
    local.tee $3
-   local.get $3
    i32.load offset=4
+   local.set $4
+   local.get $3
+   local.get $4
    i32.const 1
    i32.add
    i32.store offset=4
@@ -3354,16 +3341,9 @@
   i32.const 1
   i32.shl
   call $~lib/typedarray/Float64Array#constructor
-  local.tee $5
-  i32.load offset=4
-  f64.const 0
-  f64.store
-  local.get $5
-  i32.load offset=4
-  f64.const 0
-  f64.store offset=8
+  local.set $4
   loop $for-loop|0
-   local.get $4
+   local.get $5
    local.get $1
    i32.lt_s
    if
@@ -3374,7 +3354,7 @@
         block $case1|1
          block $__inlined_func$~lib/string/String#charCodeAt (result i32)
           i32.const -1
-          local.get $4
+          local.get $5
           local.get $3
           i32.const 16
           i32.sub
@@ -3385,7 +3365,7 @@
           br_if $__inlined_func$~lib/string/String#charCodeAt
           drop
           local.get $3
-          local.get $4
+          local.get $5
           i32.const 1
           i32.shl
           i32.add
@@ -3439,14 +3419,14 @@
      end
      i32.const 6784
      i32.const 6832
-     i32.const 218
+     i32.const 222
      i32.const 9
      call $~lib/builtins/abort
      unreachable
     end
-    local.get $5
-    i32.load offset=4
     local.get $4
+    i32.load offset=4
+    local.get $5
     i32.const 1
     i32.shl
     local.tee $0
@@ -3457,7 +3437,7 @@
     i32.add
     f64.const 0
     f64.store
-    local.get $5
+    local.get $4
     i32.load offset=4
     local.get $0
     i32.const 4
@@ -3467,10 +3447,10 @@
     i32.add
     local.get $2
     f64.store
-    local.get $4
+    local.get $5
     i32.const 1
     i32.add
-    local.set $4
+    local.set $5
     br $for-loop|0
    end
   end
@@ -3483,7 +3463,7 @@
    i32.sub
    call $~lib/rt/pure/decrement
   end
-  local.get $5
+  local.get $4
  )
  (func $~lib/rt/pure/__collect
   nop

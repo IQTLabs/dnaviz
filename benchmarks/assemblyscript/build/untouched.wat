@@ -1847,16 +1847,6 @@
   local.set $0
   local.get $0
  )
- (func $~lib/typedarray/Float64Array#__uset (param $0 i32) (param $1 i32) (param $2 f64)
-  local.get $0
-  i32.load offset=4
-  local.get $1
-  i32.const 3
-  i32.shl
-  i32.add
-  local.get $2
-  f64.store
- )
  (func $~lib/string/String#get:length (param $0 i32) (result i32)
   local.get $0
   i32.const 16
@@ -1881,6 +1871,16 @@
   i32.add
   i32.load16_u
  )
+ (func $~lib/typedarray/Float64Array#__uset (param $0 i32) (param $1 i32) (param $2 f64)
+  local.get $0
+  i32.load offset=4
+  local.get $1
+  i32.const 3
+  i32.shl
+  i32.add
+  local.get $2
+  f64.store
+ )
  (func $assembly/index/squiggle (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 f64)
@@ -1900,14 +1900,6 @@
   i32.mul
   call $~lib/typedarray/Float64Array#constructor
   local.set $2
-  local.get $2
-  i32.const 0
-  f64.const 0
-  call $~lib/typedarray/Float64Array#__uset
-  local.get $2
-  i32.const 1
-  f64.const 0
-  call $~lib/typedarray/Float64Array#__uset
   f64.const 0
   local.set $3
   f64.const 0
@@ -2097,14 +2089,6 @@
   i32.mul
   call $~lib/typedarray/Float64Array#constructor
   local.set $2
-  local.get $2
-  i32.const 0
-  f64.const 0
-  call $~lib/typedarray/Float64Array#__uset
-  local.get $2
-  i32.const 1
-  f64.const 0
-  call $~lib/typedarray/Float64Array#__uset
   f64.const 0
   local.set $3
   f64.const 0
@@ -2241,14 +2225,6 @@
   i32.mul
   call $~lib/typedarray/Float64Array#constructor
   local.set $2
-  local.get $2
-  i32.const 0
-  f64.const 0
-  call $~lib/typedarray/Float64Array#__uset
-  local.get $2
-  i32.const 1
-  f64.const 0
-  call $~lib/typedarray/Float64Array#__uset
   f64.const 0
   local.set $3
   f64.const 0
@@ -4391,14 +4367,6 @@
   i32.mul
   call $~lib/typedarray/Float64Array#constructor
   local.set $2
-  local.get $2
-  i32.const 0
-  f64.const 0
-  call $~lib/typedarray/Float64Array#__uset
-  local.get $2
-  i32.const 1
-  f64.const 0
-  call $~lib/typedarray/Float64Array#__uset
   f64.const 0
   local.set $3
   f64.const 0
@@ -4474,7 +4442,7 @@
      end
      i32.const 5824
      i32.const 5872
-     i32.const 218
+     i32.const 222
      i32.const 9
      call $~lib/builtins/abort
      unreachable
