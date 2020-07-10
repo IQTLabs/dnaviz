@@ -80,31 +80,39 @@ const methods = [
   dna.yau_bp,   as_yau_bp
 ]
 
-const seq10000 = randomSeq(10000);
-const seq100000 = randomSeq(100000);
-const seq1000000 = randomSeq(1000000);
+const seq_10_000     = randomSeq(10000);
+const seq_100_000    = randomSeq(100000);
+const seq_1_000_000  = randomSeq(1000000);
+const seq_10_000_000 = randomSeq(10000000);
 
 new Benchmark.Suite()
-.add(methods[0].name + ' 10000', () => { methods[0](seq10000) })
-.add(methods[1].name + ' 10000', () => { methods[1](seq10000) })
-.add(methods[2].name + ' 10000', () => { methods[2](seq10000) })
-.add(methods[3].name + ' 10000', () => { methods[3](seq10000) })
-.add(methods[4].name + ' 10000', () => { methods[4](seq10000) })
-.add(methods[5].name + ' 10000', () => { methods[5](seq10000) })
+.add(methods[0].name + ' 10_000', () => { methods[0](seq_10_000) })
+.add(methods[1].name + ' 10_000', () => { methods[1](seq_10_000) })
+.add(methods[2].name + ' 10_000', () => { methods[2](seq_10_000) })
+.add(methods[3].name + ' 10_000', () => { methods[3](seq_10_000) })
+.add(methods[4].name + ' 10_000', () => { methods[4](seq_10_000) })
+.add(methods[5].name + ' 10_000', () => { methods[5](seq_10_000) })
 
-.add(methods[0].name + ' 100000', () => { methods[0](seq100000) })
-.add(methods[1].name + ' 100000', () => { methods[1](seq100000) })
-.add(methods[2].name + ' 100000', () => { methods[2](seq100000) })
-.add(methods[3].name + ' 100000', () => { methods[3](seq100000) })
-.add(methods[4].name + ' 100000', () => { methods[4](seq100000) })
-.add(methods[5].name + ' 100000', () => { methods[5](seq100000) })
+.add(methods[0].name + ' 100_000', () => { methods[0](seq_100_000) })
+.add(methods[1].name + ' 100_000', () => { methods[1](seq_100_000) })
+.add(methods[2].name + ' 100_000', () => { methods[2](seq_100_000) })
+.add(methods[3].name + ' 100_000', () => { methods[3](seq_100_000) })
+.add(methods[4].name + ' 100_000', () => { methods[4](seq_100_000) })
+.add(methods[5].name + ' 100_000', () => { methods[5](seq_100_000) })
 
-.add(methods[0].name + ' 1000000', () => { methods[0](seq1000000) })
-.add(methods[1].name + ' 1000000', () => { methods[1](seq1000000) })
-.add(methods[2].name + ' 1000000', () => { methods[2](seq1000000) })
-.add(methods[3].name + ' 1000000', () => { methods[3](seq1000000) })
-.add(methods[4].name + ' 1000000', () => { methods[4](seq1000000) })
-.add(methods[5].name + ' 1000000', () => { methods[5](seq1000000) })
+.add(methods[0].name + ' 1_000_000', () => { methods[0](seq_1_000_000) })
+.add(methods[1].name + ' 1_000_000', () => { methods[1](seq_1_000_000) })
+.add(methods[2].name + ' 1_000_000', () => { methods[2](seq_1_000_000) })
+.add(methods[3].name + ' 1_000_000', () => { methods[3](seq_1_000_000) })
+.add(methods[4].name + ' 1_000_000', () => { methods[4](seq_1_000_000) })
+.add(methods[5].name + ' 1_000_000', () => { methods[5](seq_1_000_000) })
+
+.add(methods[0].name + ' 10_000_000', () => { methods[0](seq_10_000_000) })
+.add(methods[1].name + ' 10_000_000', () => { methods[1](seq_10_000_000) })
+.add(methods[2].name + ' 10_000_000', () => { methods[2](seq_10_000_000) })
+.add(methods[3].name + ' 10_000_000', () => { methods[3](seq_10_000_000) })
+.add(methods[4].name + ' 10_000_000', () => { methods[4](seq_10_000_000) })
+.add(methods[5].name + ' 10_000_000', () => { methods[5](seq_10_000_000) })
 
 .on("cycle", event => {
   console.log(String(event.target));
