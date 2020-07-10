@@ -194,7 +194,6 @@ export function yau_bp(sequence: string, length: i32): Float64Array {
 // }
 
 export function gates(sequence: string, length: i32): Float64Array {
-  sequence = sequence.toUpperCase()
   let result = new Float64Array(2 * (length + 2))
   // already zeros:
   // unchecked(result[0] = 0) // x[0] = 0
@@ -203,7 +202,8 @@ export function gates(sequence: string, length: i32): Float64Array {
   let yCoord = 0.0
 
   for (let i = 0; i < length; i++) {
-    let code = sequence.charCodeAt(i)
+    // x & ~32 made ASCII codepoint case-insensitive with prior to uppercase
+    let code = sequence.charCodeAt(i) & ~32
     switch (code) {
       case 0x41: // "A"
         yCoord -= 1
