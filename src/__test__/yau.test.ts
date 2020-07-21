@@ -103,3 +103,9 @@ test('test yau length', () => {
     }),
   );
 });
+
+test('throws on non-ATGCU', () => {
+  expect(() => {
+    yau('NAN');
+  }).toThrow();
+});

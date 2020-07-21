@@ -1,15 +1,15 @@
 {
-    "transform": {
-        "^.+\\.(t|j)sx?$": "ts-jest"
-    },
-    "globals": {"ts-jest": {"tsConfig": "tsconfig.json"}},
-    "moduleFileExtensions": [
-        "ts",
-        "tsx",
-        "js",
-        "jsx",
-        "json",
-        "node"
-    ],
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
+  "transform": {
+    "^.+\\.(t|j)sx?$": "ts-jest"
+  },
+  "globals": { "ts-jest": { "tsConfig": "tsconfig.json" } },
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100
+    }
+  }
 }

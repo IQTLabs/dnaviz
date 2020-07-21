@@ -110,6 +110,8 @@ export function yau(sequence: string): number[][] {
     } else if (character === 'G') {
       xCoord = xCoord + 3 ** 0.5 / 2;
       yCoord = yCoord - 0.5;
+    } else {
+      throw new Error('non-atgcu base')
     }
     x.push(xCoord);
     y.push(yCoord);
@@ -158,6 +160,8 @@ export function yau_bp(sequence: string): number[][] {
       yCoord = yCoord + 1;
     } else if (character === 'G') {
       yCoord = yCoord - 0.5;
+    } else {
+      throw new Error('non-atgcu base')
     }
     y.push(yCoord);
   }
@@ -211,6 +215,9 @@ export function randic(sequence: string): number[][] {
     C: 0,
   };
   for (const character of sequence) {
+    if (character != 'A' && character != 'T' && character != 'U' && character != 'G' && character != 'C') {
+      throw new Error('non-atgcu base')
+    }
     x.push(xCoord);
     xCoord++;
     y.push(key[character]);
@@ -287,7 +294,11 @@ export function qi(sequence: string): number[][] {
   for (let i = 0; i < sequence.length - 1; i++) {
     let S_1 = sequence[i];
     let S_2 = sequence[i + 1];
-    if (S_1 === 'U') {
+    if (S_1 != 'A' && S_1 != 'T' && S_1 != 'U' && S_1 != 'G' && S_1 != 'C') {
+      throw new Error('non-atgcu base')
+    } else if (S_2 != 'A' && S_2 != 'T' && S_2 != 'U' && S_2 != 'G' && S_2 != 'C') {
+      throw new Error('non-atgcu base')
+    } else if (S_1 === 'U') {
       S_1 = 'T';
     } else if (S_2 === 'U') {
       S_2 = 'T';
@@ -336,6 +347,8 @@ export function gates(sequence: string): number[][] {
       yCoord++;
     } else if (character === 'G') {
       xCoord++;
+    } else {
+      throw new Error('non-atgcu base')
     }
     x.push(xCoord);
     y.push(yCoord);

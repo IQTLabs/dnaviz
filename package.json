@@ -21,16 +21,14 @@
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typedoc": "^0.17.7",
-    "typescript": "^3.9.5",
-    "vuepress": "^1.5.2"
+    "typescript": "^3.9.5"
   },
   "scripts": {
-    "test": "jest --config jestconfig.json",
-    "build": "tsc && rollup -c",
+    "test": "jest --config jestconfig.json --coverage",
+    "build": "tsc && rollup --config rollup.config.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "typedoc": "typedoc",
-    "deploy": "gh-pages -d docs"
+    "typedoc": "typedoc && touch docs/.nojekyll"
   },
   "repository": {
     "type": "git",
