@@ -1,22 +1,23 @@
-# DNAViz
+# DNAviz
 
-### DNA Sequence visualization for humans
+> DNA Sequence visualization for humans
 
-![CI/CD](https://github.com/Lab41/dnaviz/workflows/CI/CD/badge.svg)
+[![CI/CD](https://github.com/IQTLabs/dnaviz/workflows/CI/CD/badge.svg)](https://github.com/IQTLabs/dnaviz/actions)
 
-A DNA visualization npm package for the command line, browser, and beyond. Using six different methods, convert any DNA or RNA sequence into meaningful and analyzable datasets.
+A DNA visualization package for Node, the browser, and beyond.
+Using one of six different methods, DNAviz allows you to convert any DNA or RNA sequence into meaningful two-dimensional visualizations.
 
-# Getting Started
+## Getting Started
 
-## Download
+### Download
 
-Via npm
+via NPM:
 
 ```
 $ npm install dnaviz
 ```
 
-or Via Yarn
+or via Yarn:
 
 ```
 $ yarn add dnaviz
@@ -27,13 +28,15 @@ $ yarn add dnaviz
 ### ES6 modules
 
 ```Typescript
-import * as dna from 'dnaviz';
+import * as dnaviz from 'dnaviz';
+dnaviz.squiggle('ATGC') // => [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
 ```
 
 ### CommonJS
 
 ```Typescript
-const dna = require('dnaviz')
+const dnaviz = require('dnaviz')
+dnaviz.squiggle('ATGC') // => [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
 ```
 
 ### Browser
@@ -43,15 +46,6 @@ const dna = require('dnaviz')
 <script>
   console.log(dnaviz.gates('ATGC'));
 </script>
-```
-
-## Hello World
-
-```Typescript
-import * as dna from 'dnaviz';
-
-dna.squiggle('ATGC')
-// returns [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
 ```
 
 ## Available Visualization Methods
@@ -67,4 +61,4 @@ dna.squiggle('ATGC')
 
 # Documentation
 
-For specific functions and methods of visualization, take a look at the [documentation](https://lab41.github.io/dnaviz/modules/_dnaviz_.html)
+For specific functions and visualization methods, take a look at the [documentation](https://iqtlabs.github.io/dnaviz/modules/_dnaviz_.html).
