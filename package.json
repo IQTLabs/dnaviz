@@ -1,6 +1,6 @@
 {
   "name": "dnaviz",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "DNA visualization functions for Node, the browser, and beyond",
   "main": "dist/dnaviz.js",
   "module": "dist/dnaviz.esm.js",
