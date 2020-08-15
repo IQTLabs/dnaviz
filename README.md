@@ -7,9 +7,7 @@
 A DNA visualization package for Node, the browser, and beyond.
 Using one of six different methods, DNAviz allows you to convert any DNA or RNA sequence into meaningful two-dimensional visualizations.
 
-## Getting Started
-
-### Download
+## Installation
 
 via NPM:
 
