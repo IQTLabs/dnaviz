@@ -1,7 +1,7 @@
 {
   "name": "dnaviz",
   "version": "1.0.0-0",
-  "description": "DNA visualization for the command line, browser, and beyond",
+  "description": "DNA visualization functions for Node, the browser, and beyond",
   "main": "dist/dnaviz.js",
   "module": "dist/dnaviz.esm.js",
   "types": "dist/dnaviz.d.ts",
@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lab41/dnaviz.git"
+    "url": "git+https://github.com/IQTLabs/dnaviz.git"
   },
   "author": "Benjamin Lee <benjamindlee@me.com> (https://benjamindlee.com)",
   "contributors": [
@@ -41,9 +41,9 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Lab41/dnaviz/issues"
+    "url": "https://github.com/IQTLabs/dnaviz/issues"
   },
-  "homepage": "https://lab41.github.io/dnaviz",
+  "homepage": "https://iqtlabs.github.io/dnaviz",
   "release-it": {
     "github": {
       "release": true
