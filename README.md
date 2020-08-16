@@ -25,16 +25,16 @@ $ yarn add dnaviz
 
 ### ES6 modules
 
-```Typescript
+```js
 import * as dnaviz from 'dnaviz';
-dnaviz.squiggle('ATGC') // => [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
+dnaviz.squiggle('ATGC'); // => [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
 ```
 
 ### CommonJS
 
-```Typescript
-const dnaviz = require('dnaviz')
-dnaviz.squiggle('ATGC') // => [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
+```js
+const dnaviz = require('dnaviz');
+dnaviz.squiggle('ATGC'); // => [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]]
 ```
 
 ### Browser
