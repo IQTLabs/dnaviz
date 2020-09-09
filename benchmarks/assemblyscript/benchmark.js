@@ -5,9 +5,11 @@ const {
   __retain,
   __release,
   memory,
-  yau,
+  new_squiggle,
+  newest_squiggle,
   squiggle,
-  yau_bp
+  x_squiggle,
+  y_squiggle
 } = require("./index");
 // imports retain (returns a managed object's pointer, ensure no premature collection),
 // alloc (allocates classes a unique id),
@@ -47,6 +49,36 @@ function getFloat64Array(ptr) {
   );
 } // Copies the modules array values into a JS array
 
+function newestsquiggle(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  // const xPtr = x_squiggle(seq.length);
+  const yPtr = y_squiggle(inStrPtr, seq.length);
+  // const x = getFloat64Array(xPtr);
+  const y = getFloat64Array(yPtr);
+  // __release(xPtr);
+  __release(yPtr);
+  // return [x, y];
+  return y;
+}
+
+function newsquiggle(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  const outArrPtr = new_squiggle(inStrPtr, seq.length);
+  const resultArr = getFloat64Array(outArrPtr);
+  __release(outArrPtr);
+  __release(inStrPtr);
+  return resultArr;
+}
+
+function newer_squiggle(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  const outArrPtr = newest_squiggle(inStrPtr, seq.length);
+  const resultArr = getFloat64Array(outArrPtr);
+  __release(outArrPtr);
+  __release(inStrPtr);
+  return resultArr;
+}
+
 function as_squiggle(seq) {
   const inStrPtr = __retain(__allocString(seq)); // creates pointer for sequence
   const outArrPtr = squiggle(inStrPtr, seq.length); // creates pointer for result
@@ -56,29 +88,6 @@ function as_squiggle(seq) {
   return resultArr;
 }
 
-function as_yau(seq) {
-  const inStrPtr = __retain(__allocString(seq));
-  const outArrPtr = yau(inStrPtr, seq.length);
-  const resultArr = getFloat64Array(outArrPtr);
-  __release(outArrPtr);
-  __release(inStrPtr);
-  return resultArr;
-}
-
-function as_yau_bp(seq) {
-  const inStrPtr = __retain(__allocString(seq));
-  const outArrPtr = yau_bp(inStrPtr, seq.length);
-  const resultArr = getFloat64Array(outArrPtr);
-  __release(outArrPtr);
-  __release(inStrPtr);
-  return resultArr;
-}
-
-const methods = [
-  dna.squiggle, as_squiggle,
-  dna.yau,      as_yau,
-  dna.yau_bp,   as_yau_bp
-]
 
 const seq_10_000     = randomSeq(10000);
 const seq_100_000    = randomSeq(100000);
@@ -86,33 +95,30 @@ const seq_1_000_000  = randomSeq(1000000);
 const seq_10_000_000 = randomSeq(10000000);
 
 new Benchmark.Suite()
-.add(methods[0].name + ' 10_000', () => { methods[0](seq_10_000) })
-.add(methods[1].name + ' 10_000', () => { methods[1](seq_10_000) })
-.add(methods[2].name + ' 10_000', () => { methods[2](seq_10_000) })
-.add(methods[3].name + ' 10_000', () => { methods[3](seq_10_000) })
-.add(methods[4].name + ' 10_000', () => { methods[4](seq_10_000) })
-.add(methods[5].name + ' 10_000', () => { methods[5](seq_10_000) })
+.add("newest squiggle 10,000", () => {newestsquiggle(seq_10_000)})
+.add("newest squiggle 100,000", () => {newestsquiggle(seq_100_000)})
+.add("newest squiggle 1,000,000", () => {newestsquiggle(seq_1_000_000)})
+.add("newest squiggle 10,000,000", () => {newestsquiggle(seq_10_000_000)})
 
-.add(methods[0].name + ' 100_000', () => { methods[0](seq_100_000) })
-.add(methods[1].name + ' 100_000', () => { methods[1](seq_100_000) })
-.add(methods[2].name + ' 100_000', () => { methods[2](seq_100_000) })
-.add(methods[3].name + ' 100_000', () => { methods[3](seq_100_000) })
-.add(methods[4].name + ' 100_000', () => { methods[4](seq_100_000) })
-.add(methods[5].name + ' 100_000', () => { methods[5](seq_100_000) })
+.add("original squiggle 10,000", () => {dna.squiggle(seq_10_000)})
+.add("original squiggle 100,000", () => {dna.squiggle(seq_100_000)})
+.add("original squiggle 1,000,000", () => {dna.squiggle(seq_1_000_000)})
+.add("original squiggle 10,000,000", () => {dna.squiggle(seq_10_000_000)})
 
-.add(methods[0].name + ' 1_000_000', () => { methods[0](seq_1_000_000) })
-.add(methods[1].name + ' 1_000_000', () => { methods[1](seq_1_000_000) })
-.add(methods[2].name + ' 1_000_000', () => { methods[2](seq_1_000_000) })
-.add(methods[3].name + ' 1_000_000', () => { methods[3](seq_1_000_000) })
-.add(methods[4].name + ' 1_000_000', () => { methods[4](seq_1_000_000) })
-.add(methods[5].name + ' 1_000_000', () => { methods[5](seq_1_000_000) })
+.add("newer squiggle 10,000", () => {newer_squiggle(seq_10_000)})
+.add("newer squiggle 100,000", () => {newer_squiggle(seq_100_000)})
+.add("newer squiggle 1,000,000", () => {newer_squiggle(seq_1_000_000)})
+.add("newer squiggle 10,000,000", () => {newer_squiggle(seq_10_000_000)})
 
-.add(methods[0].name + ' 10_000_000', () => { methods[0](seq_10_000_000) })
-.add(methods[1].name + ' 10_000_000', () => { methods[1](seq_10_000_000) })
-.add(methods[2].name + ' 10_000_000', () => { methods[2](seq_10_000_000) })
-.add(methods[3].name + ' 10_000_000', () => { methods[3](seq_10_000_000) })
-.add(methods[4].name + ' 10_000_000', () => { methods[4](seq_10_000_000) })
-.add(methods[5].name + ' 10_000_000', () => { methods[5](seq_10_000_000) })
+.add("new squiggle 10,000", () => {newsquiggle(seq_10_000)})
+.add("new squiggle 100,000", () => {newsquiggle(seq_100_000)})
+.add("new squiggle 1,000,000", () => {newsquiggle(seq_1_000_000)})
+.add("new squiggle 10,000,000", () => {newsquiggle(seq_10_000_000)})
+
+.add("old squiggle 10,000", () => {as_squiggle(seq_10_000)})
+.add("old squiggle 100,000", () => {as_squiggle(seq_100_000)})
+.add("old squiggle 1,000,000", () => {as_squiggle(seq_1_000_000)})
+.add("old squiggle 10,000,000", () => {as_squiggle(seq_10_000_000)})
 
 .on("cycle", event => {
   console.log(String(event.target));

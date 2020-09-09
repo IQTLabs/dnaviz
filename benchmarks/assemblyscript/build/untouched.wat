@@ -33,6 +33,10 @@
  (export "__release" (func $~lib/rt/pure/__release))
  (export "__collect" (func $~lib/rt/pure/__collect))
  (export "__rtti_base" (global $~lib/rt/__rtti_base))
+ (export "x_squiggle" (func $assembly/index/x_squiggle))
+ (export "y_squiggle" (func $assembly/index/y_squiggle))
+ (export "newest_squiggle" (func $assembly/index/newest_squiggle))
+ (export "new_squiggle" (func $assembly/index/new_squiggle))
  (export "squiggle" (func $assembly/index/squiggle))
  (export "yau" (func $assembly/index/yau))
  (export "yau_bp" (func $assembly/index/yau_bp))
@@ -1839,6 +1843,61 @@
   local.set $0
   local.get $0
  )
+ (func $~lib/typedarray/Float64Array#__uset (param $0 i32) (param $1 i32) (param $2 f64)
+  local.get $0
+  i32.load offset=4
+  local.get $1
+  i32.const 3
+  i32.shl
+  i32.add
+  local.get $2
+  f64.store
+ )
+ (func $assembly/index/x_squiggle (param $0 i32) (result i32)
+  (local $1 i32)
+  (local $2 f64)
+  (local $3 i32)
+  (local $4 i32)
+  i32.const 0
+  i32.const 2
+  local.get $0
+  i32.mul
+  i32.const 1
+  i32.add
+  call $~lib/typedarray/Float64Array#constructor
+  local.set $1
+  f64.const 0
+  local.set $2
+  i32.const 1
+  local.set $3
+  loop $for-loop|0
+   local.get $3
+   i32.const 2
+   local.get $0
+   i32.mul
+   i32.le_s
+   local.set $4
+   local.get $4
+   if
+    local.get $1
+    local.get $3
+    local.get $2
+    f64.const 0.5
+    f64.add
+    call $~lib/typedarray/Float64Array#__uset
+    local.get $2
+    f64.const 0.5
+    f64.add
+    local.set $2
+    local.get $3
+    i32.const 1
+    i32.add
+    local.set $3
+    br $for-loop|0
+   end
+  end
+  local.get $1
+ )
  (func $~lib/string/String#get:length (param $0 i32) (result i32)
   local.get $0
   i32.const 16
@@ -1863,15 +1922,620 @@
   i32.add
   i32.load16_u
  )
- (func $~lib/typedarray/Float64Array#__uset (param $0 i32) (param $1 i32) (param $2 f64)
+ (func $assembly/index/y_squiggle (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 f64)
+  (local $4 i32)
+  (local $5 i32)
+  (local $6 i32)
   local.get $0
-  i32.load offset=4
+  call $~lib/rt/pure/__retain
+  local.set $0
+  i32.const 0
+  i32.const 2
   local.get $1
-  i32.const 3
-  i32.shl
+  i32.mul
+  i32.const 1
   i32.add
+  call $~lib/typedarray/Float64Array#constructor
+  local.set $2
+  f64.const 0
+  local.set $3
+  i32.const 0
+  local.set $4
+  loop $for-loop|0
+   local.get $4
+   i32.const 2
+   local.get $1
+   i32.mul
+   i32.lt_s
+   local.set $5
+   local.get $5
+   if
+    block $break|1
+     block $case4|1
+      block $case3|1
+       block $case2|1
+        block $case1|1
+         block $case0|1
+          local.get $0
+          local.get $4
+          i32.const 1
+          i32.shr_u
+          call $~lib/string/String#charCodeAt
+          local.set $6
+          local.get $6
+          i32.const 65
+          i32.eq
+          br_if $case0|1
+          local.get $6
+          i32.const 67
+          i32.eq
+          br_if $case1|1
+          local.get $6
+          i32.const 84
+          i32.eq
+          br_if $case2|1
+          local.get $6
+          i32.const 71
+          i32.eq
+          br_if $case3|1
+          br $case4|1
+         end
+         local.get $2
+         local.get $4
+         i32.const 1
+         i32.add
+         local.get $3
+         f64.const 0.5
+         f64.add
+         call $~lib/typedarray/Float64Array#__uset
+         local.get $2
+         local.get $4
+         i32.const 2
+         i32.add
+         local.get $3
+         call $~lib/typedarray/Float64Array#__uset
+         br $break|1
+        end
+        local.get $2
+        local.get $4
+        i32.const 1
+        i32.add
+        local.get $3
+        f64.const 0.5
+        f64.sub
+        call $~lib/typedarray/Float64Array#__uset
+        local.get $2
+        local.get $4
+        i32.const 2
+        i32.add
+        local.get $3
+        call $~lib/typedarray/Float64Array#__uset
+        br $break|1
+       end
+       local.get $2
+       local.get $4
+       i32.const 1
+       i32.add
+       local.get $3
+       f64.const 0.5
+       f64.sub
+       call $~lib/typedarray/Float64Array#__uset
+       local.get $2
+       local.get $4
+       i32.const 2
+       i32.add
+       local.get $3
+       f64.const 1
+       f64.sub
+       call $~lib/typedarray/Float64Array#__uset
+       local.get $3
+       f64.const 1
+       f64.sub
+       local.set $3
+       br $break|1
+      end
+      local.get $2
+      local.get $4
+      i32.const 1
+      i32.add
+      local.get $3
+      f64.const 0.5
+      f64.add
+      call $~lib/typedarray/Float64Array#__uset
+      local.get $2
+      local.get $4
+      i32.const 2
+      i32.add
+      local.get $3
+      f64.const 1
+      f64.add
+      call $~lib/typedarray/Float64Array#__uset
+      local.get $3
+      f64.const 1
+      f64.add
+      local.set $3
+      br $break|1
+     end
+     local.get $2
+     local.get $4
+     i32.const 1
+     i32.add
+     local.get $3
+     call $~lib/typedarray/Float64Array#__uset
+     local.get $2
+     local.get $4
+     i32.const 2
+     i32.add
+     local.get $3
+     call $~lib/typedarray/Float64Array#__uset
+     br $break|1
+    end
+    local.get $4
+    i32.const 2
+    i32.add
+    local.set $4
+    br $for-loop|0
+   end
+  end
   local.get $2
-  f64.store
+  local.set $4
+  local.get $0
+  call $~lib/rt/pure/__release
+  local.get $4
+ )
+ (func $assembly/index/newest_squiggle (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 f64)
+  (local $4 f64)
+  (local $5 i32)
+  (local $6 i32)
+  (local $7 i32)
+  local.get $0
+  call $~lib/rt/pure/__retain
+  local.set $0
+  i32.const 0
+  i32.const 4
+  local.get $1
+  i32.mul
+  i32.const 2
+  i32.add
+  call $~lib/typedarray/Float64Array#constructor
+  local.set $2
+  f64.const 0
+  local.set $3
+  f64.const 0
+  local.set $4
+  i32.const 1
+  local.set $5
+  loop $for-loop|0
+   local.get $5
+   i32.const 2
+   local.get $1
+   i32.mul
+   i32.le_s
+   local.set $6
+   local.get $6
+   if
+    local.get $2
+    local.get $5
+    local.get $4
+    f64.const 0.5
+    f64.add
+    call $~lib/typedarray/Float64Array#__uset
+    local.get $2
+    local.get $5
+    i32.const 1
+    i32.add
+    local.get $4
+    f64.const 1
+    f64.add
+    call $~lib/typedarray/Float64Array#__uset
+    local.get $4
+    f64.const 1
+    f64.add
+    local.set $4
+    block $break|1
+     block $case4|1
+      block $case3|1
+       block $case2|1
+        block $case1|1
+         block $case0|1
+          local.get $0
+          local.get $5
+          i32.const 1
+          i32.sub
+          i32.const 1
+          i32.shr_u
+          call $~lib/string/String#charCodeAt
+          local.set $7
+          local.get $7
+          i32.const 65
+          i32.eq
+          br_if $case0|1
+          local.get $7
+          i32.const 67
+          i32.eq
+          br_if $case1|1
+          local.get $7
+          i32.const 84
+          i32.eq
+          br_if $case2|1
+          local.get $7
+          i32.const 71
+          i32.eq
+          br_if $case3|1
+          br $case4|1
+         end
+         local.get $2
+         local.get $1
+         i32.const 1
+         i32.shl
+         local.get $5
+         i32.add
+         i32.const 1
+         i32.add
+         local.get $3
+         f64.const 0.5
+         f64.add
+         call $~lib/typedarray/Float64Array#__uset
+         local.get $2
+         local.get $1
+         i32.const 1
+         i32.shl
+         local.get $5
+         i32.add
+         i32.const 2
+         i32.add
+         local.get $3
+         call $~lib/typedarray/Float64Array#__uset
+         br $break|1
+        end
+        local.get $2
+        local.get $1
+        i32.const 1
+        i32.shl
+        local.get $5
+        i32.add
+        i32.const 1
+        i32.add
+        local.get $3
+        f64.const 0.5
+        f64.sub
+        call $~lib/typedarray/Float64Array#__uset
+        local.get $2
+        local.get $1
+        i32.const 1
+        i32.shl
+        local.get $5
+        i32.add
+        i32.const 2
+        i32.add
+        local.get $3
+        call $~lib/typedarray/Float64Array#__uset
+        br $break|1
+       end
+       local.get $2
+       local.get $1
+       i32.const 1
+       i32.shl
+       local.get $5
+       i32.add
+       i32.const 1
+       i32.add
+       local.get $3
+       f64.const 0.5
+       f64.sub
+       call $~lib/typedarray/Float64Array#__uset
+       local.get $2
+       local.get $1
+       i32.const 1
+       i32.shl
+       local.get $5
+       i32.add
+       i32.const 2
+       i32.add
+       local.get $3
+       f64.const 1
+       f64.sub
+       call $~lib/typedarray/Float64Array#__uset
+       local.get $3
+       f64.const 1
+       f64.sub
+       local.set $3
+       br $break|1
+      end
+      local.get $2
+      local.get $1
+      i32.const 1
+      i32.shl
+      local.get $5
+      i32.add
+      i32.const 1
+      i32.add
+      local.get $3
+      f64.const 0.5
+      f64.add
+      call $~lib/typedarray/Float64Array#__uset
+      local.get $2
+      local.get $1
+      i32.const 1
+      i32.shl
+      local.get $5
+      i32.add
+      i32.const 2
+      i32.add
+      local.get $3
+      f64.const 1
+      f64.add
+      call $~lib/typedarray/Float64Array#__uset
+      local.get $3
+      f64.const 1
+      f64.add
+      local.set $3
+      br $break|1
+     end
+     local.get $2
+     local.get $1
+     i32.const 1
+     i32.shl
+     local.get $5
+     i32.add
+     i32.const 1
+     i32.add
+     local.get $3
+     call $~lib/typedarray/Float64Array#__uset
+     local.get $2
+     local.get $1
+     i32.const 1
+     i32.shl
+     local.get $5
+     i32.add
+     i32.const 2
+     i32.add
+     local.get $3
+     call $~lib/typedarray/Float64Array#__uset
+     br $break|1
+    end
+    local.get $5
+    i32.const 2
+    i32.add
+    local.set $5
+    br $for-loop|0
+   end
+  end
+  local.get $2
+  local.set $5
+  local.get $0
+  call $~lib/rt/pure/__release
+  local.get $5
+ )
+ (func $assembly/index/new_squiggle (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 f64)
+  (local $4 f64)
+  (local $5 i32)
+  (local $6 i32)
+  (local $7 i32)
+  local.get $0
+  call $~lib/rt/pure/__retain
+  local.set $0
+  i32.const 0
+  i32.const 4
+  local.get $1
+  i32.mul
+  i32.const 2
+  i32.add
+  call $~lib/typedarray/Float64Array#constructor
+  local.set $2
+  f64.const 0
+  local.set $3
+  f64.const 0
+  local.set $4
+  i32.const 0
+  local.set $5
+  loop $for-loop|0
+   local.get $5
+   local.get $1
+   i32.lt_s
+   local.set $6
+   local.get $6
+   if
+    local.get $2
+    i32.const 2
+    local.get $5
+    i32.mul
+    i32.const 1
+    i32.add
+    local.get $4
+    f64.const 0.5
+    f64.add
+    call $~lib/typedarray/Float64Array#__uset
+    local.get $2
+    i32.const 2
+    local.get $5
+    i32.mul
+    i32.const 2
+    i32.add
+    local.get $4
+    f64.const 1
+    f64.add
+    call $~lib/typedarray/Float64Array#__uset
+    local.get $4
+    f64.const 1
+    f64.add
+    local.set $4
+    block $break|1
+     block $case4|1
+      block $case3|1
+       block $case2|1
+        block $case1|1
+         block $case0|1
+          local.get $0
+          local.get $5
+          call $~lib/string/String#charCodeAt
+          local.set $7
+          local.get $7
+          i32.const 65
+          i32.eq
+          br_if $case0|1
+          local.get $7
+          i32.const 67
+          i32.eq
+          br_if $case1|1
+          local.get $7
+          i32.const 84
+          i32.eq
+          br_if $case2|1
+          local.get $7
+          i32.const 71
+          i32.eq
+          br_if $case3|1
+          br $case4|1
+         end
+         local.get $2
+         i32.const 2
+         local.get $1
+         local.get $5
+         i32.add
+         i32.mul
+         i32.const 2
+         i32.add
+         local.get $3
+         f64.const 0.5
+         f64.add
+         call $~lib/typedarray/Float64Array#__uset
+         local.get $2
+         i32.const 2
+         local.get $1
+         local.get $5
+         i32.add
+         i32.mul
+         i32.const 3
+         i32.add
+         local.get $3
+         call $~lib/typedarray/Float64Array#__uset
+         br $break|1
+        end
+        local.get $2
+        i32.const 2
+        local.get $1
+        local.get $5
+        i32.add
+        i32.mul
+        i32.const 2
+        i32.add
+        local.get $3
+        f64.const 0.5
+        f64.sub
+        call $~lib/typedarray/Float64Array#__uset
+        local.get $2
+        i32.const 2
+        local.get $1
+        local.get $5
+        i32.add
+        i32.mul
+        i32.const 3
+        i32.add
+        local.get $3
+        call $~lib/typedarray/Float64Array#__uset
+        br $break|1
+       end
+       local.get $2
+       i32.const 2
+       local.get $1
+       local.get $5
+       i32.add
+       i32.mul
+       i32.const 2
+       i32.add
+       local.get $3
+       f64.const 0.5
+       f64.sub
+       call $~lib/typedarray/Float64Array#__uset
+       local.get $2
+       i32.const 2
+       local.get $1
+       local.get $5
+       i32.add
+       i32.mul
+       i32.const 3
+       i32.add
+       local.get $3
+       f64.const 1
+       f64.sub
+       call $~lib/typedarray/Float64Array#__uset
+       local.get $3
+       f64.const 1
+       f64.sub
+       local.set $3
+       br $break|1
+      end
+      local.get $2
+      i32.const 2
+      local.get $1
+      local.get $5
+      i32.add
+      i32.mul
+      i32.const 2
+      i32.add
+      local.get $3
+      f64.const 0.5
+      f64.add
+      call $~lib/typedarray/Float64Array#__uset
+      local.get $2
+      i32.const 2
+      local.get $1
+      local.get $5
+      i32.add
+      i32.mul
+      i32.const 3
+      i32.add
+      local.get $3
+      f64.const 1
+      f64.add
+      call $~lib/typedarray/Float64Array#__uset
+      local.get $3
+      f64.const 1
+      f64.add
+      local.set $3
+      br $break|1
+     end
+     local.get $2
+     i32.const 2
+     local.get $1
+     local.get $5
+     i32.add
+     i32.mul
+     i32.const 2
+     i32.add
+     local.get $3
+     call $~lib/typedarray/Float64Array#__uset
+     local.get $2
+     i32.const 2
+     local.get $1
+     local.get $5
+     i32.add
+     i32.mul
+     i32.const 3
+     i32.add
+     local.get $3
+     call $~lib/typedarray/Float64Array#__uset
+     br $break|1
+    end
+    local.get $5
+    i32.const 1
+    i32.add
+    local.set $5
+    br $for-loop|0
+   end
+  end
+  local.get $2
+  local.set $5
+  local.get $0
+  call $~lib/rt/pure/__release
+  local.get $5
  )
  (func $assembly/index/squiggle (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
@@ -1915,7 +2579,7 @@
     local.set $7
     local.get $2
     local.get $5
-    i32.const 3
+    i32.const 2
     i32.add
     local.get $4
     f64.const 0.5
@@ -1923,7 +2587,7 @@
     call $~lib/typedarray/Float64Array#__uset
     local.get $2
     local.get $5
-    i32.const 5
+    i32.const 3
     i32.add
     local.get $4
     f64.const 1
@@ -1961,7 +2625,7 @@
          end
          local.get $2
          local.get $5
-         i32.const 4
+         i32.const 2
          i32.add
          local.get $3
          f64.const 0.5
@@ -1969,7 +2633,7 @@
          call $~lib/typedarray/Float64Array#__uset
          local.get $2
          local.get $5
-         i32.const 6
+         i32.const 4
          i32.add
          local.get $3
          call $~lib/typedarray/Float64Array#__uset
@@ -1977,7 +2641,7 @@
         end
         local.get $2
         local.get $5
-        i32.const 4
+        i32.const 2
         i32.add
         local.get $3
         f64.const 0.5
@@ -1985,7 +2649,7 @@
         call $~lib/typedarray/Float64Array#__uset
         local.get $2
         local.get $5
-        i32.const 6
+        i32.const 4
         i32.add
         local.get $3
         call $~lib/typedarray/Float64Array#__uset
@@ -1993,7 +2657,7 @@
        end
        local.get $2
        local.get $5
-       i32.const 4
+       i32.const 2
        i32.add
        local.get $3
        f64.const 0.5
@@ -2001,7 +2665,7 @@
        call $~lib/typedarray/Float64Array#__uset
        local.get $2
        local.get $5
-       i32.const 6
+       i32.const 4
        i32.add
        local.get $3
        f64.const 1
@@ -2015,7 +2679,7 @@
       end
       local.get $2
       local.get $5
-      i32.const 4
+      i32.const 2
       i32.add
       local.get $3
       f64.const 0.5
@@ -2023,7 +2687,7 @@
       call $~lib/typedarray/Float64Array#__uset
       local.get $2
       local.get $5
-      i32.const 6
+      i32.const 4
       i32.add
       local.get $3
       f64.const 1
@@ -2037,13 +2701,13 @@
      end
      local.get $2
      local.get $5
-     i32.const 4
+     i32.const 2
      i32.add
      local.get $3
      call $~lib/typedarray/Float64Array#__uset
      local.get $2
      local.get $5
-     i32.const 6
+     i32.const 4
      i32.add
      local.get $3
      call $~lib/typedarray/Float64Array#__uset
@@ -2420,7 +3084,7 @@
      end
      i32.const 304
      i32.const 352
-     i32.const 222
+     i32.const 350
      i32.const 9
      call $~lib/builtins/abort
      unreachable
