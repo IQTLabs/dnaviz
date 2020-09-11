@@ -1,4 +1,10 @@
-// import * as fc from 'fast-check';
+const fc = require('fast-check');
+
+const dna = fc.stringOf(
+  fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'),
+  1,
+  10000,
+);
 
 const {
  __alloc,
@@ -43,9 +49,6 @@ function squiggle(seq) {
  return [x, y];
 }
 
-console.log(squiggle('ATGC'))
-
-
 test('test squiggle of ATGC', () => {
  expect(squiggle('ATGC')).toEqual([
   new Float64Array([
@@ -58,4 +61,63 @@ test('test squiggle of ATGC', () => {
      0
   ])
 ]);
+});
+
+test('test squiggle of A', () => {
+  expect(squiggle('A')).toEqual([
+    new Float64Array ([0, 0.5, 1]),
+    new Float64Array ([0, 0.5, 0]),
+  ]);
+});
+
+test('test squiggle of T', () => {
+  expect(squiggle('T')).toEqual([
+    new Float64Array ([0, 0.5, 1]),
+    new Float64Array ([0, -0.5, -1]),
+  ]);
+});
+
+test('test squiggle of G', () => {
+  expect(squiggle('G')).toEqual([
+    new Float64Array ([0, 0.5, 1]),
+    new Float64Array ([0, 0.5, 1]),
+  ]);
+});
+
+test('test squiggle of C', () => {
+  expect(squiggle('C')).toEqual([
+    new Float64Array ([0, 0.5, 1]),
+    new Float64Array ([0, -0.5, 0]),
+  ]);
+});
+
+test('test squiggle length', () => {
+  fc.assert(
+    fc.property(dna, (s) => {
+      expect(squiggle(s)[0].length).toBe(squiggle(s)[1].length);
+      expect(squiggle(s)[0].length == 2 * s.length + 1).toBe(true);
+    }),
+  );
+});
+
+test('check case insensitivity', () => {
+  fc.assert(
+    fc.property(dna, (s) => {
+      expect(squiggle(s)).toEqual(squiggle(s.toLowerCase()));
+    }),
+  );
+});
+
+test('check non-ATGCU cases', () => {
+  fc.assert(
+    fc.property(fc.string(100), (s) => {
+      let tu_matches = s.match(/[TtUu]/g) || [];
+      // let a_matches = s.match(/[Aa]/g) || [];
+      let g_matches = s.match(/[Gg]/g) || [];
+      // let c_matches = s.match(/[Cc]/g) || [];
+      let y = squiggle(s)[1]
+
+      expect(g_matches.length - tu_matches.length).toEqual(y[y.length - 1])
+    }),
+  );
 });

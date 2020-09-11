@@ -88,6 +88,8 @@ function as_squiggle(seq) {
   return resultArr;
 }
 
+console.log(newestsquiggle('A'))
+console.log(newestsquiggle('a'))
 
 const seq_10_000     = randomSeq(10000);
 const seq_100_000    = randomSeq(100000);
