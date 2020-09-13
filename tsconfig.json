@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "outDir": "dist/",
     "strict": true,
     "target": "ES5",
-    "module": "CommonJS"
+    "moduleResolution": "node"
   },
   "include": ["src/dnaviz.ts"],
   "exclude": ["node_modules", "**/__test__/*"],
