@@ -1,5 +1,8 @@
 const fc = require('fast-check');
 
+const {toBeDeepCloseTo,toMatchCloseTo} = require('jest-matcher-deep-close-to');
+expect.extend({toBeDeepCloseTo, toMatchCloseTo});
+
 const dna = fc.stringOf(
   fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'),
   1,
@@ -103,7 +106,8 @@ test('test squiggle length', () => {
 test('check case insensitivity', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(squiggle(s)).toEqual(squiggle(s.toLowerCase()));
+      let x = s.toLowerCase()
+      expect(squiggle(s)).toMatchCloseTo(squiggle(x));
     }),
   );
 });
@@ -117,7 +121,7 @@ test('check non-ATGCU cases', () => {
       // let c_matches = s.match(/[Cc]/g) || [];
       let y = squiggle(s)[1]
 
-      expect(g_matches.length - tu_matches.length).toEqual(y[y.length - 1])
+      expect(g_matches.length - tu_matches.length).toBe(y[y.length - 1])
     }),
   );
-});
+});                                     

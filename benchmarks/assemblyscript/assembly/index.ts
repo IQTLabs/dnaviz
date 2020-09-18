@@ -15,7 +15,7 @@ export function y_squiggle(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase();
 
   let y_vals = new Float64Array(2 * length + 1);
-  let yCoord:f64 = 0.0;
+  let yCoord:f64 = 0.0; 
 
   for (let i = 0; i < 2 * length; i += 2) {
     switch (sequence.charCodeAt(i >>> 1)) {
@@ -27,11 +27,12 @@ export function y_squiggle(sequence: string, length: i32): Float64Array {
         unchecked(y_vals[i + 1] = yCoord - 0.5);
         unchecked(y_vals[i + 2] = yCoord);
         break;
-      case 0x54: // "T"
+      case 0x54:
+      case 0x55: // "T" && "U"
         unchecked(y_vals[i + 1] = yCoord - 0.5);
         unchecked(y_vals[i + 2] = yCoord - 1);
         yCoord -= 1;
-        break;
+        break; 
       case 0x47: // "G"
         unchecked(y_vals[i + 1] = yCoord + 0.5);
         unchecked(y_vals[i + 2] = yCoord + 1);
