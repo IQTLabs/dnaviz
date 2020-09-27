@@ -16,7 +16,6 @@ const {
   __alloc,
   __retain,
   __release,
-  __allocString,
   memory,
   x_squiggle,
   y_squiggle,

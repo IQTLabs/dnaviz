@@ -44,12 +44,10 @@
  (data (i32.const 6214) "\ea")
  (data (i32.const 6337) "\ed")
  (data (i32.const 6360) "0\0c1\0dx\0e\7f\0f\80\10\81\11\86\12\89\13\8a\13\8e\14\8f\15\90\16\93\13\94\17\95\18\96\19\97\1a\9a\1b\9c\19\9d\1c\9e\1d\9f\1e\a6\1f\a9\1f\ae\1f\b1 \b2 \b7!\bf\"\c5#\c8#\cb#\dd$\f2#\f6%\f7& -:.=/>0?1@1C2D3E4P5Q6R7S8T9Y:[;\\<a=c>e?f@hAiBj@kClDoBqErFuG}H\82I\87J\89K\8aL\8bL\8cM\92N\9dO\9ePEW{\1d|\1d}\1d\7fX\86Y\88Z\89Z\8aZ\8c[\8e\\\8f\\\ac]\ad^\ae^\af^\c2_\cc`\cda\cea\cfb\d0c\d1d\d5e\d6f\d7g\f0h\f1i\f2j\f3k\f4l\f5m\f9n\fd-\fe-\ff-PiQiRiSiTiUiViWiXiYiZi[i\\i]i^i_i\82\00\83\00\84\00\85\00\86\00\87\00\88\00\89\00\c0u\cfv\80\89\81\8a\82\8b\85\8c\86\8dp\9dq\9dv\9ew\9ex\9fy\9fz\a0{\a0|\a1}\a1\b3\a2\ba\a3\bb\a3\bc\a4\be\a5\c3\a2\cc\a4\da\a6\db\a6\e5j\ea\a7\eb\a7\ecn\f3\a2\f8\a8\f9\a8\fa\a9\fb\a9\fc\a4&\b0*\b1+\b2N\b3\84\08b\bac\bbd\bce\bdf\bem\bfn\c0o\c1p\c2~\c3\7f\c3}\cf\8d\d0\94\d1\ab\d2\ac\d3\ad\d4\b0\d5\b1\d6\b2\d7\c4\d8\c5\d9\c6\da")
- (data (i32.const 6768) "\1c\00\00\00\01\00\00\00\01\00\00\00\1c\00\00\00n\00o\00n\00-\00a\00t\00g\00c\00u\00 \00b\00a\00s\00e")
- (data (i32.const 6816) "\"\00\00\00\01\00\00\00\01\00\00\00\"\00\00\00a\00s\00s\00e\00m\00b\00l\00y\00/\00i\00n\00d\00e\00x\00.\00t\00s")
- (data (i32.const 6880) "\05\00\00\00 \00\00\00\00\00\00\00 \00\00\00\00\00\00\00 \00\00\00\00\00\00\00!\1a\00\00\02\00\00\00\a4")
+ (data (i32.const 6768) "\05\00\00\00 \00\00\00\00\00\00\00 \00\00\00\00\00\00\00 \00\00\00\00\00\00\00!\1a\00\00\02\00\00\00\a4")
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (global $~lib/rt/tlsf/ROOT (mut i32) (i32.const 0))
- (global $~lib/rt/__rtti_base i32 (i32.const 6880))
+ (global $~lib/rt/__rtti_base i32 (i32.const 6768))
  (export "memory" (memory $0))
  (export "__alloc" (func $~lib/rt/tlsf/__alloc))
  (export "__retain" (func $~lib/rt/pure/__retain))
@@ -57,13 +55,11 @@
  (export "__collect" (func $~lib/rt/pure/__collect))
  (export "__rtti_base" (global $~lib/rt/__rtti_base))
  (export "x_squiggle" (func $assembly/index/x_squiggle))
+ (export "y_squiggle_v2" (func $assembly/index/y_squiggle_v2))
  (export "y_squiggle" (func $assembly/index/y_squiggle))
- (export "newest_squiggle" (func $assembly/index/newest_squiggle))
- (export "new_squiggle" (func $assembly/index/new_squiggle))
- (export "squiggle" (func $assembly/index/squiggle))
- (export "yau" (func $assembly/index/yau))
- (export "yau_bp" (func $assembly/index/yau_bp))
- (export "gates" (func $assembly/index/gates))
+ (export "squiggle_v3" (func $assembly/index/squiggle_v3))
+ (export "squiggle_v2" (func $assembly/index/squiggle_v2))
+ (export "squiggle_v1" (func $assembly/index/squiggle_v1))
  (func $~lib/rt/tlsf/removeBlock (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -459,11 +455,11 @@
    if
     unreachable
    end
-   i32.const 6928
+   i32.const 6816
    local.tee $0
    i32.const 0
    i32.store
-   i32.const 8496
+   i32.const 8384
    i32.const 0
    i32.store
    loop $for-loop|0
@@ -474,7 +470,7 @@
      local.get $1
      i32.const 2
      i32.shl
-     i32.const 6928
+     i32.const 6816
      i32.add
      i32.const 0
      i32.store offset=4
@@ -492,7 +488,7 @@
        i32.add
        i32.const 2
        i32.shl
-       i32.const 6928
+       i32.const 6816
        i32.add
        i32.const 0
        i32.store offset=96
@@ -510,13 +506,13 @@
      br $for-loop|0
     end
    end
-   i32.const 6928
-   i32.const 8512
+   i32.const 6816
+   i32.const 8400
    memory.size
    i32.const 16
    i32.shl
    call $~lib/rt/tlsf/addMemory
-   i32.const 6928
+   i32.const 6816
    global.set $~lib/rt/tlsf/ROOT
   end
   local.get $0
@@ -828,7 +824,7 @@
   (local $1 i32)
   (local $2 i32)
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -850,7 +846,7 @@
  )
  (func $~lib/rt/pure/__release (param $0 i32)
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -1032,7 +1028,7 @@
    i32.const 16
    i32.add
    local.tee $0
-   i32.const 6924
+   i32.const 6812
    i32.gt_u
    if
     local.get $0
@@ -1090,7 +1086,7 @@
   i32.ne
   if
    local.get $2
-   i32.const 6924
+   i32.const 6812
    i32.gt_u
    if
     local.get $2
@@ -1109,7 +1105,7 @@
     drop
    end
    local.get $1
-   i32.const 6924
+   i32.const 6812
    i32.gt_u
    if
     local.get $1
@@ -1140,7 +1136,7 @@
   i32.const 16
   i32.add
   local.tee $1
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $1
@@ -1203,6 +1199,254 @@
    end
   end
   local.get $2
+ )
+ (func $assembly/index/y_squiggle_v2 (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 f64)
+  (local $5 i32)
+  local.get $0
+  i32.const 6812
+  i32.gt_u
+  if
+   local.get $0
+   i32.const 16
+   i32.sub
+   local.tee $2
+   i32.load offset=4
+   local.set $3
+   local.get $2
+   local.get $3
+   i32.const 1
+   i32.add
+   i32.store offset=4
+   local.get $2
+   i32.load
+   drop
+  end
+  local.get $1
+  i32.const 1
+  i32.shl
+  i32.const 1
+  i32.add
+  call $~lib/typedarray/Float64Array#constructor
+  local.set $3
+  loop $for-loop|0
+   local.get $5
+   local.get $1
+   i32.lt_s
+   if
+    block $break|1
+     block $case5|1
+      block $case4|1
+       block $case3|1
+        block $case1|1
+         block $__inlined_func$~lib/string/String#charCodeAt (result i32)
+          i32.const -1
+          local.get $5
+          local.get $0
+          i32.const 16
+          i32.sub
+          i32.load offset=12
+          i32.const 1
+          i32.shr_u
+          i32.ge_u
+          br_if $__inlined_func$~lib/string/String#charCodeAt
+          drop
+          local.get $0
+          local.get $5
+          i32.const 1
+          i32.shl
+          i32.add
+          i32.load16_u
+         end
+         local.tee $2
+         i32.const 65
+         i32.ne
+         if
+          local.get $2
+          i32.const 67
+          i32.eq
+          br_if $case1|1
+          local.get $2
+          i32.const 85
+          i32.eq
+          br_if $case3|1
+          local.get $2
+          i32.const 84
+          i32.eq
+          br_if $case3|1
+          local.get $2
+          i32.const 71
+          i32.eq
+          br_if $case4|1
+          br $case5|1
+         end
+         local.get $3
+         i32.load offset=4
+         local.get $1
+         local.get $5
+         i32.add
+         i32.const 1
+         i32.shl
+         local.tee $2
+         i32.const 2
+         i32.add
+         i32.const 3
+         i32.shl
+         i32.add
+         local.get $4
+         f64.const 0.5
+         f64.add
+         f64.store
+         local.get $3
+         i32.load offset=4
+         local.get $2
+         i32.const 3
+         i32.add
+         i32.const 3
+         i32.shl
+         i32.add
+         local.get $4
+         f64.store
+         br $break|1
+        end
+        local.get $3
+        i32.load offset=4
+        local.get $1
+        local.get $5
+        i32.add
+        i32.const 1
+        i32.shl
+        local.tee $2
+        i32.const 2
+        i32.add
+        i32.const 3
+        i32.shl
+        i32.add
+        local.get $4
+        f64.const 0.5
+        f64.sub
+        f64.store
+        local.get $3
+        i32.load offset=4
+        local.get $2
+        i32.const 3
+        i32.add
+        i32.const 3
+        i32.shl
+        i32.add
+        local.get $4
+        f64.store
+        br $break|1
+       end
+       local.get $3
+       i32.load offset=4
+       local.get $1
+       local.get $5
+       i32.add
+       i32.const 1
+       i32.shl
+       local.tee $2
+       i32.const 2
+       i32.add
+       i32.const 3
+       i32.shl
+       i32.add
+       local.get $4
+       f64.const 0.5
+       f64.sub
+       f64.store
+       local.get $3
+       i32.load offset=4
+       local.get $2
+       i32.const 3
+       i32.add
+       i32.const 3
+       i32.shl
+       i32.add
+       local.get $4
+       f64.const 1
+       f64.sub
+       local.tee $4
+       f64.store
+       br $break|1
+      end
+      local.get $3
+      i32.load offset=4
+      local.get $1
+      local.get $5
+      i32.add
+      i32.const 1
+      i32.shl
+      local.tee $2
+      i32.const 2
+      i32.add
+      i32.const 3
+      i32.shl
+      i32.add
+      local.get $4
+      f64.const 0.5
+      f64.add
+      f64.store
+      local.get $3
+      i32.load offset=4
+      local.get $2
+      i32.const 3
+      i32.add
+      i32.const 3
+      i32.shl
+      i32.add
+      local.get $4
+      f64.const 1
+      f64.add
+      local.tee $4
+      f64.store
+      br $break|1
+     end
+     local.get $3
+     i32.load offset=4
+     local.get $1
+     local.get $5
+     i32.add
+     i32.const 1
+     i32.shl
+     local.tee $2
+     i32.const 2
+     i32.add
+     i32.const 3
+     i32.shl
+     i32.add
+     local.get $4
+     f64.store
+     local.get $3
+     i32.load offset=4
+     local.get $2
+     i32.const 3
+     i32.add
+     i32.const 3
+     i32.shl
+     i32.add
+     local.get $4
+     f64.store
+    end
+    local.get $5
+    i32.const 1
+    i32.add
+    local.set $5
+    br $for-loop|0
+   end
+  end
+  local.get $0
+  i32.const 6812
+  i32.gt_u
+  if
+   local.get $0
+   i32.const 16
+   i32.sub
+   call $~lib/rt/pure/decrement
+  end
+  local.get $3
  )
  (func $~lib/util/casemap/casemap (param $0 i32) (result i32)
   (local $1 i32)
@@ -2399,7 +2643,7 @@
   local.get $2
   call $~lib/memory/memory.copy
   local.get $1
-  i32.const 6924
+  i32.const 6812
   i32.ge_u
   if
    local.get $1
@@ -2435,7 +2679,7 @@
   i32.eqz
   if
    local.get $0
-   i32.const 6924
+   i32.const 6812
    i32.gt_u
    if
     local.get $0
@@ -2763,7 +3007,7 @@
   i32.const 16
   i32.add
   local.tee $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -2789,7 +3033,7 @@
   (local $4 f64)
   (local $5 i32)
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -2811,7 +3055,7 @@
   call $~lib/string/String#toUpperCase
   local.set $5
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -2834,9 +3078,9 @@
    i32.lt_s
    if
     block $break|1
-     block $case4|1
-      block $case3|1
-       block $case2|1
+     block $case5|1
+      block $case4|1
+       block $case3|1
         block $case1|1
          block $__inlined_func$~lib/string/String#charCodeAt (result i32)
           i32.const -1
@@ -2871,12 +3115,16 @@
           local.get $0
           i32.const 84
           i32.eq
-          br_if $case2|1
+          br_if $case3|1
+          local.get $0
+          i32.const 85
+          i32.eq
+          br_if $case3|1
           local.get $0
           i32.const 71
           i32.eq
-          br_if $case3|1
-          br $case4|1
+          br_if $case4|1
+          br $case5|1
          end
          local.get $2
          i32.load offset=4
@@ -3009,7 +3257,7 @@
    end
   end
   local.get $5
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $5
@@ -3019,14 +3267,14 @@
   end
   local.get $2
  )
- (func $assembly/index/newest_squiggle (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/index/squiggle_v3 (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 f64)
   (local $6 f64)
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -3286,7 +3534,7 @@
    end
   end
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -3296,14 +3544,14 @@
   end
   local.get $3
  )
- (func $assembly/index/new_squiggle (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/index/squiggle_v2 (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 f64)
   (local $5 i32)
   (local $6 f64)
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -3559,7 +3807,7 @@
    end
   end
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -3569,14 +3817,14 @@
   end
   local.get $3
  )
- (func $assembly/index/squiggle (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/index/squiggle_v1 (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 f64)
   (local $5 i32)
   (local $6 f64)
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -3810,7 +4058,7 @@
    end
   end
   local.get $0
-  i32.const 6924
+  i32.const 6812
   i32.gt_u
   if
    local.get $0
@@ -3819,473 +4067,6 @@
    call $~lib/rt/pure/decrement
   end
   local.get $2
- )
- (func $assembly/index/yau (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  (local $3 f64)
-  (local $4 f64)
-  (local $5 i32)
-  (local $6 i32)
-  local.get $0
-  i32.const 6924
-  i32.gt_u
-  if
-   local.get $0
-   i32.const 16
-   i32.sub
-   local.tee $2
-   i32.load offset=4
-   local.set $5
-   local.get $2
-   local.get $5
-   i32.const 1
-   i32.add
-   i32.store offset=4
-   local.get $2
-   i32.load
-   drop
-  end
-  local.get $1
-  i32.const 2
-  i32.add
-  i32.const 1
-  i32.shl
-  call $~lib/typedarray/Float64Array#constructor
-  local.set $5
-  loop $for-loop|0
-   local.get $6
-   local.get $1
-   i32.lt_s
-   if
-    block $break|1
-     block $case4|1
-      block $case3|1
-       block $case1|1
-        block $__inlined_func$~lib/string/String#charCodeAt (result i32)
-         i32.const -1
-         local.get $6
-         local.get $0
-         i32.const 16
-         i32.sub
-         i32.load offset=12
-         i32.const 1
-         i32.shr_u
-         i32.ge_u
-         br_if $__inlined_func$~lib/string/String#charCodeAt
-         drop
-         local.get $0
-         local.get $6
-         i32.const 1
-         i32.shl
-         i32.add
-         i32.load16_u
-        end
-        local.tee $2
-        i32.const 65
-        i32.ne
-        if
-         local.get $2
-         i32.const 67
-         i32.eq
-         br_if $case1|1
-         local.get $2
-         i32.const 84
-         i32.eq
-         br_if $case3|1
-         local.get $2
-         i32.const 85
-         i32.eq
-         br_if $case3|1
-         local.get $2
-         i32.const 71
-         i32.eq
-         br_if $case4|1
-         br $break|1
-        end
-        local.get $3
-        f64.const 0.5
-        f64.add
-        local.set $3
-        local.get $4
-        f64.const 0.8660254037844386
-        f64.sub
-        local.set $4
-        br $break|1
-       end
-       local.get $3
-       f64.const 0.8660254037844386
-       f64.add
-       local.set $3
-       local.get $4
-       f64.const 0.5
-       f64.add
-       local.set $4
-       br $break|1
-      end
-      local.get $3
-      f64.const 0.5
-      f64.add
-      local.set $3
-      local.get $4
-      f64.const 0.8660254037844386
-      f64.add
-      local.set $4
-      br $break|1
-     end
-     local.get $3
-     f64.const 0.8660254037844386
-     f64.add
-     local.set $3
-     local.get $4
-     f64.const 0.5
-     f64.sub
-     local.set $4
-    end
-    local.get $5
-    i32.load offset=4
-    local.get $6
-    i32.const 1
-    i32.shl
-    local.tee $2
-    i32.const 3
-    i32.add
-    i32.const 3
-    i32.shl
-    i32.add
-    local.get $3
-    f64.store
-    local.get $5
-    i32.load offset=4
-    local.get $2
-    i32.const 4
-    i32.add
-    i32.const 3
-    i32.shl
-    i32.add
-    local.get $4
-    f64.store
-    local.get $6
-    i32.const 1
-    i32.add
-    local.set $6
-    br $for-loop|0
-   end
-  end
-  local.get $0
-  i32.const 6924
-  i32.gt_u
-  if
-   local.get $0
-   i32.const 16
-   i32.sub
-   call $~lib/rt/pure/decrement
-  end
-  local.get $5
- )
- (func $assembly/index/yau_bp (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  (local $3 f64)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 f64)
-  local.get $0
-  i32.const 6924
-  i32.gt_u
-  if
-   local.get $0
-   i32.const 16
-   i32.sub
-   local.tee $2
-   i32.load offset=4
-   local.set $4
-   local.get $2
-   local.get $4
-   i32.const 1
-   i32.add
-   i32.store offset=4
-   local.get $2
-   i32.load
-   drop
-  end
-  local.get $1
-  i32.const 2
-  i32.add
-  i32.const 1
-  i32.shl
-  call $~lib/typedarray/Float64Array#constructor
-  local.set $4
-  loop $for-loop|0
-   local.get $5
-   local.get $1
-   i32.lt_s
-   if
-    block $break|1
-     block $case4|1
-      block $case3|1
-       block $case1|1
-        block $__inlined_func$~lib/string/String#charCodeAt (result i32)
-         i32.const -1
-         local.get $5
-         local.get $0
-         i32.const 16
-         i32.sub
-         i32.load offset=12
-         i32.const 1
-         i32.shr_u
-         i32.ge_u
-         br_if $__inlined_func$~lib/string/String#charCodeAt
-         drop
-         local.get $0
-         local.get $5
-         i32.const 1
-         i32.shl
-         i32.add
-         i32.load16_u
-        end
-        local.tee $2
-        i32.const 65
-        i32.ne
-        if
-         local.get $2
-         i32.const 67
-         i32.eq
-         br_if $case1|1
-         local.get $2
-         i32.const 84
-         i32.eq
-         br_if $case3|1
-         local.get $2
-         i32.const 85
-         i32.eq
-         br_if $case3|1
-         local.get $2
-         i32.const 71
-         i32.eq
-         br_if $case4|1
-         br $break|1
-        end
-        local.get $3
-        f64.const 1
-        f64.sub
-        local.set $3
-        br $break|1
-       end
-       local.get $3
-       f64.const 0.5
-       f64.add
-       local.set $3
-       br $break|1
-      end
-      local.get $3
-      f64.const 1
-      f64.add
-      local.set $3
-      br $break|1
-     end
-     local.get $3
-     f64.const 0.5
-     f64.sub
-     local.set $3
-    end
-    local.get $4
-    i32.load offset=4
-    local.get $5
-    i32.const 1
-    i32.shl
-    local.tee $2
-    i32.const 3
-    i32.add
-    i32.const 3
-    i32.shl
-    i32.add
-    local.get $6
-    f64.const 1
-    f64.add
-    local.tee $6
-    f64.store
-    local.get $4
-    i32.load offset=4
-    local.get $2
-    i32.const 4
-    i32.add
-    i32.const 3
-    i32.shl
-    i32.add
-    local.get $3
-    f64.store
-    local.get $5
-    i32.const 1
-    i32.add
-    local.set $5
-    br $for-loop|0
-   end
-  end
-  local.get $0
-  i32.const 6924
-  i32.gt_u
-  if
-   local.get $0
-   i32.const 16
-   i32.sub
-   call $~lib/rt/pure/decrement
-  end
-  local.get $4
- )
- (func $assembly/index/gates (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  (local $3 f64)
-  (local $4 i32)
-  (local $5 i32)
-  local.get $0
-  i32.const 6924
-  i32.gt_u
-  if
-   local.get $0
-   i32.const 16
-   i32.sub
-   local.tee $2
-   i32.load offset=4
-   local.set $4
-   local.get $2
-   local.get $4
-   i32.const 1
-   i32.add
-   i32.store offset=4
-   local.get $2
-   i32.load
-   drop
-  end
-  local.get $1
-  i32.const 2
-  i32.add
-  i32.const 1
-  i32.shl
-  call $~lib/typedarray/Float64Array#constructor
-  local.set $4
-  loop $for-loop|0
-   local.get $5
-   local.get $1
-   i32.lt_s
-   if
-    block $break|1
-     block $case5|1
-      block $case4|1
-       block $case3|1
-        block $case1|1
-         block $__inlined_func$~lib/string/String#charCodeAt (result i32)
-          i32.const -1
-          local.get $5
-          local.get $0
-          i32.const 16
-          i32.sub
-          i32.load offset=12
-          i32.const 1
-          i32.shr_u
-          i32.ge_u
-          br_if $__inlined_func$~lib/string/String#charCodeAt
-          drop
-          local.get $0
-          local.get $5
-          i32.const 1
-          i32.shl
-          i32.add
-          i32.load16_u
-         end
-         i32.const -33
-         i32.and
-         local.tee $2
-         i32.const 65
-         i32.ne
-         if
-          local.get $2
-          i32.const 67
-          i32.eq
-          br_if $case1|1
-          local.get $2
-          i32.const 84
-          i32.eq
-          br_if $case3|1
-          local.get $2
-          i32.const 85
-          i32.eq
-          br_if $case3|1
-          local.get $2
-          i32.const 71
-          i32.eq
-          br_if $case4|1
-          br $case5|1
-         end
-         local.get $3
-         f64.const 1
-         f64.sub
-         local.set $3
-         br $break|1
-        end
-        local.get $3
-        f64.const 1
-        f64.sub
-        local.set $3
-        br $break|1
-       end
-       local.get $3
-       f64.const 1
-       f64.add
-       local.set $3
-       br $break|1
-      end
-      local.get $3
-      f64.const 1
-      f64.add
-      local.set $3
-      br $break|1
-     end
-     i32.const 6784
-     i32.const 6832
-     i32.const 351
-     i32.const 9
-     call $~lib/builtins/abort
-     unreachable
-    end
-    local.get $4
-    i32.load offset=4
-    local.get $5
-    i32.const 1
-    i32.shl
-    local.tee $2
-    i32.const 3
-    i32.add
-    i32.const 3
-    i32.shl
-    i32.add
-    f64.const 0
-    f64.store
-    local.get $4
-    i32.load offset=4
-    local.get $2
-    i32.const 4
-    i32.add
-    i32.const 3
-    i32.shl
-    i32.add
-    local.get $3
-    f64.store
-    local.get $5
-    i32.const 1
-    i32.add
-    local.set $5
-    br $for-loop|0
-   end
-  end
-  local.get $0
-  i32.const 6924
-  i32.gt_u
-  if
-   local.get $0
-   i32.const 16
-   i32.sub
-   call $~lib/rt/pure/decrement
-  end
-  local.get $4
  )
  (func $~lib/rt/pure/__collect
   nop
@@ -4319,7 +4100,7 @@
      local.tee $1
      if
       local.get $1
-      i32.const 6924
+      i32.const 6812
       i32.ge_u
       if
        local.get $1
