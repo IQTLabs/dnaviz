@@ -41,6 +41,7 @@
  (export "__rtti_base" (global $~lib/rt/__rtti_base))
  (export "x_squiggle" (func $assembly/index/x_squiggle))
  (export "y_squiggle_v2" (func $assembly/index/y_squiggle_v2))
+ (export "gates" (func $assembly/index/gates))
  (export "y_squiggle" (func $assembly/index/y_squiggle))
  (export "squiggle_v3" (func $assembly/index/squiggle_v3))
  (export "squiggle_v2" (func $assembly/index/squiggle_v2))
@@ -4141,6 +4142,131 @@
   local.set $2
   local.get $2
   call $~lib/rt/pure/__retain
+ )
+ (func $assembly/index/gates (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 f64)
+  (local $4 f64)
+  (local $5 i32)
+  (local $6 i32)
+  (local $7 i32)
+  local.get $0
+  call $~lib/rt/pure/__retain
+  local.set $0
+  local.get $0
+  call $~lib/string/String#toUpperCase
+  local.set $2
+  local.get $0
+  call $~lib/rt/pure/__release
+  local.get $2
+  local.set $0
+  i32.const 0
+  i32.const 2
+  local.get $1
+  i32.mul
+  i32.const 2
+  i32.add
+  call $~lib/typedarray/Float64Array#constructor
+  local.set $2
+  f64.const 0
+  local.set $3
+  f64.const 0
+  local.set $4
+  i32.const 0
+  local.set $5
+  loop $for-loop|0
+   local.get $5
+   local.get $1
+   i32.lt_s
+   local.set $6
+   local.get $6
+   if
+    block $break|1
+     block $case5|1
+      block $case4|1
+       block $case3|1
+        block $case2|1
+         block $case1|1
+          block $case0|1
+           local.get $0
+           local.get $5
+           call $~lib/string/String#charCodeAt
+           local.set $7
+           local.get $7
+           i32.const 65
+           i32.eq
+           br_if $case0|1
+           local.get $7
+           i32.const 67
+           i32.eq
+           br_if $case1|1
+           local.get $7
+           i32.const 84
+           i32.eq
+           br_if $case2|1
+           local.get $7
+           i32.const 85
+           i32.eq
+           br_if $case3|1
+           local.get $7
+           i32.const 71
+           i32.eq
+           br_if $case4|1
+           br $case5|1
+          end
+          local.get $4
+          f64.const 1
+          f64.sub
+          local.set $4
+          br $break|1
+         end
+         local.get $3
+         f64.const 1
+         f64.sub
+         local.set $3
+         br $break|1
+        end
+       end
+       local.get $4
+       f64.const 1
+       f64.add
+       local.set $4
+       br $break|1
+      end
+      local.get $3
+      f64.const 1
+      f64.add
+      local.set $3
+      br $break|1
+     end
+     br $break|1
+    end
+    local.get $2
+    local.get $5
+    i32.const 1
+    i32.add
+    local.get $3
+    call $~lib/typedarray/Float64Array#__uset
+    local.get $2
+    local.get $1
+    local.get $5
+    i32.add
+    i32.const 2
+    i32.add
+    local.get $4
+    call $~lib/typedarray/Float64Array#__uset
+    local.get $5
+    i32.const 1
+    i32.add
+    local.set $5
+    br $for-loop|0
+   end
+  end
+  local.get $2
+  local.set $5
+  local.get $0
+  call $~lib/rt/pure/__release
+  local.get $5
  )
  (func $assembly/index/y_squiggle (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)

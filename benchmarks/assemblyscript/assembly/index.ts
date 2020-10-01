@@ -46,6 +46,42 @@ export function y_squiggle_v2(sequence: string, length: i32): Float64Array {
   return result;
 }
 
+export function gates(sequence: string, length: i32): Float64Array {
+  sequence = sequence.toUpperCase();
+
+  let result = new Float64Array(2 * length + 2);
+
+  let xCoord: f64 = 0.0;
+  let yCoord: f64 = 0.0;
+
+  for (let i = 0; i < length; i++) {
+    switch (sequence.charCodeAt(i)) {
+      case 0x41: // "A"
+        yCoord--;
+        break;
+      case 0x43: // "C"
+        xCoord--;
+        break;
+      case 0x54:
+      case 0x55: // "T" && "U"
+        yCoord++;
+        break; 
+      case 0x47: // "G"
+        xCoord++;
+        break;
+      default:
+        break;
+    }
+
+    unchecked(result[i + 1] = xCoord);
+    unchecked(result[length + i + 2] = yCoord);
+  }
+
+  return result;
+}
+
+
+
 export function y_squiggle(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase();
 

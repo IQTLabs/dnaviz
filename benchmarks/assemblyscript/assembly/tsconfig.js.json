@@ -1,0 +1,6 @@
+{
+ "extends": "assemblyscript/std/portable.json",
+ "include": [
+   "./**/*.ts"
+ ]
+}

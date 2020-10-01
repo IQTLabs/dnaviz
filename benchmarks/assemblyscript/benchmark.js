@@ -9,7 +9,8 @@ const {
   squiggle_v3,
   squiggle_v1,
   x_squiggle,
-  y_squiggle
+  y_squiggle,
+  gates
 } = require("./index");
 // imports retain (returns a managed object's pointer, ensure no premature collection),
 // alloc (allocates classes a unique id),
@@ -49,6 +50,14 @@ function getFloat64Array(ptr) {
   );
 } // Copies the modules array values into a JS array
 
+function split(list) {
+  const half = Math.ceil(list.length / 2);
+  const x = list.splice(0, half);
+  const y = list.splice(-half);
+
+  return [x, y];
+}
+
 function as_squiggle_v4(seq) {
   const inStrPtr = __retain(__allocString(seq));
   const xPtr = x_squiggle(seq.length);
@@ -87,6 +96,17 @@ function as_squiggle_v1(seq) {
   return resultArr;
 }
 
+function as_gates_v1(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  const outArrPtr = gates(inStrPtr, seq.length);
+  const resultArr = getFloat64Array(outArrPtr);
+  __release(outArrPtr);
+  __release(inStrPtr);
+  return resultArr;
+}
+
+console.log(as_gates_v1('ATGC'));
+
 const seq_10_000 = randomSeq(10000);
 const seq_100_000 = randomSeq(100000);
 const seq_1_000_000 = randomSeq(1000000);
@@ -117,6 +137,10 @@ new Benchmark.Suite()
   .add("ts squiggle 100,000", () => { dna.squiggle(seq_100_000) })
   .add("ts squiggle 1,000,000", () => { dna.squiggle(seq_1_000_000) })
   // .add("ts squiggle 10,000,000", () => {dna.squiggle(seq_10_000_000)})
+
+  .add("as gates 10,000", () => { as_gates_v1(seq_10_000) })
+  .add("as gates 100,000", () => { as_gates_v1(seq_100_000) })
+  .add("as gates 1,000,000", () => { as_gates_v1(seq_1_000_000) })
 
   .on("cycle", event => {
     console.log(String(event.target));
