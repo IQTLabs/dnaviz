@@ -10,7 +10,11 @@ const {
   squiggle_v1,
   x_squiggle,
   y_squiggle,
-  gates
+  y_squiggle_v2,
+  gates,
+  y_qi,
+  x_qi,
+  yau
 } = require("./index");
 // imports retain (returns a managed object's pointer, ensure no premature collection),
 // alloc (allocates classes a unique id),
@@ -55,6 +59,37 @@ function split(list) {
   const x = list.splice(0, half);
   const y = list.splice(-half);
 
+  return [x, y];
+}
+
+function as_yau(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  const outArrPtr = yau(inStrPtr, seq.length);
+  const resultArr = getFloat64Array(outArrPtr);
+  __release(outArrPtr);
+  __release(inStrPtr);
+  return resultArr;
+}
+
+function as_qi_v1(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  const xPtr = x_qi(seq.length);
+  const yPtr = y_qi(inStrPtr, seq.length);
+  const x = getFloat64Array(xPtr);
+  const y = getFloat64Array(yPtr);
+  __release(xPtr);
+  __release(yPtr);
+  return [x, y];
+}
+
+function as_squiggle_v5(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  const xPtr = x_squiggle(seq.length);
+  const yPtr = y_squiggle_v2(inStrPtr, seq.length);
+  const x = getFloat64Array(xPtr);
+  const y = getFloat64Array(yPtr);
+  __release(xPtr);
+  __release(yPtr);
   return [x, y];
 }
 
@@ -105,7 +140,13 @@ function as_gates_v1(seq) {
   return resultArr;
 }
 
+console.log(as_yau('ATGC'));
+
+console.log(as_squiggle_v5('ATGC'));
+
 console.log(as_gates_v1('ATGC'));
+
+console.log(as_qi_v1('ATGC'));
 
 const seq_10_000 = randomSeq(10000);
 const seq_100_000 = randomSeq(100000);
@@ -113,6 +154,10 @@ const seq_1_000_000 = randomSeq(1000000);
 const seq_10_000_000 = randomSeq(10000000);
 
 new Benchmark.Suite()
+  .add("Two Array Output V2 10,000", () => { as_squiggle_v5(seq_10_000) })
+  .add("Two Array Output V2 100,000", () => { as_squiggle_v5(seq_100_000) })
+  .add("Two Array Output V2 1,000,000", () => { as_squiggle_v5(seq_1_000_000) })
+
   .add("Two Array Output 10,000", () => { as_squiggle_v4(seq_10_000) })
   .add("Two Array Output 100,000", () => { as_squiggle_v4(seq_100_000) })
   .add("Two Array Output 1,000,000", () => { as_squiggle_v4(seq_1_000_000) })
@@ -141,6 +186,14 @@ new Benchmark.Suite()
   .add("as gates 10,000", () => { as_gates_v1(seq_10_000) })
   .add("as gates 100,000", () => { as_gates_v1(seq_100_000) })
   .add("as gates 1,000,000", () => { as_gates_v1(seq_1_000_000) })
+
+  .add("as qi 10,000", () => { as_qi_v1(seq_10_000) })
+  .add("as qi 100,000", () => { as_qi_v1(seq_100_000) })
+  .add("as qi 1,000,000", () => { as_qi_v1(seq_1_000_000) })
+
+  .add("as yau 10,000", () => { as_yau(seq_10_000) })
+  .add("as yau 100,000", () => { as_yau(seq_100_000) })
+  .add("as yau 1,000,000", () => { as_yau(seq_1_000_000) })
 
   .on("cycle", event => {
     console.log(String(event.target));
