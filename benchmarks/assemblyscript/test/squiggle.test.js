@@ -1,10 +1,10 @@
 const fc = require('fast-check');
 
-const {
-  toBeDeepCloseTo,
-  toMatchCloseTo,
-} = require('jest-matcher-deep-close-to');
-expect.extend({ toBeDeepCloseTo, toMatchCloseTo });
+// const {
+//   toBeDeepCloseTo,
+//   toMatchCloseTo,
+// } = require('jest-matcher-deep-close-to');
+// expect.extend({ toBeDeepCloseTo, toMatchCloseTo });
 
 const dna = fc.stringOf(
   fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'),
@@ -19,7 +19,7 @@ const {
   memory,
   x_squiggle,
   y_squiggle,
-} = require('./index');
+} = require('../index');
 
 let alloc = __alloc;
 
@@ -99,7 +99,7 @@ test('test squiggle length', () => {
 test('check case insensitivity', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(squiggle(s.toLowerCase())).toBeDeepCloseTo(squiggle(s));
+      expect(squiggle(s.toLowerCase())).toBe(squiggle(s));
     }),
   );
 });

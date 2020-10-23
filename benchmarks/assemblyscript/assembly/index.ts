@@ -66,6 +66,7 @@ export function gates(sequence: string, length: i32): Float64Array {
         xCoord++;
         break;
       default:
+        throw new Error('non-atgcu base');
         break;
     }
 
@@ -329,25 +330,41 @@ export function squiggle_v1(sequence: string, length: i32): Float64Array {
   return result;
 }
 
+export function x_yau_bp(length: i32): Float64Array {
+  let x_vals = new Float64Array(length + 1);
+  let xCoord: f64 = 0;
+
+  for (let i = 0; i < length; i++) {
+    unchecked((x_vals[i] = xCoord));
+    xCoord++;
+  }
+
+  return x_vals;
+}
+
 export function y_yau_bp(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase();
 
   let y_vals = new Float64Array(length + 1);
-
+  let yCoord = 0.0;
   for (let i = 1; i <= length; i++) {
-    switch (sequence.charCodeAt(i - 1)) {
+    switch (sequence.charCodeAt(i)) {
       case 0x41: // "A"
-        unchecked((y_vals[i] = y_vals[i - 1] - 1));
+        unchecked((y_vals[i] = yCoord - 1));
+        yCoord--;
         break;
       case 0x43: // "C"
-        unchecked((y_vals[i] = y_vals[i - 1] + 0.5));
+        unchecked((y_vals[i] = yCoord + 0.5));
+        yCoord += 0.5;
         break;
       case 0x54:
       case 0x55: // "T" && "U"
-        unchecked((y_vals[i] = y_vals[i - 1] + 1));
+        unchecked((y_vals[i] = yCoord + 1));
+        yCoord++;
         break;
       case 0x47: // "G"
-        unchecked((y_vals[i] = y_vals[i - 1] - 0.5));
+        unchecked((y_vals[i] = yCoord - 0.5));
+        yCoord -= 0.5;
         break;
       default:
         // error message
@@ -363,24 +380,34 @@ export function yau(sequence: string, length: i32): Float64Array {
 
   let onehalfsqrt3 = (3 ** 0.5) / 2;
 
+  let xCoord = 0.0;
+  let yCoord = 0.0;
   for (let i = 1; i <= length; i++) {
     switch (sequence.charCodeAt(i - 1)) {
       case 0x41: // "A"
-        unchecked((result[i] = result[i - 1] + 0.5));
-        unchecked((result[i + length + 1] = result[i + length] - onehalfsqrt3));
+        unchecked((result[i] = xCoord + 0.5));
+        unchecked((result[i + length + 1] = yCoord - onehalfsqrt3));
+        xCoord += 0.5;
+        yCoord -= onehalfsqrt3;
         break;
       case 0x43: // "C"
-        unchecked((result[i] = result[i - 1] + onehalfsqrt3));
-        unchecked((result[i + length + 1] = result[i + length] + 0.5));
+        unchecked((result[i] = xCoord + onehalfsqrt3));
+        unchecked((result[i + length + 1] = yCoord + 0.5));
+        xCoord += onehalfsqrt3;
+        yCoord += 0.5;
         break;
       case 0x54:
       case 0x55: // "T" && "U"
-        unchecked((result[i] = result[i - 1] + 0.5));
-        unchecked((result[i + length + 1] = result[i + length] + onehalfsqrt3));
+        unchecked((result[i] = xCoord + 0.5));
+        unchecked((result[i + length + 1] = yCoord + onehalfsqrt3));
+        xCoord += 0.5;
+        yCoord += onehalfsqrt3;
         break;
       case 0x47: // "G"
-        unchecked((result[i] = result[i - 1] + onehalfsqrt3));
-        unchecked((result[i + length + 1] = result[i + length] - 0.5));
+        unchecked((result[i] = xCoord + onehalfsqrt3));
+        unchecked((result[i + length + 1] = yCoord - 0.5));
+        xCoord += onehalfsqrt3;
+        yCoord -= 0.5;
         break;
       default:
         // error message
@@ -388,4 +415,45 @@ export function yau(sequence: string, length: i32): Float64Array {
     }
   }
   return result;
+}
+
+export function y_randic(sequence: string, length: i32): Float64Array {
+  sequence = sequence.toUpperCase();
+
+  let y_vals = new Float64Array(length);
+
+  for (let i = 0; i < length; i++) {
+    switch (sequence.charCodeAt(i >>> 1)) {
+      case 0x41: // "A"
+        unchecked((y_vals[i] = 3));
+        break;
+      case 0x43: // "C"
+        unchecked((y_vals[i] = 0));
+        break;
+      case 0x54:
+      case 0x55: // "T" && "U"
+        unchecked((y_vals[i] = 2));
+        break;
+      case 0x47: // "G"
+        unchecked((y_vals[i] = 1));
+        break;
+      default:
+        // error message
+        break;
+    }
+  }
+
+  return y_vals;
+}
+
+export function x_randic(length: i32): Float64Array {
+  let x_vals = new Float64Array(length);
+  let xCoord: f64 = 0;
+
+  for (let i = 0; i < length; i++) {
+    unchecked((x_vals[i] = xCoord));
+    xCoord++;
+  }
+
+  return x_vals;
 }

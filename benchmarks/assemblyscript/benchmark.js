@@ -14,7 +14,11 @@ const {
   gates,
   y_qi,
   x_qi,
-  yau
+  yau,
+  x_yau_bp,
+  y_yau_bp,
+  x_randic,
+  y_randic
 } = require("./index");
 // imports retain (returns a managed object's pointer, ensure no premature collection),
 // alloc (allocates classes a unique id),
@@ -75,6 +79,28 @@ function as_qi_v1(seq) {
   const inStrPtr = __retain(__allocString(seq));
   const xPtr = x_qi(seq.length);
   const yPtr = y_qi(inStrPtr, seq.length);
+  const x = getFloat64Array(xPtr);
+  const y = getFloat64Array(yPtr);
+  __release(xPtr);
+  __release(yPtr);
+  return [x, y];
+}
+
+function as_yau_bp(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  const xPtr = x_yau_bp(seq.length);
+  const yPtr = y_yau_bp(inStrPtr, seq.length);
+  const x = getFloat64Array(xPtr);
+  const y = getFloat64Array(yPtr);
+  __release(xPtr);
+  __release(yPtr);
+  return [x, y];
+}
+
+function as_randic(seq) {
+  const inStrPtr = __retain(__allocString(seq));
+  const xPtr = x_randic(seq.length);
+  const yPtr = y_randic(inStrPtr, seq.length);
   const x = getFloat64Array(xPtr);
   const y = getFloat64Array(yPtr);
   __release(xPtr);
@@ -194,6 +220,14 @@ new Benchmark.Suite()
   .add("as yau 10,000", () => { as_yau(seq_10_000) })
   .add("as yau 100,000", () => { as_yau(seq_100_000) })
   .add("as yau 1,000,000", () => { as_yau(seq_1_000_000) })
+
+  .add("as yau-BP 10,000", () => { as_yau_bp(seq_10_000) })
+  .add("as yau-BP 100,000", () => { as_yau_bp(seq_100_000) })
+  .add("as yau-BP 1,000,000", () => { as_yau_bp(seq_1_000_000) })
+
+  .add("as randic 10,000", () => { as_randic(seq_10_000) })
+  .add("as randic 100,000", () => { as_randic(seq_100_000) })
+  .add("as randic 1,000,000", () => { as_randic(seq_1_000_000) })
 
   .on("cycle", event => {
     console.log(String(event.target));
