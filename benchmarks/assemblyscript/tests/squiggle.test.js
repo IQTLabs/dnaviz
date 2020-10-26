@@ -99,7 +99,7 @@ test('test squiggle length', () => {
 test('check case insensitivity', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(squiggle(s.toLowerCase())).toBe(squiggle(s));
+      expect(squiggle(s.toLowerCase())).toEqual(squiggle(s));
     }),
   );
 });
@@ -113,7 +113,7 @@ test('check non-ATGCU cases', () => {
       // let c_matches = s.match(/[Cc]/g) || [];
       let y = squiggle(s)[1];
 
-      expect(g_matches.length - tu_matches.length).toBe(y[y.length - 1]);
+      expect(g_matches.length - tu_matches.length).toEqual(y[y.length - 1]);
     }),
   );
 });

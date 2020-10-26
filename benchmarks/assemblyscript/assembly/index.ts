@@ -16,6 +16,8 @@ export function x_squiggle(length: i32): Float64Array {
 }
 
 export function y_squiggle(sequence: string, length: i32): Float64Array {
+  sequence = sequence.toUpperCase();
+  
   let y_vals = new Float64Array(2 * length + 1);
 
   for (let i = 0; i < 2 * length; i += 2) {
@@ -52,6 +54,8 @@ export function y_squiggle(sequence: string, length: i32): Float64Array {
 
 // squiggle single array return
 export function squiggle(sequence: string, length: i32): Float64Array {
+  sequence = sequence.toUpperCase();
+
   let result = new Float64Array(4 * length + 2);
 
   let yCoord = 0.0;
