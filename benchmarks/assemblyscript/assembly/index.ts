@@ -287,6 +287,8 @@ export function y_yau_bp(sequence: string, length: i32): Float64Array {
 
 // yau single array return
 export function yau(sequence: string, length: i32): Float64Array {
+  sequence = sequence.toUpperCase();
+  
   let result = new Float64Array(2 * length + 2);
 
   let onehalfsqrt3 = (3 ** 0.5) / 2;
@@ -321,7 +323,7 @@ export function yau(sequence: string, length: i32): Float64Array {
         yCoord -= 0.5;
         break;
       default:
-        // error message
+        throw new Error('non-atgcu base');
         break;
     }
   }
@@ -353,7 +355,7 @@ export function y_randic(sequence: string, length: i32): Float64Array {
         unchecked((y_vals[i] = 1));
         break;
       default:
-        // error message
+        throw new Error('non-atgcu base');
         break;
     }
   }

@@ -6469,6 +6469,13 @@
   local.get $0
   call $~lib/rt/pure/__retain
   local.set $0
+  local.get $0
+  call $~lib/string/String#toUpperCase
+  local.set $2
+  local.get $0
+  call $~lib/rt/pure/__release
+  local.get $2
+  local.set $0
   i32.const 0
   i32.const 2
   local.get $1
@@ -6637,7 +6644,12 @@
       local.set $5
       br $break|1
      end
-     br $break|1
+     i32.const 5824
+     i32.const 5872
+     i32.const 326
+     i32.const 9
+     call $~lib/builtins/abort
+     unreachable
     end
     local.get $6
     i32.const 1
@@ -6740,7 +6752,12 @@
       call $~lib/typedarray/Float64Array#__uset
       br $break|1
      end
-     br $break|1
+     i32.const 5824
+     i32.const 5872
+     i32.const 358
+     i32.const 9
+     call $~lib/builtins/abort
+     unreachable
     end
     local.get $3
     i32.const 1

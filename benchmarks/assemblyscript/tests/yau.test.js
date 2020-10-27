@@ -73,8 +73,8 @@ test('test yau of C', () => {
 });
 
 test('test yau of ATGC', () => {
- expect(as_yau('ATGC')).toEqual(
-   new Float64Array[0, 0.5, 1, 1 + 3 ** 0.5 / 2, 1 + 2 * (3 ** 0.5 / 2), 0, -(3 ** 0.5 / 2), 0, -0.5, 0],
+ expect(as_yau('ATGC')).toBeCloseTo(
+   new Float64Array([0, 0.5, 1, 1 + 3 ** 0.5 / 2, 1 + 2 * (3 ** 0.5 / 2), 0, -(3 ** 0.5 / 2), 0, -0.5, 0]),
  );
 });
 
@@ -97,12 +97,13 @@ test('test last x value correctness for yau', () => {
      // how many Gs and Cs are there?
      let gc_matches = s.match(/[GgCc]/g) || [];
      let gc_match_count = gc_matches.length;
-
+     
+     let output = as_yau(s);
      // we know the last x value will be the number of
      // A/T/U bases * 0.5 plus the number of G/C bases * sqrt(3)/2
      expect(
        atu_match_count * 0.5 + gc_match_count * (3 ** 0.5 / 2),
-     ).toBeCloseTo(as_yau(s)[length + 1]);
+     ).toBeCloseTo(output[s.length + 1]);
    }),
  );
 });
@@ -118,10 +119,12 @@ test('test y value correctness for yau', () => {
      let g_matches = s.match(/[Gg]/g) || [];
      let c_matches = s.match(/[Cc]/g) || [];
      let gc_match_count = -g_matches.length + c_matches.length;
+    
+     let output = as_yau(s);
 
      expect(
        atu_match_count * (3 ** 0.5 / 2) + gc_match_count * 0.5,
-     ).toBeCloseTo(as_yau(s)[2 * length + 2]);
+     ).toEqual(output[2 * s.length + 2]);
    }),
  );
 });
@@ -129,8 +132,9 @@ test('test y value correctness for yau', () => {
 test('test yau length', () => {
  fc.assert(
    fc.property(dna, (s) => {
-     let t = yau(s);
-     expect(t.length).toEqual(s * 2 + 2)
+     let t = as_yau(s);
+     let w = s.length * 2 + 2;
+     expect(t.length).toEqual(w);
    }),
  );
 });
