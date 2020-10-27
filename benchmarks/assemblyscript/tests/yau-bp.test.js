@@ -45,15 +45,43 @@ function as_yau_bp(seq) {
  return [x, y];
 }
 
+test('test yau-BP of A', () => {
+  expect(as_yau_bp('A')).toEqual([
+    new Float64Array([0, 1]),
+    new Float64Array([0, -1.0]),
+  ]);
+});
+
+test('test yau-BP of T', () => {
+  expect(as_yau_bp('T')).toEqual([
+    new Float64Array([0, 1]),
+    new Float64Array([0, 1.0]),
+  ]);
+});
+
+test('test yau-BP of G', () => {
+  expect(as_yau_bp('G')).toEqual([
+    new Float64Array([0, 1]),
+    new Float64Array([0, -0.5]),
+  ]);
+});
+
+test('test yau-BP of C', () => {
+  expect(as_yau_bp('C')).toEqual([
+    new Float64Array([0, 1]),
+    new Float64Array([0, 0.5]),
+  ]);
+});
+
 test('test x value correctness for yau-bp', () => {
  fc.assert(
    fc.property(dna, (s) => {
-
+     let output = as_yau_bp(s);
      // how many characters are there? if none, assigned 0
      let atcgu_matches = s.match(/[AaTtCcGgUu]/g) || [];
      let atcgu_match_count = atcgu_matches.length;
 
-     expect(atcgu_match_count * 1).toEqual(as_yau_bp(s)[length + 1]);
+     expect(atcgu_match_count * 1).toEqual(output[0][s.length]);
    }),
  );
 });
@@ -61,7 +89,8 @@ test('test x value correctness for yau-bp', () => {
 test('test y value correctness for yau-bp', () => {
  fc.assert(
    fc.property(dna, (s) => {
-   
+     let output = as_yau_bp(s); 
+
      // because a's and t's are assigned different y-values, two variables are needed
      let tu_matches = s.match(/[TtUu]/g) || [];
      let a_matches = s.match(/[Aa]/g) || [];
@@ -72,36 +101,36 @@ test('test y value correctness for yau-bp', () => {
      let gc_match_count = -g_matches.length + c_matches.length;
 
      //  |a\t\u| = 1, |g\c| = 0.5
-     expect(atu_match_count + gc_match_count * 0.5).toEqual(as_yau_bp(s)[-1]);
+     expect(atu_match_count + gc_match_count * 0.5).toEqual(output[1][s.length]);
    }),
  );
 });
 
-test('test yau-bp length', () => {
+test('test yau-bp y array length', () => {
  fc.assert(
    fc.property(dna, (s) => {
-     expect(as_yau_bp(s).length == s.length * 2 + 2).toBe(true);
+     expect(as_yau_bp(s)[1].length == s.length + 1).toBe(true);
    }),
  );
 });
 
 test('test yau_bp of basic', () => {
  expect(as_yau_bp('ATGC')).toEqual([
-   new Float32Array([0, 1, 2, 3, 4]),
+   new Float64Array([0, 1, 2, 3, 4]),
    new Float64Array([0, -1, 0, -0.5, 0]),
  ]);
 });
 
 test('check case insensitivity', () => {
- fc.assert(
-   fc.property(dna, (s) => {
-     expect(as_yau_bp(s)).toEqual(as_yau_bp(s.toLowerCase()));
-   }),
- );
-});
+  fc.assert(
+    fc.property(dna, (s) => {
+      expect(as_yau_bp(s)).toEqual(as_yau_bp(s.toLowerCase()));
+    }),
+  );
+ });
 
 test('throws on non-ATGCU', () => {
- expect(() => {
-   as_yau_bp('NAN');
- }).toThrow();
-});
+  expect(() => {
+    as_yau_bp('NAN');
+  }).toThrow();
+ });

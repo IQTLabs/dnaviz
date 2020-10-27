@@ -73,7 +73,7 @@ test('test yau of C', () => {
 });
 
 test('test yau of ATGC', () => {
- expect(as_yau('ATGC')).toBeCloseTo(
+ expect(as_yau('ATGC')).toEqual(
    new Float64Array([0, 0.5, 1, 1 + 3 ** 0.5 / 2, 1 + 2 * (3 ** 0.5 / 2), 0, -(3 ** 0.5 / 2), 0, -0.5, 0]),
  );
 });

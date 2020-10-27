@@ -5320,14 +5320,14 @@
   i32.add
   call $~lib/typedarray/Float64Array#constructor
   local.set $1
-  f64.const 0
+  f64.const 1
   local.set $2
-  i32.const 0
+  i32.const 1
   local.set $3
   loop $for-loop|0
    local.get $3
    local.get $0
-   i32.lt_s
+   i32.le_s
    local.set $4
    local.get $4
    if
@@ -5390,6 +5390,8 @@
           block $case0|1
            local.get $0
            local.get $4
+           i32.const 1
+           i32.sub
            call $~lib/string/String#charCodeAt
            local.set $6
            local.get $6
@@ -5463,7 +5465,12 @@
       local.set $3
       br $break|1
      end
-     br $break|1
+     i32.const 5824
+     i32.const 5872
+     i32.const 277
+     i32.const 9
+     call $~lib/builtins/abort
+     unreachable
     end
     local.get $4
     i32.const 1

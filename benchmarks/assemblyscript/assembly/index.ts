@@ -239,10 +239,10 @@ export function x_qi(length: i32): Float64Array {
 // yau-bp nested array return
 export function x_yau_bp(length: i32): Float64Array {
   let x_vals = new Float64Array(length + 1);
-  let xCoord: f64 = 0;
+  let xCoord: f64 = 1;
 
-  for (let i = 0; i < length; i++) {
-    unchecked((x_vals[i] = xCoord));
+  for (let i = 1; i <= length; i++) {
+    unchecked(x_vals[i] = xCoord);
     xCoord++;
   }
 
@@ -255,7 +255,7 @@ export function y_yau_bp(sequence: string, length: i32): Float64Array {
   let y_vals = new Float64Array(length + 1);
   let yCoord = 0.0;
   for (let i = 1; i <= length; i++) {
-    switch (sequence.charCodeAt(i)) {
+    switch (sequence.charCodeAt(i - 1)) {
       case 0x41: // "A"
         unchecked((y_vals[i] = yCoord - 1));
         yCoord--;
@@ -274,7 +274,7 @@ export function y_yau_bp(sequence: string, length: i32): Float64Array {
         yCoord -= 0.5;
         break;
       default:
-        // error message
+        throw new Error('non-atgcu base');
         break;
     }
   }
