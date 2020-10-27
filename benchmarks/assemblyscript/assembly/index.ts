@@ -223,9 +223,9 @@ export function y_qi(sequence: string, length: i32): Float64Array {
 
 export function x_qi(length: i32): Float64Array {
   let x_vals = new Float64Array(length - 1);
-  let xCoord: f64 = 1;
+  let xCoord: f64 = 0;
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < length - 1; i++) {
     unchecked((x_vals[i] = xCoord));
     xCoord += 1.0;
   }
@@ -340,7 +340,7 @@ export function y_randic(sequence: string, length: i32): Float64Array {
   let y_vals = new Float64Array(length);
 
   for (let i = 0; i < length; i++) {
-    switch (sequence.charCodeAt(i >>> 1)) {
+    switch (sequence.charCodeAt(i)) {
       case 0x41: // "A"
         unchecked((y_vals[i] = 3));
         break;

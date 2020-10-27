@@ -1,5 +1,8 @@
 const fc = require('fast-check');
 
+const {toBeDeepCloseTo,toMatchCloseTo} = require('jest-matcher-deep-close-to');
+expect.extend({toBeDeepCloseTo, toMatchCloseTo});
+
 const dna = fc.stringOf(
   fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'),
   1,
@@ -124,7 +127,7 @@ test('test yau_bp of basic', () => {
 test('check case insensitivity', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(as_yau_bp(s)).toEqual(as_yau_bp(s.toLowerCase()));
+      expect(as_yau_bp(s)).toMatchCloseTo(as_yau_bp(s.toLowerCase()));
     }),
   );
  });
@@ -134,3 +137,6 @@ test('throws on non-ATGCU', () => {
     as_yau_bp('NAN');
   }).toThrow();
  });
+
+ console.log(as_yau_bp("AA"))
+ console.log(as_yau_bp("aa"))

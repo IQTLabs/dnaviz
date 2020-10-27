@@ -1,9 +1,9 @@
 const fc = require('fast-check');
 
-const dna = fc.stringOf(
+const dna2 = fc.stringOf(
   fc.constantFrom('A', 'a', 'T', 't', 'U', 'u', 'C', 'c', 'G', 'g'),
-  1,
-  10000,
+  2,
+  20,
 );
 
 const {
@@ -86,7 +86,7 @@ test('test randic', () => {
   );
 });
 
-const qiKey: any = {
+const qiKey = {
   AA: 12,
   AC: 4,
   GT: 6,
@@ -128,3 +128,6 @@ test('test qi', () => {
     }),
   );
 });
+
+console.log(as_qi("ATGC"))
+console.log(as_randic("ATGC"))

@@ -5281,13 +5281,15 @@
   i32.sub
   call $~lib/typedarray/Float64Array#constructor
   local.set $1
-  f64.const 1
+  f64.const 0
   local.set $2
   i32.const 0
   local.set $3
   loop $for-loop|0
    local.get $3
    local.get $0
+   i32.const 1
+   i32.sub
    i32.lt_s
    local.set $4
    local.get $4
@@ -6708,8 +6710,6 @@
           block $case0|1
            local.get $0
            local.get $3
-           i32.const 1
-           i32.shr_u
            call $~lib/string/String#charCodeAt
            local.set $5
            local.get $5
