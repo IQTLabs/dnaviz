@@ -103,7 +103,7 @@ test('test last x value correctness for yau', () => {
      // A/T/U bases * 0.5 plus the number of G/C bases * sqrt(3)/2
      expect(
        atu_match_count * 0.5 + gc_match_count * (3 ** 0.5 / 2),
-     ).toBeCloseTo(output[s.length + 1]);
+     ).toBeCloseTo(output[s.length]);
    }),
  );
 });
@@ -124,7 +124,7 @@ test('test y value correctness for yau', () => {
 
      expect(
        atu_match_count * (3 ** 0.5 / 2) + gc_match_count * 0.5,
-     ).toEqual(output[2 * s.length + 2]);
+     ).toBeCloseTo(output[2 * s.length + 1]);
    }),
  );
 });
