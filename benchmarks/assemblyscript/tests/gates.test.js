@@ -35,7 +35,7 @@ function getFloat64Array(ptr) {
 
 function as_gates(seq) {
  const inStrPtr = __retain(__allocString(seq));
- const outArrPtr = gates(inStrPtr, seq.length);
+ const outArrPtr = __retain(gates(inStrPtr, seq.length));
  const resultArr = getFloat64Array(outArrPtr);
  __release(outArrPtr);
  __release(inStrPtr);

@@ -40,10 +40,10 @@ function getFloat64Array(ptr) {
   return new Float64Array(buffer, bufPtr, U32[(bufPtr - 4) >>> 2] >>> 3);
 }
 
-function squiggle(seq) {
+function as_squiggle(seq) {
   const inStrPtr = __retain(__allocString(seq));
-  const xPtr = x_squiggle(seq.length);
-  const yPtr = y_squiggle(inStrPtr, seq.length);
+  const xPtr = __retain(x_squiggle(seq.length));
+  const yPtr = __retain(y_squiggle(inStrPtr, seq.length));
   const x = getFloat64Array(xPtr);
   const y = getFloat64Array(yPtr);
   __release(inStrPtr);
@@ -53,35 +53,35 @@ function squiggle(seq) {
 }
 
 test('test squiggle of ATGC', () => {
-  expect(squiggle('ATGC')).toEqual([
+  expect(as_squiggle('ATGC')).toEqual([
     new Float64Array([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4]),
     new Float64Array([0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]),
   ]);
 });
 
 test('test squiggle of A', () => {
-  expect(squiggle('A')).toEqual([
+  expect(as_squiggle('A')).toEqual([
     new Float64Array([0, 0.5, 1]),
     new Float64Array([0, 0.5, 0]),
   ]);
 });
 
 test('test squiggle of T', () => {
-  expect(squiggle('T')).toEqual([
+  expect(as_squiggle('T')).toEqual([
     new Float64Array([0, 0.5, 1]),
     new Float64Array([0, -0.5, -1]),
   ]);
 });
 
 test('test squiggle of G', () => {
-  expect(squiggle('G')).toEqual([
+  expect(as_squiggle('G')).toEqual([
     new Float64Array([0, 0.5, 1]),
     new Float64Array([0, 0.5, 1]),
   ]);
 });
 
 test('test squiggle of C', () => {
-  expect(squiggle('C')).toEqual([
+  expect(as_squiggle('C')).toEqual([
     new Float64Array([0, 0.5, 1]),
     new Float64Array([0, -0.5, 0]),
   ]);
@@ -90,8 +90,8 @@ test('test squiggle of C', () => {
 test('test squiggle length', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(squiggle(s)[0].length).toBe(squiggle(s)[1].length);
-      expect(squiggle(s)[0].length == 2 * s.length + 1).toBe(true);
+      expect(as_squiggle(s)[0].length).toBe(as_squiggle(s)[1].length);
+      expect(as_squiggle(s)[0].length == 2 * s.length + 1).toBe(true);
     }),
   );
 });
@@ -99,7 +99,7 @@ test('test squiggle length', () => {
 test('check case insensitivity', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(squiggle(s.toLowerCase())).toEqual(squiggle(s));
+      expect(as_squiggle(s.toLowerCase())).toEqual(as_squiggle(s));
     }),
   );
 });
@@ -111,9 +111,9 @@ test('check non-ATGCU cases', () => {
       // let a_matches = s.match(/[Aa]/g) || [];
       let g_matches = s.match(/[Gg]/g) || [];
       // let c_matches = s.match(/[Cc]/g) || [];
-      let y = squiggle(s)[1];
+      let output = as_squiggle(s)[1];
 
-      expect(g_matches.length - tu_matches.length).toEqual(y[y.length - 1]);
+      expect(g_matches.length - tu_matches.length).toEqual(output[output.length - 1]);
     }),
   );
 });

@@ -38,10 +38,11 @@ function getFloat64Array(ptr) {
 
 function as_qi(seq) {
  const inStrPtr = __retain(__allocString(seq));
- const xPtr = x_qi(seq.length);
- const yPtr = y_qi(inStrPtr, seq.length);
+ const xPtr = __retain(x_qi(seq.length));
+ const yPtr = __retain(y_qi(inStrPtr, seq.length));
  const x = getFloat64Array(xPtr);
  const y = getFloat64Array(yPtr);
+ __release(inStrPtr);
  __release(xPtr);
  __release(yPtr);
  return [x, y];
@@ -49,10 +50,11 @@ function as_qi(seq) {
 
 function as_randic(seq) {
  const inStrPtr = __retain(__allocString(seq));
- const xPtr = x_randic(seq.length);
- const yPtr = y_randic(inStrPtr, seq.length);
+ const xPtr = __retain(x_randic(seq.length));
+ const yPtr = __retain(y_randic(inStrPtr, seq.length));
  const x = getFloat64Array(xPtr);
  const y = getFloat64Array(yPtr);
+ __release(inStrPtr);
  __release(xPtr);
  __release(yPtr);
  return [x, y];

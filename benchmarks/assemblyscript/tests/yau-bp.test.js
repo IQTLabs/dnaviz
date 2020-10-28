@@ -39,10 +39,11 @@ function getFloat64Array(ptr) {
 
 function as_yau_bp(seq) {
  const inStrPtr = __retain(__allocString(seq));
- const xPtr = x_yau_bp(seq.length);
- const yPtr = y_yau_bp(inStrPtr, seq.length);
+ const xPtr = __retain(x_yau_bp(seq.length));
+ const yPtr = __retain(y_yau_bp(inStrPtr, seq.length));
  const x = getFloat64Array(xPtr);
  const y = getFloat64Array(yPtr);
+ __release(inStrPtr);
  __release(xPtr);
  __release(yPtr);
  return [x, y];
@@ -127,7 +128,7 @@ test('test yau_bp of basic', () => {
 test('check case insensitivity', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(as_yau_bp(s)).toMatchCloseTo(as_yau_bp(s.toLowerCase()));
+      expect(as_yau_bp(s)).toEqual(as_yau_bp(s.toLowerCase()));
     }),
   );
  });
