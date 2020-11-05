@@ -12,7 +12,7 @@ const {
   __release,
   memory,
   gates
-} = require('../index');
+} = require('../src/index');
 
 let alloc = __alloc;
 

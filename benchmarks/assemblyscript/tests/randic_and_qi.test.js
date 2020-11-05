@@ -15,7 +15,7 @@ const {
   y_qi,
   x_randic,
   y_randic
-} = require('../index');
+} = require('../src/index');
 
 let alloc = __alloc;
 

@@ -16,7 +16,7 @@ const {
   memory,
   y_yau_bp,
   x_yau_bp
-} = require('../index');
+} = require('../src/index');
 
 let alloc = __alloc;
 

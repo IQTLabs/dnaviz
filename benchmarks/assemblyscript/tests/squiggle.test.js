@@ -19,7 +19,7 @@ const {
   memory,
   x_squiggle,
   y_squiggle,
-} = require('../index');
+} = require('../src/index');
 
 let alloc = __alloc;
 
