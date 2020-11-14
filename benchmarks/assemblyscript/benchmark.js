@@ -7,8 +7,8 @@ const {
   as_yau_bp,
   as_randic,
   as_qi,
-  as_gates
-} = require("./src/functions.js")
+  as_gates,
+} = require('./src/functions.js');
 
 function randomSeq(length) {
   var result = '';

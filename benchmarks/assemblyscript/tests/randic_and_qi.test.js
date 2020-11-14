@@ -6,10 +6,7 @@ const dna2 = fc.stringOf(
   20,
 );
 
-const {
-  as_qi,
-  as_randic
-} = require("../src/functions.js")
+const { as_qi, as_randic } = require('../src/functions.js');
 
 const randicKey = {
   A: 3,

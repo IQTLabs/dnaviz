@@ -1,7 +1,3 @@
-
-
-
-
 // squiggle nested array return
 export function x_squiggle(length: i32): Float64Array {
   let x_vals = new Float64Array(2 * length + 1);
@@ -17,7 +13,7 @@ export function x_squiggle(length: i32): Float64Array {
 
 export function y_squiggle(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase();
-  
+
   let y_vals = new Float64Array(2 * length + 1);
 
   for (let i = 0; i < 2 * length; i += 2) {
@@ -48,9 +44,6 @@ export function y_squiggle(sequence: string, length: i32): Float64Array {
 
   return y_vals;
 }
-
-
-
 
 // squiggle single array return
 export function squiggle(sequence: string, length: i32): Float64Array {
@@ -93,9 +86,6 @@ export function squiggle(sequence: string, length: i32): Float64Array {
   return result;
 }
 
-
-
-
 // gates single array return
 export function gates(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase();
@@ -132,8 +122,6 @@ export function gates(sequence: string, length: i32): Float64Array {
   return result;
 }
 
-
-
 export let key = new Map<string, i32>();
 key.set('AA', 12);
 key.set('AC', 4);
@@ -158,12 +146,76 @@ export function y_qi(sequence: string, length: i32): Float64Array {
   const result = new Float64Array(length - 1);
 
   for (let i = 0; i < length - 1; i++) {
-    let S_1 = sequence.charAt(i);
-    let S_2 = sequence.charAt(i + 1)
-
-    let val: i32 = key.has(S_1 + S_2) ? key.get(S_1 + S_2) : 0;
-    unchecked(result[i] = val)
+    let Ch_1 = sequence.charCodeAt(i + 0);
+    let Ch_2 = sequence.charCodeAt(i + 1);
+    switch (Ch_1) {
+      case 0x41:
+        switch (Ch_2) {
+          case 0x41: // AA
+            unchecked((result[i] = 12));
+            break
+          case 0x43: // AC
+            unchecked((result[i] = 4));
+            break
+          case 0x54: // AT
+          case 0x55: // AU
+            unchecked((result[i] = 8));
+            break
+          case 0x47: // AG
+            unchecked((result[i] = 0));
+        }
+        break
+      case 0x43:
+        switch (Ch_2) {
+          case 0x41: // CA
+            unchecked((result[i] = 5));
+            break
+          case 0x43: // CC
+            unchecked((result[i] = 13));
+            break
+          case 0x54: // CT
+          case 0x55: // CU
+            unchecked((result[i] = 2));
+            break
+          case 0x47: // CG
+            unchecked((result[i] = 10));
+        }
+        break
+      case 0x54:
+      case 0x55:
+        switch (Ch_2) {
+          case 0x41: // TA, UA
+            unchecked((result[i] = 9));
+            break
+          case 0x43: // TC, UC
+            unchecked((result[i] = 3));
+            break
+          case 0x54: // TT
+          case 0x55: // UU
+            unchecked((result[i] = 15));
+            break
+          case 0x47: // TG, UG
+            unchecked((result[i] = 7));
+        }
+        break
+      case 0x47:
+        switch (Ch_2) {
+          case 0x41: // GA
+            unchecked((result[i] = 1));
+            break
+          case 0x43: // GC
+            unchecked((result[i] = 11));
+            break
+          case 0x54: // GT
+          case 0x55: // GU
+            unchecked((result[i] = 6));
+            break
+          case 0x47: // GG
+            unchecked((result[i] = 14));
+        }
+    }
   }
+
   return result;
 }
 
@@ -179,16 +231,13 @@ export function x_qi(length: i32): Float64Array {
   return x_vals;
 }
 
-
-
-
 // yau-bp nested array return
 export function x_yau_bp(length: i32): Float64Array {
   let x_vals = new Float64Array(length + 1);
   let xCoord: f64 = 1;
 
   for (let i = 1; i <= length; i++) {
-    unchecked(x_vals[i] = xCoord);
+    unchecked((x_vals[i] = xCoord));
     xCoord++;
   }
 
@@ -228,16 +277,13 @@ export function y_yau_bp(sequence: string, length: i32): Float64Array {
   return y_vals;
 }
 
-
-
-
 // yau single array return
 export function yau(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase();
-  
+
   let result = new Float64Array(2 * length + 2);
 
-  let onehalfsqrt3 = (3 ** 0.5) / 2;
+  let onehalfsqrt3 = 3 ** 0.5 / 2;
 
   let xCoord = 0.0;
   let yCoord = 0.0;
@@ -275,9 +321,6 @@ export function yau(sequence: string, length: i32): Float64Array {
   }
   return result;
 }
-
-
-
 
 // randic nested array return
 export function y_randic(sequence: string, length: i32): Float64Array {
