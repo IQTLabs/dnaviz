@@ -37,7 +37,11 @@ function getFloat64Array(ptr) {
 
 module.exports.as_yau = function as_yau(seq) {
   const inStrPtr = __retain(__allocString(seq));
+<<<<<<< HEAD
   const outArrPtr = (yau(inStrPtr, seq.length));
+=======
+  const outArrPtr = yau(inStrPtr, seq.length);
+>>>>>>> 5bb38abb1310cbeb482a0ead4dfd3a1624937824
   const resultArr = getFloat64Array(outArrPtr);
   __release(outArrPtr);
   __release(inStrPtr);
@@ -46,8 +50,13 @@ module.exports.as_yau = function as_yau(seq) {
 
 module.exports.as_qi = function as_qi(seq) {
   const inStrPtr = __retain(__allocString(seq));
+<<<<<<< HEAD
   const xPtr = (x_qi(seq.length));
   const yPtr = (y_qi(inStrPtr, seq.length));
+=======
+  const xPtr = x_qi(seq.length);
+  const yPtr = y_qi(inStrPtr, seq.length);
+>>>>>>> 5bb38abb1310cbeb482a0ead4dfd3a1624937824
   const x = getFloat64Array(xPtr);
   const y = getFloat64Array(yPtr);
   __release(xPtr);
@@ -58,8 +67,13 @@ module.exports.as_qi = function as_qi(seq) {
 
 module.exports.as_yau_bp = function as_yau_bp(seq) {
   const inStrPtr = __retain(__allocString(seq));
+<<<<<<< HEAD
   const xPtr = (x_yau_bp(seq.length));
   const yPtr = (y_yau_bp(inStrPtr, seq.length));
+=======
+  const xPtr = x_yau_bp(seq.length);
+  const yPtr = y_yau_bp(inStrPtr, seq.length);
+>>>>>>> 5bb38abb1310cbeb482a0ead4dfd3a1624937824
   const x = getFloat64Array(xPtr);
   const y = getFloat64Array(yPtr);
   __release(xPtr);
@@ -70,8 +84,13 @@ module.exports.as_yau_bp = function as_yau_bp(seq) {
 
 module.exports.as_randic = function as_randic(seq) {
   const inStrPtr = __retain(__allocString(seq));
+<<<<<<< HEAD
   const xPtr = (x_randic(seq.length));
   const yPtr = (y_randic(inStrPtr, seq.length));
+=======
+  const xPtr = x_randic(seq.length);
+  const yPtr = y_randic(inStrPtr, seq.length);
+>>>>>>> 5bb38abb1310cbeb482a0ead4dfd3a1624937824
   const x = getFloat64Array(xPtr);
   const y = getFloat64Array(yPtr);
   __release(xPtr);
@@ -84,8 +103,13 @@ module.exports.as_squiggle_two_array_output = function as_squiggle_two_array_out
   seq,
 ) {
   const inStrPtr = __retain(__allocString(seq));
+<<<<<<< HEAD
   const xPtr = (x_squiggle(seq.length));
   const yPtr = (y_squiggle(inStrPtr, seq.length));
+=======
+  const xPtr = x_squiggle(seq.length);
+  const yPtr = y_squiggle(inStrPtr, seq.length);
+>>>>>>> 5bb38abb1310cbeb482a0ead4dfd3a1624937824
   const x = getFloat64Array(xPtr);
   const y = getFloat64Array(yPtr);
   __release(xPtr);
@@ -96,7 +120,11 @@ module.exports.as_squiggle_two_array_output = function as_squiggle_two_array_out
 
 module.exports.as_squiggle = function as_squiggle(seq) {
   const inStrPtr = __retain(__allocString(seq));
+<<<<<<< HEAD
   const outArrPtr = (squiggle(inStrPtr, seq.length));
+=======
+  const outArrPtr = squiggle(inStrPtr, seq.length);
+>>>>>>> 5bb38abb1310cbeb482a0ead4dfd3a1624937824
   const resultArr = getFloat64Array(outArrPtr);
   __release(outArrPtr);
   __release(inStrPtr);
@@ -105,7 +133,11 @@ module.exports.as_squiggle = function as_squiggle(seq) {
 
 module.exports.as_gates = function as_gates(seq) {
   const inStrPtr = __retain(__allocString(seq));
+<<<<<<< HEAD
   const outArrPtr = (gates(inStrPtr, seq.length));
+=======
+  const outArrPtr = gates(inStrPtr, seq.length);
+>>>>>>> 5bb38abb1310cbeb482a0ead4dfd3a1624937824
   const resultArr = getFloat64Array(outArrPtr);
   __release(outArrPtr);
   __release(inStrPtr);
