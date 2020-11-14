@@ -134,7 +134,23 @@ export function gates(sequence: string, length: i32): Float64Array {
 
 
 
-
+export let key = new Map<string, i32>();
+key.set('AA', 12);
+key.set('AC', 4);
+key.set('GT', 6);
+key.set('AG', 0);
+key.set('CC', 13);
+key.set('CA', 5);
+key.set('CG', 10);
+key.set('TT', 15);
+key.set('GG', 14);
+key.set('GC', 11);
+key.set('AT', 8);
+key.set('GA', 1);
+key.set('TG', 7);
+key.set('TA', 9);
+key.set('TC', 3);
+key.set('CT', 2);
 //qi nested array return
 export function y_qi(sequence: string, length: i32): Float64Array {
   sequence = sequence.toUpperCase();
@@ -143,81 +159,11 @@ export function y_qi(sequence: string, length: i32): Float64Array {
 
   for (let i = 0; i < length - 1; i++) {
     let S_1 = sequence.charAt(i);
-    let S_2 = sequence.charAt(i + 1);
-    if (S_1 != 'A' && S_1 != 'T' && S_1 != 'U' && S_1 != 'G' && S_1 != 'C') {
-      throw new Error('non-atgcu base');
-    } else if (
-      S_2 != 'A' &&
-      S_2 != 'T' &&
-      S_2 != 'U' &&
-      S_2 != 'G' &&
-      S_2 != 'C'
-    ) {
-      throw new Error('non-atgcu base');
-    } else if (S_1 === 'U') {
-      S_1 = 'T';
-    } else if (S_2 === 'U') {
-      S_2 = 'T';
-    }
+    let S_2 = sequence.charAt(i + 1)
 
-    let S = S_1 + S_2;
-
-    switch (true) {
-      case "AA" == S:
-        unchecked((result[i] = 12));
-        break;
-      case "AC" == S:
-        unchecked((result[i] = 4));
-        break;
-      case "GT" == S:
-        unchecked((result[i] = 6));
-        break;
-      case "AG" == S:
-        unchecked((result[i] = 0));
-        break;
-      case "CC" == S:
-        unchecked((result[i] = 13));
-        break;
-      case "CA" == S:
-        unchecked((result[i] = 5));
-        break;
-      case "CG" == S:
-        unchecked((result[i] = 10));
-        break;
-      case "TT" == S:
-        unchecked((result[i] = 15));
-        break;
-      case "GG" == S:
-        unchecked((result[i] = 14));
-        break;
-      case "GC" == S:
-        unchecked((result[i] = 11));
-        break;
-      case "AT" == S:
-        unchecked((result[i] = 8));
-        break;
-      case "GA" == S:
-        unchecked((result[i] = 1));
-        break;
-      case "TG" == S:
-        unchecked((result[i] = 7));
-        break;
-      case "TA" == S:
-        unchecked((result[i] = 9));
-        break;
-      case "TC" == S:
-        unchecked((result[i] = 3));
-        break;
-      case "CT" == S:
-        unchecked((result[i] = 2));
-        break;
-      default:
-        throw new Error('non-atgcu base');
-        break;
-    }
-    
+    let val: i32 = key.has(S_1 + S_2) ? key.get(S_1 + S_2) : 0;
+    unchecked(result[i] = val)
   }
-
   return result;
 }
 
