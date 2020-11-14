@@ -7,40 +7,8 @@ const dna = fc.stringOf(
 );
 
 const {
-  __alloc,
-  __retain,
-  __release,
-  memory,
-  gates
-} = require('../src/index');
-
-let alloc = __alloc;
-
-function __allocString(str) {
-  const length = str.length;
-  const ptr = alloc(length << 1, 1);
-  const U16 = new Uint16Array(memory.buffer);
-  for (let i = 0, p = ptr >>> 1; i < length; ++i) {
-    U16[p + i] = str.charCodeAt(i);
-  }
-  return ptr;
-}
-
-function getFloat64Array(ptr) {
-  const buffer = memory.buffer;
-  const U32 = new Uint32Array(buffer);
-  const bufPtr = U32[(ptr + 4) >>> 2];
-  return new Float64Array(buffer, bufPtr, U32[(bufPtr - 4) >>> 2] >>> 3);
-}
-
-function as_gates(seq) {
- const inStrPtr = __retain(__allocString(seq));
- const outArrPtr = __retain(gates(inStrPtr, seq.length));
- const resultArr = getFloat64Array(outArrPtr);
- __release(outArrPtr);
- __release(inStrPtr);
- return resultArr;
-}
+  as_gates
+} = require("../src/functions.js")
 
 test('test gates of A', () => {
  expect(as_gates('A')).toEqual(

@@ -10,44 +10,8 @@ const dna = fc.stringOf(
 );
 
 const {
-  __alloc,
-  __retain,
-  __release,
-  memory,
-  y_yau_bp,
-  x_yau_bp
-} = require('../src/index');
-
-let alloc = __alloc;
-
-function __allocString(str) {
-  const length = str.length;
-  const ptr = alloc(length << 1, 1);
-  const U16 = new Uint16Array(memory.buffer);
-  for (let i = 0, p = ptr >>> 1; i < length; ++i) {
-    U16[p + i] = str.charCodeAt(i);
-  }
-  return ptr;
-}
-
-function getFloat64Array(ptr) {
-  const buffer = memory.buffer;
-  const U32 = new Uint32Array(buffer);
-  const bufPtr = U32[(ptr + 4) >>> 2];
-  return new Float64Array(buffer, bufPtr, U32[(bufPtr - 4) >>> 2] >>> 3);
-}
-
-function as_yau_bp(seq) {
- const inStrPtr = __retain(__allocString(seq));
- const xPtr = __retain(x_yau_bp(seq.length));
- const yPtr = __retain(y_yau_bp(inStrPtr, seq.length));
- const x = getFloat64Array(xPtr);
- const y = getFloat64Array(yPtr);
- __release(inStrPtr);
- __release(xPtr);
- __release(yPtr);
- return [x, y];
-}
+  as_yau_bp
+} = require("../src/functions.js")
 
 test('test yau-BP of A', () => {
   expect(as_yau_bp('A')).toEqual([

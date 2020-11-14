@@ -13,75 +13,39 @@ const dna = fc.stringOf(
 );
 
 const {
-  __alloc,
-  __retain,
-  __release,
-  memory,
-  x_squiggle,
-  y_squiggle,
-} = require('../src/index');
-
-let alloc = __alloc;
-
-function __allocString(str) {
-  const length = str.length;
-  const ptr = alloc(length << 1, 1);
-  const U16 = new Uint16Array(memory.buffer);
-  for (let i = 0, p = ptr >>> 1; i < length; ++i) {
-    U16[p + i] = str.charCodeAt(i);
-  }
-  return ptr;
-}
-
-function getFloat64Array(ptr) {
-  const buffer = memory.buffer;
-  const U32 = new Uint32Array(buffer);
-  const bufPtr = U32[(ptr + 4) >>> 2];
-  return new Float64Array(buffer, bufPtr, U32[(bufPtr - 4) >>> 2] >>> 3);
-}
-
-function as_squiggle(seq) {
-  const inStrPtr = __retain(__allocString(seq));
-  const xPtr = __retain(x_squiggle(seq.length));
-  const yPtr = __retain(y_squiggle(inStrPtr, seq.length));
-  const x = getFloat64Array(xPtr);
-  const y = getFloat64Array(yPtr);
-  __release(inStrPtr);
-  __release(xPtr);
-  __release(yPtr);
-  return [x, y];
-}
+  as_squiggle_two_array_output
+} = require("../src/functions.js")
 
 test('test squiggle of ATGC', () => {
-  expect(as_squiggle('ATGC')).toEqual([
+  expect(as_squiggle_two_array_output('ATGC')).toEqual([
     new Float64Array([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4]),
     new Float64Array([0, 0.5, 0, -0.5, -1, -0.5, 0, -0.5, 0]),
   ]);
 });
 
 test('test squiggle of A', () => {
-  expect(as_squiggle('A')).toEqual([
+  expect(as_squiggle_two_array_output('A')).toEqual([
     new Float64Array([0, 0.5, 1]),
     new Float64Array([0, 0.5, 0]),
   ]);
 });
 
 test('test squiggle of T', () => {
-  expect(as_squiggle('T')).toEqual([
+  expect(as_squiggle_two_array_output('T')).toEqual([
     new Float64Array([0, 0.5, 1]),
     new Float64Array([0, -0.5, -1]),
   ]);
 });
 
 test('test squiggle of G', () => {
-  expect(as_squiggle('G')).toEqual([
+  expect(as_squiggle_two_array_output('G')).toEqual([
     new Float64Array([0, 0.5, 1]),
     new Float64Array([0, 0.5, 1]),
   ]);
 });
 
 test('test squiggle of C', () => {
-  expect(as_squiggle('C')).toEqual([
+  expect(as_squiggle_two_array_output('C')).toEqual([
     new Float64Array([0, 0.5, 1]),
     new Float64Array([0, -0.5, 0]),
   ]);
@@ -90,8 +54,8 @@ test('test squiggle of C', () => {
 test('test squiggle length', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(as_squiggle(s)[0].length).toBe(as_squiggle(s)[1].length);
-      expect(as_squiggle(s)[0].length == 2 * s.length + 1).toBe(true);
+      expect(as_squiggle_two_array_output(s)[0].length).toBe(as_squiggle_two_array_output(s)[1].length);
+      expect(as_squiggle_two_array_output(s)[0].length == 2 * s.length + 1).toBe(true);
     }),
   );
 });
@@ -99,7 +63,7 @@ test('test squiggle length', () => {
 test('check case insensitivity', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(as_squiggle(s.toLowerCase())).toEqual(as_squiggle(s));
+      expect(as_squiggle_two_array_output(s.toLowerCase())).toEqual(as_squiggle_two_array_output(s));
     }),
   );
 });
@@ -111,7 +75,7 @@ test('check non-ATGCU cases', () => {
       // let a_matches = s.match(/[Aa]/g) || [];
       let g_matches = s.match(/[Gg]/g) || [];
       // let c_matches = s.match(/[Cc]/g) || [];
-      let output = as_squiggle(s)[1];
+      let output = as_squiggle_two_array_output(s)[1];
 
       expect(g_matches.length - tu_matches.length).toEqual(output[output.length - 1]);
     }),

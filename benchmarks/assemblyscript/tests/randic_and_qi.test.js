@@ -7,58 +7,9 @@ const dna2 = fc.stringOf(
 );
 
 const {
-  __alloc,
-  __retain,
-  __release,
-  memory,
-  x_qi,
-  y_qi,
-  x_randic,
-  y_randic
-} = require('../src/index');
-
-let alloc = __alloc;
-
-function __allocString(str) {
-  const length = str.length;
-  const ptr = alloc(length << 1, 1);
-  const U16 = new Uint16Array(memory.buffer);
-  for (let i = 0, p = ptr >>> 1; i < length; ++i) {
-    U16[p + i] = str.charCodeAt(i);
-  }
-  return ptr;
-}
-
-function getFloat64Array(ptr) {
-  const buffer = memory.buffer;
-  const U32 = new Uint32Array(buffer);
-  const bufPtr = U32[(ptr + 4) >>> 2];
-  return new Float64Array(buffer, bufPtr, U32[(bufPtr - 4) >>> 2] >>> 3);
-}
-
-function as_qi(seq) {
- const inStrPtr = __retain(__allocString(seq));
- const xPtr = __retain(x_qi(seq.length));
- const yPtr = __retain(y_qi(inStrPtr, seq.length));
- const x = getFloat64Array(xPtr);
- const y = getFloat64Array(yPtr);
- __release(inStrPtr);
- __release(xPtr);
- __release(yPtr);
- return [x, y];
-}
-
-function as_randic(seq) {
- const inStrPtr = __retain(__allocString(seq));
- const xPtr = __retain(x_randic(seq.length));
- const yPtr = __retain(y_randic(inStrPtr, seq.length));
- const x = getFloat64Array(xPtr);
- const y = getFloat64Array(yPtr);
- __release(inStrPtr);
- __release(xPtr);
- __release(yPtr);
- return [x, y];
-}
+  as_qi,
+  as_randic
+} = require("../src/functions.js")
 
 const randicKey = {
   A: 3,
@@ -131,5 +82,3 @@ test('test qi', () => {
   );
 });
 
-console.log(as_qi("ATGC"))
-console.log(as_randic("ATGC"))
