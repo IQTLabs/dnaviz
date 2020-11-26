@@ -140,12 +140,12 @@ key.set('TA', 9);
 key.set('TC', 3);
 key.set('CT', 2);
 //qi nested array return
-export function y_qi(sequence: string, length: i32): Float64Array {
+export function y_qi(sequence: string): Float64Array {
   sequence = sequence.toUpperCase();
 
-  const result = new Float64Array(length - 1);
+  const result = new Float64Array(sequence.length - 1);
 
-  for (let i = 0; i < length - 1; i++) {
+  for (let i = 0; i < sequence.length - 1; i++) {
     let Ch_1 = sequence.charCodeAt(i + 0);
     let Ch_2 = sequence.charCodeAt(i + 1);
     switch (Ch_1) {
@@ -244,12 +244,12 @@ export function x_yau_bp(length: i32): Float64Array {
   return x_vals;
 }
 
-export function y_yau_bp(sequence: string, length: i32): Float64Array {
+export function y_yau_bp(sequence: string): Float64Array {
   sequence = sequence.toUpperCase();
 
-  let y_vals = new Float64Array(length + 1);
+  let y_vals = new Float64Array(sequence.length + 1);
   let yCoord = 0.0;
-  for (let i = 1; i <= length; i++) {
+  for (let i = 1; i <= sequence.length; i++) {
     switch (sequence.charCodeAt(i - 1)) {
       case 0x41: // "A"
         unchecked((y_vals[i] = yCoord - 1));
@@ -278,39 +278,39 @@ export function y_yau_bp(sequence: string, length: i32): Float64Array {
 }
 
 // yau single array return
-export function yau(sequence: string, length: i32): Float64Array {
+export function yau(sequence: string): Float64Array {
   sequence = sequence.toUpperCase();
 
-  let result = new Float64Array(2 * length + 2);
+  let result = new Float64Array(2 * sequence.length + 2);
 
   let onehalfsqrt3 = 3 ** 0.5 / 2;
 
   let xCoord = 0.0;
   let yCoord = 0.0;
-  for (let i = 1; i <= length; i++) {
+  for (let i = 1; i <= sequence.length; i++) {
     switch (sequence.charCodeAt(i - 1)) {
       case 0x41: // "A"
         unchecked((result[i] = xCoord + 0.5));
-        unchecked((result[i + length + 1] = yCoord - onehalfsqrt3));
+        unchecked((result[i + sequence.length + 1] = yCoord - onehalfsqrt3));
         xCoord += 0.5;
         yCoord -= onehalfsqrt3;
         break;
       case 0x43: // "C"
         unchecked((result[i] = xCoord + onehalfsqrt3));
-        unchecked((result[i + length + 1] = yCoord + 0.5));
+        unchecked((result[i + sequence.length + 1] = yCoord + 0.5));
         xCoord += onehalfsqrt3;
         yCoord += 0.5;
         break;
       case 0x54:
       case 0x55: // "T" && "U"
         unchecked((result[i] = xCoord + 0.5));
-        unchecked((result[i + length + 1] = yCoord + onehalfsqrt3));
+        unchecked((result[i + sequence.length + 1] = yCoord + onehalfsqrt3));
         xCoord += 0.5;
         yCoord += onehalfsqrt3;
         break;
       case 0x47: // "G"
         unchecked((result[i] = xCoord + onehalfsqrt3));
-        unchecked((result[i + length + 1] = yCoord - 0.5));
+        unchecked((result[i + sequence.length + 1] = yCoord - 0.5));
         xCoord += onehalfsqrt3;
         yCoord -= 0.5;
         break;
@@ -323,12 +323,12 @@ export function yau(sequence: string, length: i32): Float64Array {
 }
 
 // randic nested array return
-export function y_randic(sequence: string, length: i32): Float64Array {
+export function y_randic(sequence: string): Float64Array {
   sequence = sequence.toUpperCase();
 
-  let y_vals = new Float64Array(length);
+  let y_vals = new Float64Array(sequence.length);
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < sequence.length; i++) {
     switch (sequence.charCodeAt(i)) {
       case 0x41: // "A"
         unchecked((y_vals[i] = 3));
