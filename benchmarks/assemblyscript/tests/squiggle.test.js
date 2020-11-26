@@ -12,9 +12,7 @@ const dna = fc.stringOf(
   10000,
 );
 
-const {
-  as_squiggle_two_array_output
-} = require("../src/functions.js")
+const { as_squiggle_two_array_output } = require('../index');
 
 test('test squiggle of ATGC', () => {
   expect(as_squiggle_two_array_output('ATGC')).toEqual([
@@ -54,8 +52,12 @@ test('test squiggle of C', () => {
 test('test squiggle length', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(as_squiggle_two_array_output(s)[0].length).toBe(as_squiggle_two_array_output(s)[1].length);
-      expect(as_squiggle_two_array_output(s)[0].length == 2 * s.length + 1).toBe(true);
+      expect(as_squiggle_two_array_output(s)[0].length).toBe(
+        as_squiggle_two_array_output(s)[1].length,
+      );
+      expect(
+        as_squiggle_two_array_output(s)[0].length == 2 * s.length + 1,
+      ).toBe(true);
     }),
   );
 });
@@ -63,7 +65,9 @@ test('test squiggle length', () => {
 test('check case insensitivity', () => {
   fc.assert(
     fc.property(dna, (s) => {
-      expect(as_squiggle_two_array_output(s.toLowerCase())).toEqual(as_squiggle_two_array_output(s));
+      expect(as_squiggle_two_array_output(s.toLowerCase())).toEqual(
+        as_squiggle_two_array_output(s),
+      );
     }),
   );
 });
@@ -77,7 +81,9 @@ test('check non-ATGCU cases', () => {
       // let c_matches = s.match(/[Cc]/g) || [];
       let output = as_squiggle_two_array_output(s)[1];
 
-      expect(g_matches.length - tu_matches.length).toEqual(output[output.length - 1]);
+      expect(g_matches.length - tu_matches.length).toEqual(
+        output[output.length - 1],
+      );
     }),
   );
 });

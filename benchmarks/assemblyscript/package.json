@@ -1,26 +1,18 @@
 {
-  "name": "wasm-benchmarking",
-  "version": "1.0.0",
-  "description": "Benchmarking Webassembly versus Javascript",
-  "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --debug --importMemory",
-    "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap -O3 --noAssert  --importMemory",
-    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
+    "asbuild:untouched": "asc assembly/index.ts --target debug",
+    "asbuild:optimized": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized",
+    "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@assemblyscript/loader": "^0.13.3",
-    "fast-check": "^2.2.1",
-    "jest": "^26.4.2",
-    "jest-matcher-deep-close-to": "^2.0.1",
-    "prettier": "^2.1.1"
+    "@assemblyscript/loader": "^0.17.3"
   },
   "devDependencies": {
-    "assemblyscript": "^0.13.3",
-    "benchmark": "^2.1.4",
-    "dnaviz": "^1.0.0-0"
+    "assemblyscript": "^0.17.3",
+    "fast-check": "^2.7.0",
+    "jest": "^26.6.3",
+    "jest-matcher-deep-close-to": "^2.0.1",
+    "prettier": "^2.2.0"
   }
 }
