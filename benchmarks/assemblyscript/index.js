@@ -18,7 +18,7 @@ const {
 
 module.exports.as_yau = function as_yau(seq) {
   const inStrPtr = __retain(__newString(seq));
-  const outArrPtr = wasmModule.exports.yau(inStrPtr);
+  const outArrPtr = wasmModule.exports.yau(inStrPtr, seq.length);
   const resultArr = __getFloat64Array(outArrPtr);
   __release(outArrPtr);
   __release(inStrPtr);
@@ -28,7 +28,7 @@ module.exports.as_yau = function as_yau(seq) {
 module.exports.as_qi = function as_qi(seq) {
   const inStrPtr = __retain(__newString(seq));
   const xPtr = wasmModule.exports.x_qi(seq.length);
-  const yPtr = wasmModule.exports.y_qi(inStrPtr);
+  const yPtr = wasmModule.exports.y_qi(inStrPtr, seq.length);
   const x = __getFloat64Array(xPtr);
   const y = __getFloat64Array(yPtr);
   // console.log(y);
@@ -41,7 +41,7 @@ module.exports.as_qi = function as_qi(seq) {
 module.exports.as_yau_bp = function as_yau_bp(seq) {
   const inStrPtr = __retain(__newString(seq));
   const xPtr = wasmModule.exports.x_yau_bp(seq.length);
-  const yPtr = wasmModule.exports.y_yau_bp(inStrPtr);
+  const yPtr = wasmModule.exports.y_yau_bp(inStrPtr, seq.length);
   const x = __getFloat64Array(xPtr);
   const y = __getFloat64Array(yPtr);
   __release(xPtr);
@@ -53,7 +53,7 @@ module.exports.as_yau_bp = function as_yau_bp(seq) {
 module.exports.as_randic = function as_randic(seq) {
   const inStrPtr = __retain(__newString(seq));
   const xPtr = wasmModule.exports.x_randic(seq.length);
-  const yPtr = wasmModule.exports.y_randic(inStrPtr);
+  const yPtr = wasmModule.exports.y_randic(inStrPtr, seq.length);
   const x = __getFloat64Array(xPtr);
   const y = __getFloat64Array(yPtr);
   __release(xPtr);
@@ -67,7 +67,7 @@ module.exports.as_squiggle_two_array_output = function as_squiggle_two_array_out
 ) {
   const inStrPtr = __retain(__newString(seq));
   const xPtr = wasmModule.exports.x_squiggle(seq.length);
-  const yPtr = wasmModule.exports.y_squiggle(inStrPtr);
+  const yPtr = wasmModule.exports.y_squiggle(inStrPtr, seq.length);
   const x = __getFloat64Array(xPtr);
   const y = __getFloat64Array(yPtr);
   __release(xPtr);
@@ -78,7 +78,7 @@ module.exports.as_squiggle_two_array_output = function as_squiggle_two_array_out
 
 module.exports.as_squiggle = function as_squiggle(seq) {
   const inStrPtr = __retain(__newString(seq));
-  const outArrPtr = wasmModule.exports.squiggle(inStrPtr);
+  const outArrPtr = wasmModule.exports.squiggle(inStrPtr, seq.length);
   const resultArr = __getFloat64Array(outArrPtr);
   __release(outArrPtr);
   __release(inStrPtr);
@@ -87,7 +87,7 @@ module.exports.as_squiggle = function as_squiggle(seq) {
 
 module.exports.as_gates = function as_gates(seq) {
   const inStrPtr = __retain(__newString(seq));
-  const outArrPtr = wasmModule.exports.gates(inStrPtr);
+  const outArrPtr = wasmModule.exports.gates(inStrPtr, seq.length);
   const resultArr = __getFloat64Array(outArrPtr);
   __release(outArrPtr);
   __release(inStrPtr);
