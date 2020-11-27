@@ -36,7 +36,37 @@ describe('randic', () => {
       ),
     );
   });
+
+  it('test randic of A', () => {
+    expect(as_randic('A')).to.deep.equal([
+      new Float64Array([0]),
+      new Float64Array([3])
+    ])
+  })
+
+  it('test randic of T', () => {
+    expect(as_randic('T')).to.deep.equal([
+      new Float64Array([0]),
+      new Float64Array([2])
+    ])
+  })
+
+  it('test randic of G', () => {
+    expect(as_randic('G')).to.deep.equal([
+      new Float64Array([0]),
+      new Float64Array([1])
+    ])
+  })
+
+  it('test randic of C', () => {
+    expect(as_randic('C')).to.deep.equal([
+      new Float64Array([0]),
+      new Float64Array([0])
+    ])
+  })
 });
+
+
 
 describe('qi', () => {
   const qiKey = {
@@ -80,6 +110,17 @@ describe('qi', () => {
   //     );
   //   });
   it('basic qi', () => {
-    expect(as_qi('UU')[1][0]).to.equal(15);
+    expect(as_qi('ATGC')).to.deep.equal([
+      new Float64Array([0, 1, 2]),
+      new Float64Array([8, 7, 11])
+    ]);
   });
+
+  it('static qi', () => {
+    for(const base in qiKey) {
+      expect(as_qi(base)[1][0]).to.equal(qiKey[base]);
+    }
+  });
+
+
 });
