@@ -111,7 +111,7 @@ export function yau(sequence: string): number[][] {
       xCoord = xCoord + 3 ** 0.5 / 2;
       yCoord = yCoord - 0.5;
     } else {
-      throw new Error('non-atgcu base')
+      throw new Error('non-atgcu base');
     }
     x.push(xCoord);
     y.push(yCoord);
@@ -161,7 +161,7 @@ export function yau_bp(sequence: string): number[][] {
     } else if (character === 'G') {
       yCoord = yCoord - 0.5;
     } else {
-      throw new Error('non-atgcu base')
+      throw new Error('non-atgcu base');
     }
     y.push(yCoord);
   }
@@ -171,38 +171,52 @@ export function yau_bp(sequence: string): number[][] {
   return result;
 }
 
+/**
+ * Generates integer-valued 2D Visualization of DNA from any sequence
+ *
+ * @param sequence - DNA or RNA sequence (lowercase and mixed cases are valid)
+ *
+ * @returns coordinates for 2D visualization of DNA based on the Yau-Int algorithm
+ *
+ *
+ * Example Usage
+ * ```ts
+ * yau_int('ATGC')
+ * // returns [[0, 1, 2, 3, 4], [0, -2, 0, -1, 0]]
+ * ```
+ *
+ * This produces identically shaped visualizations to {@link yau} and {@link yau_bp} but with coordinates that can be represented as integers.
+ * Additionally, this method **is defined for ambiguous bases**.
+ */
 export function yau_int(sequence: string): number[][] {
-  sequence = sequence.toUpperCase()
-  const x: number[] = new Array(sequence.length).fill(0)
-  const y: number[] = new Array(sequence.length).fill(0)
-  let xCoord: number = 0.0;
-  let yCoord: number = 0.0;
+  sequence = sequence.toUpperCase();
+  const x: number[] = new Array(sequence.length + 1);
+  const y: number[] = new Array(sequence.length + 1);
+  x[0] = 0;
+  y[0] = 0;
+  let xCoord = 0;
+  let yCoord = 0;
   for (let i = 0; i < sequence.length; i++) {
     switch (sequence.charCodeAt(i)) {
       case 0x41: // "A"
-        yCoord -= 2
-        break
+        yCoord -= 2;
+        break;
       case 0x43: // "C"
-        yCoord += 1
-        break
+        yCoord += 1;
+        break;
       case 0x54:
       case 0x55: // "T" && "U"
-        yCoord += 2
-        break
+        yCoord += 2;
+        break;
       case 0x47: // "G"
-        yCoord -= 1
-        break
-      default:
-        throw new Error("non-atgcu base")
+        yCoord -= 1;
+        break;
     }
-    xCoord++
-    x[i + 1] = xCoord
-    y[i + 1] = yCoord
+    xCoord++;
+    x[i + 1] = xCoord;
+    y[i + 1] = yCoord;
   }
-  const result: number[][] = [];
-  result.push(x);
-  result.push(y);
-  return result;
+  return [x, y];
 }
 // randic
 /**
@@ -249,8 +263,14 @@ export function randic(sequence: string): number[][] {
     C: 0,
   };
   for (const character of sequence) {
-    if (character != 'A' && character != 'T' && character != 'U' && character != 'G' && character != 'C') {
-      throw new Error('non-atgcu base')
+    if (
+      character != 'A' &&
+      character != 'T' &&
+      character != 'U' &&
+      character != 'G' &&
+      character != 'C'
+    ) {
+      throw new Error('non-atgcu base');
     }
     x.push(xCoord);
     xCoord++;
@@ -329,9 +349,15 @@ export function qi(sequence: string): number[][] {
     let S_1 = sequence[i];
     let S_2 = sequence[i + 1];
     if (S_1 != 'A' && S_1 != 'T' && S_1 != 'U' && S_1 != 'G' && S_1 != 'C') {
-      throw new Error('non-atgcu base')
-    } else if (S_2 != 'A' && S_2 != 'T' && S_2 != 'U' && S_2 != 'G' && S_2 != 'C') {
-      throw new Error('non-atgcu base')
+      throw new Error('non-atgcu base');
+    } else if (
+      S_2 != 'A' &&
+      S_2 != 'T' &&
+      S_2 != 'U' &&
+      S_2 != 'G' &&
+      S_2 != 'C'
+    ) {
+      throw new Error('non-atgcu base');
     } else if (S_1 === 'U') {
       S_1 = 'T';
     } else if (S_2 === 'U') {
@@ -382,7 +408,7 @@ export function gates(sequence: string): number[][] {
     } else if (character === 'G') {
       xCoord++;
     } else {
-      throw new Error('non-atgcu base')
+      throw new Error('non-atgcu base');
     }
     x.push(xCoord);
     y.push(yCoord);
