@@ -1,10 +1,8 @@
-import commonjs from 'rollup-plugin-commonjs';
-import terser from 'rollup-plugin-babel-minify';
-import pkg from './package.json';
+import { terser } from 'rollup-plugin-terser';
 
 export default [
   {
-    input: 'dist/dnaviz.js',
+    input: 'dist/esm/dnaviz.js',
     output: [
       {
         name: 'dnaviz',
@@ -13,17 +11,6 @@ export default [
         format: 'iife',
       },
     ],
-    plugins: [commonjs(), terser()],
-  },
-  {
-    input: 'dist/dnaviz.js',
-    output: [
-      {
-        name: 'dnaviz',
-        file: pkg.module,
-        format: 'es',
-      },
-    ],
-    plugins: [commonjs()],
+    plugins: [terser()],
   },
 ];
