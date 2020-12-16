@@ -1,31 +1,17 @@
 {
   "name": "dnaviz",
-<<<<<<< HEAD
-  "version": "1.0.0",
-  "description": "DNA visualization for the command line, browser, and beyond",
-  "main": "dist/dnaviz.js",
-  "module": "dist/dnaviz.esm.js",
-  "types": "dist/dnaviz.d.ts",
-  "dependencies": {
-    "gh-pages": "^3.0.0"
-  },
-=======
   "version": "1.0.0-2",
   "description": "DNA visualization functions for Node, the browser, and beyond",
   "main": "dist/cjs/dnaviz.js",
   "module": "dist/esm/dnaviz.js",
   "types": "dist/esm/dnaviz.d.ts",
   "dependencies": {},
->>>>>>> 5b995dff8020bc04aa51846a1c7d2ce000fcbe37
   "devDependencies": {
     "@types/jest": "^25.2.3",
     "fast-check": "^1.24.2",
     "jest": "^26.0.1",
     "prettier": "^2.0.5",
-<<<<<<< HEAD
-=======
     "release-it": "^14.0.2",
->>>>>>> 5b995dff8020bc04aa51846a1c7d2ce000fcbe37
     "rollup": "^2.14.0",
     "rollup-plugin-terser": "^6.1.0",
     "ts-jest": "^26.1.0",
@@ -38,15 +24,10 @@
     "test": "jest --config jestconfig.json --coverage",
     "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && rollup --config rollup.config.ts",
     "format": "prettier --write \"src/**/*.ts\"",
-<<<<<<< HEAD
-    "lint": "tslint -p tsconfig.json",
-    "typedoc": "typedoc && touch docs/.nojekyll"
-=======
     "lint": "tslint -p tsconfig.cjs.json",
     "typedoc": "typedoc && touch docs/.nojekyll",
     "prepublish": "npm test && npm run build",
     "release": "release-it"
->>>>>>> 5b995dff8020bc04aa51846a1c7d2ce000fcbe37
   },
   "repository": {
     "type": "git",
@@ -60,14 +41,10 @@
   "bugs": {
     "url": "https://github.com/IQTLabs/dnaviz/issues"
   },
-<<<<<<< HEAD
-  "homepage": "https://lab41.github.io/dnaviz"
-=======
   "homepage": "https://iqtlabs.github.io/dnaviz",
   "release-it": {
     "github": {
       "release": true
     }
   }
->>>>>>> 5b995dff8020bc04aa51846a1c7d2ce000fcbe37
 }

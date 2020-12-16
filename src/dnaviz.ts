@@ -173,11 +173,10 @@ export function yau_bp(sequence: string): number[][] {
 
 export function yau_int(sequence: string): number[][] {
   sequence = sequence.toUpperCase()
-  const x: number[] = new Array(sequence.length)
-  const y: number[] = new Array(sequence.length)
+  const x: number[] = new Array(sequence.length).fill(0)
+  const y: number[] = new Array(sequence.length).fill(0)
   let xCoord: number = 0.0;
   let yCoord: number = 0.0;
-
   for (let i = 0; i < sequence.length; i++) {
     switch (sequence.charCodeAt(i)) {
       case 0x41: // "A"
