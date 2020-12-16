@@ -1,11 +1,11 @@
-# DNAviz
+# `dnaviz`
 
-> DNA Sequence visualization for humans
+> DNA visualization functions for Node, the browser, and beyond
 
 [![CI/CD](https://github.com/IQTLabs/dnaviz/workflows/CI/CD/badge.svg)](https://github.com/IQTLabs/dnaviz/actions)
 
 A DNA visualization package for Node, the browser, and beyond.
-Using one of seven different methods, DNAviz allows you to convert any DNA or RNA sequence into meaningful two-dimensional visualizations.
+Using one of seven different methods, `dnaviz` allows you to convert any DNA or RNA sequence into meaningful two-dimensional visualizations.
 
 ## Installation
 
@@ -56,7 +56,7 @@ dnaviz.squiggle('ATGC'); // => [[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4], [0, 0.5, 0,
 | Yau-Int  | Yau-BP but with integer values                                                                      |
 | Randic   | Assigns each base a unique y-value                                                                  |
 | Qi       | Assigns each 2-mer combination a unique y-value                                                     |
-| Gates    | Bases converted into 2D-walks (up, down, left, and right)                                           |
+| Gates    | Bases converted into 2D walks (up, down, left, and right)                                           |
 
 # Documentation
 
