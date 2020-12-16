@@ -170,6 +170,41 @@ export function yau_bp(sequence: string): number[][] {
   result.push(y);
   return result;
 }
+
+export function yau_int(sequence: string): number[][] {
+  sequence = sequence.toUpperCase()
+  const x: number[] = new Array(sequence.length)
+  const y: number[] = new Array(sequence.length)
+  let xCoord: number = 0.0;
+  let yCoord: number = 0.0;
+
+  for (let i = 0; i < sequence.length; i++) {
+    switch (sequence.charCodeAt(i)) {
+      case 0x41: // "A"
+        yCoord -= 2
+        break
+      case 0x43: // "C"
+        yCoord += 1
+        break
+      case 0x54:
+      case 0x55: // "T" && "U"
+        yCoord += 2
+        break
+      case 0x47: // "G"
+        yCoord -= 1
+        break
+      default:
+        throw new Error("non-atgcu base")
+    }
+    xCoord++
+    x[i + 1] = xCoord
+    y[i + 1] = yCoord
+  }
+  const result: number[][] = [];
+  result.push(x);
+  result.push(y);
+  return result;
+}
 // randic
 /**
  * Generates randic 2D Visualization of DNA from any sequence
